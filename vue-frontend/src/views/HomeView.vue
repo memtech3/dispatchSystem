@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CallsList from '../components/dispatching/CallsList.vue'
 import UnitsList from '../components/dispatching/UnitsList.vue'
+import MapComponent from '../components/dispatching/MapComponent.vue'
 
 import {
   IxEventList,
@@ -21,7 +22,9 @@ import {
       <IxCol size="2">
         <CallsList />
       </IxCol>
-      <IxCol style="background-color: black"><IxTypography format="display">2</IxTypography></IxCol>
+      <IxCol>
+        <MapComponent />
+      </IxCol>
       <IxCol size="2">
         <UnitsList />
       </IxCol>
@@ -34,4 +37,11 @@ import {
   width: 100%;
   height: 100%;
 }
+
+/* ix-col {
+  background-color: var(--theme-color-primary);
+  border: var(--theme-std-bdr-2);
+  text-align: center;
+  color: var(--theme-color-inv-contrast-text);
+} */
 </style>
