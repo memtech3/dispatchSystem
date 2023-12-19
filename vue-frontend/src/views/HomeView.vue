@@ -14,12 +14,12 @@ import MapComponent from '../components/dispatching/MapComponent.vue'
     <div
       class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 md:col-span-2 lg:col-span-3"
     >
-      <!-- <MapComponent /> -->
+      <MapComponent />
     </div>
     <div
       class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 md:col-span-4 lg:col-span-2"
     >
-      <!-- <CallsList /> -->
+      <CallsList />
     </div>
   </div>
 </template>

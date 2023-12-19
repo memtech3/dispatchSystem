@@ -4,7 +4,9 @@ export default {
     component: UnitsList,
     title: 'Units List',
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        args: {},
+    },
 };
 
 export const Default = {
