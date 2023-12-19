@@ -2,34 +2,26 @@
 import CallsList from '../components/dispatching/CallsList.vue'
 import UnitsList from '../components/dispatching/UnitsList.vue'
 import MapComponent from '../components/dispatching/MapComponent.vue'
-
-import {
-  IxEventList,
-  IxEventListItem,
-  IxCol,
-  IxLayoutGrid,
-  IxRow,
-  IxTypography
-} from '@siemens/ix-vue'
 </script>
 
 <template>
-  <IxLayoutGrid id="main-grid">
-    <IxRow style="height: 100%">
-      <IxCol size="2">
-        <CallsList />
-      </IxCol>
-      <IxCol size="2">
-        <CallsList />
-      </IxCol>
-      <IxCol>
-        <MapComponent />
-      </IxCol>
-      <IxCol size="2">
-        <UnitsList />
-      </IxCol>
-    </IxRow>
-  </IxLayoutGrid>
+  <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-4 h-full w-full">
+    <div
+      class="md:col-span-2 lg:col-span-1"
+    >
+      <UnitsList />
+    </div>
+    <div
+      class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 md:col-span-2 lg:col-span-3"
+    >
+      <!-- <MapComponent /> -->
+    </div>
+    <div
+      class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 md:col-span-4 lg:col-span-2"
+    >
+      <!-- <CallsList /> -->
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -37,11 +29,4 @@ import {
   width: 100%;
   height: 100%;
 }
-
-/* ix-col {
-  background-color: var(--theme-color-primary);
-  border: var(--theme-std-bdr-2);
-  text-align: center;
-  color: var(--theme-color-inv-contrast-text);
-} */
 </style>

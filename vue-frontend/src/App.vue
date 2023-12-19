@@ -7,13 +7,15 @@ import { initFlowbite } from 'flowbite'
 
 // initialize components based on data attribute selectors
 onMounted(() => {
-    initFlowbite();
+  initFlowbite()
 })
 </script>
 
 <template>
   <Navbar />
-
+  <main class="p-4 pt-20 h-screen">
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>

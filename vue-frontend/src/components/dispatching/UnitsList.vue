@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { IxEventList, IxEventListItem } from '@siemens/ix-vue'
 import UnitsListItem from './UnitsListItem.vue'
 </script>
 
 <template>
-  <IxEventList>
+  <ul>
     <UnitsListItem unitID="1A-34" unitStatus="En Route" unitCurrentCall="12" />
     <UnitsListItem />
     <UnitsListItem />
     <UnitsListItem />
-  </IxEventList>
+  </ul>
 </template>
 
 <style scoped></style>
