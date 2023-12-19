@@ -40,12 +40,6 @@ defineProps<{
       <div class="w-8 bg-yellow-300"></div>
     </div>
   </li>
-  <!-- <IxEventListItem color="color-primary">
-    {{ callID }} <br />
-    {{ callTypeCode }}: {{ callTypeDescription }} <br />
-    {{ callLocation }} <br />
-    {{ callAssignedResources }}
-  </IxEventListItem> -->
 </template>
 
 <style scoped></style>
