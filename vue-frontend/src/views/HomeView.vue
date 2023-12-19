@@ -6,9 +6,7 @@ import MapComponent from '../components/dispatching/MapComponent.vue'
 
 <template>
   <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-4 h-full w-full">
-    <div
-      class="md:col-span-2 lg:col-span-1"
-    >
+    <div class="md:col-span-2 lg:col-span-1">
       <UnitsList />
     </div>
     <div

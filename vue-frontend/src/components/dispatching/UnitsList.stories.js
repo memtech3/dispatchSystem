@@ -1,14 +1,14 @@
-import UnitsList from './UnitsList.vue';
+import UnitsList from './UnitsList.vue'
 
 export default {
-    component: UnitsList,
-    title: 'Units List',
-    tags: ['autodocs'],
-    argTypes: {
-        args: {},
-    },
-};
+  component: UnitsList,
+  title: 'Units List',
+  tags: ['autodocs'],
+  argTypes: {
+    args: {}
+  }
+}
 
 export const Default = {
-    args: {},
-};
+  args: {}
+}
