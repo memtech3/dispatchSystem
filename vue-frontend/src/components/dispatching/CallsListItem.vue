@@ -12,10 +12,16 @@ defineProps<{
 </script>
 
 <template>
+      <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+        </svg>
+        <span class="sr-only">Check icon</span>
+    </div>
   <li class="border border-gray-500" dark:border-gray-100>
     <div class="flex h-32">
-      <div class="w-20 bg-red-700">
-        <div class="flex flex-col content-center">
+      <div class="w-20 text-green-400 bg-green-100 dark:bg-green-400 dark:text-green-100">
+        <div class="flex flex-col content-center items-center p-5 text-green-200">
           <svg
             class="w-6 h-6 text-gray-800"
             aria-hidden="true"
@@ -30,7 +36,7 @@ defineProps<{
           <span class="text-white"> P{{ callPriority }} </span>
         </div>
       </div>
-      <div class="grow min-w-96 bg-yellow-300">
+      <div class="p-2 grow min-w-96 dark:bg-gray-800 dark:text-white">
         {{ callTypeCode }}: {{ callTypeDescription }} <br />
         {{ callLocation }} <br />
         {{ callID }} <br />
@@ -42,4 +48,6 @@ defineProps<{
   </li>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
