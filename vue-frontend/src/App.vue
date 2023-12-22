@@ -13,7 +13,7 @@ onMounted(() => {
 
 <template>
   <Navbar />
-  <main class="p-4 pt-20 h-screen">
+  <main class="pt-20 h-screen">
     <RouterView />
   </main>
 </template>
