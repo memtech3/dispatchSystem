@@ -17,6 +17,7 @@
   "dependencies": {
     "@siemens/ix-icons": "^2.0.1",
     "@siemens/ix-vue": "^2.0.4",
+    "bootstrap-icons": "^1.11.2",
     "flowbite": "^2.2.1",
     "maplibre-gl": "^3.6.2",
     "pinia": "^2.1.7",
