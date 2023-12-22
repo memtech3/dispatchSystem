@@ -3,7 +3,7 @@ import CallsList from './CallsList.vue'
 </script>
 
 <template>
-  <div class="bg-white dark:bg-gray-700 h-full p-2">
+  <div class="h-full px-2">
     <div class="mb-2">
       <label for="voice-search" class="sr-only">Search</label>
       <div class="relative w-full text-gray-900 dark:text-white">
@@ -19,7 +19,7 @@ import CallsList from './CallsList.vue'
         </button>
       </div>
     </div>
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-2 space-x-2">
       <CallsList />
       <CallsList />
     </div>
