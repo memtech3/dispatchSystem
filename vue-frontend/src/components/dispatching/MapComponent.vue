@@ -16,7 +16,7 @@ onMounted(() => {
           tiles: ['http://tile.openstreetmap.org/{z}/{x}/{y}.png'],
           tileSize: 256,
           attribution:
-            "Maptiles by <a href='http://mierune.co.jp/' target='_blank'>MIERUNE</a>, under CC BY. Data by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors, under ODbL."
+            "Maptiles by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> DO NOT USE IN PRODUCTION REPLACE WITH SELF HOSTED MAPTILES SERVER."
         }
       },
       layers: [
