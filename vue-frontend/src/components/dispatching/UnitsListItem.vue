@@ -9,20 +9,29 @@ defineProps<{
 </script>
 
 <template>
-  <li
-    class="flex items-center p-2 mb-4 text-sm text-white rounded-md bg-blue-50 dark:bg-gray-800 dark:text-white"
-    role="alert"
+  <tr
+    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
   >
-    <span class="bg-blue-700 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded">{{
-      unitID
-    }}</span>
-    <span class="pl-16 pr-4 font-medium">{{ unitStatus }}</span>
-    <span>2m 35s</span>
-  </li>
+    <td class="w-4 p-4">
+      <div class="flex items-center">
+        <input
+          id="checkbox-table-search-1"
+          type="checkbox"
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+      </div>
+    </td>
+    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+      {{ unitID }}
+    </th>
+    <td class="px-6 py-4">{{ unitStatus }}</td>
+    <td class="px-6 py-4">{{ unitCurrentCall }}</td>
+    <td class="px-6 py-4">$2999</td>
+    <td class="px-6 py-4">
+      <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+    </td>
+  </tr>
 </template>
 
-<style scoped>
-.unitID-badge {
-  background-color: blueviolet;
-}
-</style>
+<style scoped></style>
