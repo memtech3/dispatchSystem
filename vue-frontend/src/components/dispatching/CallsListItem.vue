@@ -34,7 +34,7 @@ defineProps<{
 </script>
 
 <template>
-  <li class="border border-gray-500" dark:border-gray-100>
+  <li class="border border-gray-500 dark:border-gray-100 dark:text-white dark:bg-gray-800">
     <div class="flex h-32">
       <div class="w-14" :class="callPriorityClr">
         <div class="flex flex-col content-center items-center py-5 text-green-200">
@@ -42,30 +42,37 @@ defineProps<{
             class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200"
           >
             <span :class="callTypeIcon"></span>
-            <!-- <svg
-              class="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"
-              />
-            </svg> -->
-            <span class="sr-only">Check icon</span>
+            <span class="sr-only">{{ callTypeIcon }}</span>
           </div>
           <span class="text-white"> P{{ callPriority }} </span>
         </div>
       </div>
-      <div class="p-2 grow min-w-96 dark:bg-gray-800 dark:text-white">
+      <div class="p-2 grow min-w-96">
         {{ callTypeCode }}: {{ callTypeDescription }} <br />
         {{ callLocation }} <br />
         {{ callID }} <br />
         {{ callAssignedResources }}
       </div>
-      <div class="w-28 bg-red-700">test</div>
-      <div class="w-8 bg-yellow-300"></div>
+      <div class="w-28">
+        <div class="flex flex-col content-center items-end p-2">
+          <span>2:43 PM</span>
+          <span
+            class="bg-gray-100 text-gray-800 text-sm font-medium px-1 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"
+          >
+            <span class="bi bi-stopwatch"></span>
+            10 min
+          </span>
+          <span>4 min</span>
+        </div>
+      </div>
+      <div class="w-8 flex flex-col content-center items-center py-2">
+        <button type="button" class="actionButton">
+          <span class="bi bi-three-dots-vertical"></span>
+        </button>
+        <button type="button" class="actionButton justify-self-end">
+          <span class="bi bi-chevron-double-down"></span>
+        </button>
+      </div>
     </div>
   </li>
 </template>
@@ -81,4 +88,8 @@ defineProps<{
 @include cardPriorityColor('green');
 @include cardPriorityColor('red');
 @include cardPriorityColor('purple');
+
+.actionButton {
+  @apply text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm p-0.5 text-center mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800;
+}
 </style>
