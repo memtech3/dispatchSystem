@@ -3,6 +3,8 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { Map, NavigationControl } from 'maplibre-gl'
 import { onMounted } from 'vue'
 
+// TODO: Update map attribution, replace openstreetmap tiles server with self hosted tile server
+// TODO: Set up tile server
 onMounted(() => {
   const map = new Map({
     container: 'map',
@@ -11,7 +13,7 @@ onMounted(() => {
       sources: {
         MIERUNEMAP: {
           type: 'raster',
-          tiles: ['https://tile.mierune.co.jp/mierune_mono/{z}/{x}/{y}.png'],
+          tiles: ['http://tile.openstreetmap.org/{z}/{x}/{y}.png'],
           tileSize: 256,
           attribution:
             "Maptiles by <a href='http://mierune.co.jp/' target='_blank'>MIERUNE</a>, under CC BY. Data by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors, under ODbL."
@@ -27,7 +29,7 @@ onMounted(() => {
         }
       ]
     },
-    center: [139.767, 35.681],
+    center: [-95.4929164, 29.6877036],
     zoom: 11
   })
 
