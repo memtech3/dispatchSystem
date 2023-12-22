@@ -34,7 +34,7 @@ defineProps<{
 </script>
 
 <template>
-  <li class="border border-gray-500 dark:border-gray-100 dark:text-white dark:bg-gray-800">
+  <li class="dark:text-white dark:bg-gray-800">
     <div class="flex h-32">
       <div class="w-14" :class="callPriorityClr">
         <div class="flex flex-col content-center items-center py-5 text-green-200">
