@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import "bootstrap-icons/font/bootstrap-icons.css"
-
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 defineProps<{
   callID: string
@@ -15,7 +14,7 @@ defineProps<{
 }>()
 
 // Attempt at call elapsed time counter:
-// 
+//
 // data() {
 //   return {
 //     hours: 0,
@@ -72,18 +71,14 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-
 @mixin cardPriorityColor($color) {
   .priorityColor-#{$color} {
     @apply text-#{$color}-400 bg-#{$color}-100 dark:bg-#{$color}-400 dark:text-#{$color}-100;
   }
-
 }
 
-@include cardPriorityColor("orange");
-@include cardPriorityColor("green");
-@include cardPriorityColor("red");
-@include cardPriorityColor("purple");
-
-
+@include cardPriorityColor('orange');
+@include cardPriorityColor('green');
+@include cardPriorityColor('red');
+@include cardPriorityColor('purple');
 </style>
