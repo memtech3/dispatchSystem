@@ -28,6 +28,6 @@ input {
       text-gray-900 dark:text-white dark:placeholder-gray-400 sm:text-sm 
       focus:ring-primary-500 dark:focus:ring-primary-500
       focus:border-primary-500 dark:focus:border-primary-500
-      block w-full pl-9 p-2;
+      block w-full pl-9 p-1;
 }
 </style>
