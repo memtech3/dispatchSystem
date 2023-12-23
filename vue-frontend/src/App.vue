@@ -13,13 +13,13 @@ onMounted(() => {
 
 <template>
   <Navbar />
-  <main class="pt-20 h-screen">
+  <main class="w-full overflow-auto">
     <RouterView />
   </main>
 </template>
 
 <style scoped>
 main {
-  width: 100%;
+  height: calc(100vh - 67px);
 }
 </style>

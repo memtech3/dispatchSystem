@@ -34,9 +34,9 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex h-32 dark:text-white dark:bg-gray-800 rounded-md">
+  <div class="flex h-32 dark:text-white dark:bg-gray-800">
     <div
-      class="w-14 flex flex-col content-center items-center py-5 rounded-l-md text-white"
+      class="w-14 flex flex-col content-center items-center py-5 text-white"
       :class="callPriorityClr"
     >
       <span
