@@ -20,6 +20,7 @@ onMounted(() => {
 
 <style scoped>
 main {
-  height: calc(100vh - 67px);
+  /* set height of main element to height of viewport minus height of navbar */
+  height: calc(100vh - 59px);
 }
 </style>

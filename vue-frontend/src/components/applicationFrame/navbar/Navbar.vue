@@ -1,10 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TextInput from '../../TextInput.vue'
+</script>
 
 <template>
   <header class="antialiased">
     <nav class="navbar">
       <div class="flex flex-wrap justify-between items-center">
-        <div class="flex justify-start items-center">
+        <div class="flex justify-start items-center flex-grow pr-2">
           <a href="https://flowbite.com" class="flex mr-4">
             <img
               src="https://flowbite.s3.amazonaws.com/logo.svg"
@@ -15,35 +17,16 @@
               >Flowbite</span
             >
           </a>
-          <form action="#" method="GET" class="hidden lg:block lg:pl-2">
-            <label for="topbar-search" class="sr-only">Search</label>
-            <div class="relative mt-1 lg:w-96">
-              <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <svg
-                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
-              </div>
-              <input
-                type="text"
-                name="email"
-                id="topbar-search"
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-500 focus:border-primary-500 block w-full pl-9 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Search"
-              />
-            </div>
-          </form>
+          <div class="hidden lg:flex lg:flex-grow lg:pl-2">
+            <TextInput
+              name="Command Bar"
+              type="text"
+              id="commandBar"
+              label="Command Bar"
+              placeholder="Enter commands..."
+              icon="bi bi-terminal"
+            />
+          </div>
         </div>
         <div class="flex items-center lg:order-2">
           <button
