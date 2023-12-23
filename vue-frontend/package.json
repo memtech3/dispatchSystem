@@ -12,13 +12,15 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "dupe-report": "npx jscpd ./src -r html"
   },
   "dependencies": {
     "@siemens/ix-icons": "^2.0.1",
     "@siemens/ix-vue": "^2.0.4",
     "bootstrap-icons": "^1.11.2",
     "flowbite": "^2.2.1",
+    "jscpd": "^3.5.10",
     "maplibre-gl": "^3.6.2",
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
