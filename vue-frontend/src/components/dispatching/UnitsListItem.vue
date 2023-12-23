@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { IxEventListItem, IxIcon, IxCol, IxTile } from '@siemens/ix-vue'
-
 defineProps<{
   unitID: string
   unitStatus: string
@@ -27,10 +25,6 @@ defineProps<{
     </th>
     <td class="px-6 py-4">{{ unitStatus }}</td>
     <td class="px-6 py-4">{{ unitCurrentCall }}</td>
-    <td class="px-6 py-4">$2999</td>
-    <td class="px-6 py-4">
-      <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-    </td>
   </tr>
 </template>
 
