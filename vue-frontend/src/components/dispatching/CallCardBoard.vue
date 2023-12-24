@@ -4,7 +4,7 @@ import TextInput from '../TextInput.vue'
 </script>
 
 <template>
-  <div class="h-full px-2">
+  <div class="px-2">
     <div class="my-2">
       <TextInput
         name="Search"
@@ -15,7 +15,7 @@ import TextInput from '../TextInput.vue'
         icon="bi bi-search"
       />
     </div>
-    <div class="grid grid-cols-2 space-x-2">
+    <div class="grid grid-cols-2 space-x-2 overflow-auto">
       <CallsList />
       <CallsList />
     </div>
