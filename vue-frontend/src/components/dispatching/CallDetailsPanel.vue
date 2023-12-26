@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import CallsListItem from './CallsListItem.vue'
+import CallDetailCard from './CallDetailCard.vue'
+import Sidebar from '../applicationFrame/sidebar/Sidebar.vue'
 </script>
 
 <template>
   <div class="flex flex-col h-full">
-    <CallsListItem
+    <CallDetailCard
       call-id="H345"
       call-priority="1"
       call-priority-clr="priorityColor-green"
@@ -14,25 +15,7 @@ import CallsListItem from './CallsListItem.vue'
       call-location="Scare Floor Sector 7G"
       call-assigned-resources="P135, PS34, H43, H44"
     />
-    <div
-      class="w-12 flex flex-col content-center items-center py-5 text-white bg-gray-800 flex-grow"
-    >
-      <button class="sideBarButton">
-        <span class="bi bi-phone"></span>
-      </button>
-      <span class="sideBarButton">
-        <span class="bi bi-phone"></span>
-      </span>
-      <span class="sideBarButton">
-        <span class="bi bi-phone"></span>
-      </span>
-      <span class="sideBarButton">
-        <span class="bi bi-phone"></span>
-      </span>
-      <span class="sideBarButton">
-        <span class="bi bi-phone"></span>
-      </span>
-    </div>
+    <Sidebar />
   </div>
 </template>
 
