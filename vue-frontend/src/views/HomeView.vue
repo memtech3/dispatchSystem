@@ -4,28 +4,26 @@ import CallDetailsPanel from '../components/dispatching/CallDetailsPanel.vue'
 import UnitsList from '../components/dispatching/UnitsList.vue'
 import MapComponent from '../components/dispatching/MapComponent.vue'
 import CallFormWindow from '../components/callFormWindow/CallFormWindow.vue'
+import GridStack from '@/components/GridStack.vue'
+import GridStackItem from '@/components/GridStackItem.vue'
 </script>
 
 <template>
-  <div class="grid grid-cols-10 h-full w-full">
-    <div class="col-span-2 h-full">
-      <CallDetailsPanel />
-    </div>
-    <div class="col-span-4 h-full">
-      <CallCardBoard />
-    </div>
-    <div class="col-span-4 h-full">
-      <div class="h-full grid grid-rows-2">
-        <div class="halfHeight">
-          <MapComponent />
-        </div>
-        <div class="halfHeight overflow-auto">
-          <UnitsList />
-        </div>
-      </div>
-    </div>
-  </div>
   <CallFormWindow />
+  <GridStack gs-row="20">
+    <GridStackItem gs-w="3" gs-h="5">
+      <CallDetailsPanel />
+    </GridStackItem>
+    <GridStackItem gs-w="4" gs-h="5">
+      <CallCardBoard />
+    </GridStackItem>
+    <GridStackItem gs-w="4" gs-h="2">
+      <MapComponent />
+    </GridStackItem>
+    <GridStackItem gs-w="4" gs-h="2">
+      <UnitsList />
+    </GridStackItem>
+  </GridStack>
 </template>
 
 <style scoped>

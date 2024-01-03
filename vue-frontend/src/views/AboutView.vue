@@ -6,7 +6,7 @@ import GridStackItem from '@/components/GridStackItem.vue';
   <div class="about">
     <h1>This is an about page</h1>
   </div>
-  <GridStack>
+  <GridStack gs-row="5">
     <GridStackItem>test</GridStackItem>
     <GridStackItem>test</GridStackItem>
     <GridStackItem>test</GridStackItem>
