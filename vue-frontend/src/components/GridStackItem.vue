@@ -5,7 +5,7 @@ import 'gridstack/dist/gridstack.min.css'
 <template>
   <div class="grid-stack-item bg-red-400">
     <div class="grid-stack-item-content bg-blue-500">
-        <slot />
+      <slot />
     </div>
   </div>
 </template>

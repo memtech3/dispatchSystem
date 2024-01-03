@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GridStack from '@/components/GridStack.vue'
-import GridStackItem from '@/components/GridStackItem.vue';
+import GridStackItem from '@/components/GridStackItem.vue'
 </script>
 <template>
   <div class="about">
@@ -14,6 +14,5 @@ import GridStackItem from '@/components/GridStackItem.vue';
     <GridStackItem>test</GridStackItem>
     <GridStackItem>test</GridStackItem>
     <GridStackItem>test</GridStackItem>
-
   </GridStack>
 </template>
