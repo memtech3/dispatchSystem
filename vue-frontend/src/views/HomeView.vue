@@ -34,6 +34,6 @@ import MapComponent from '../components/dispatching/MapComponent.vue'
 
 .halfHeight {
   /* set height of element to half of (height of viewport minus height of navbar) */
-  height: calc((100vh - 59px) / 2);
+  height: calc((100vh - 59px - 24px) / 2);
 }
 </style>
