@@ -16,11 +16,6 @@ onMounted(() => {
 
 <template>
   <div class="grid-stack bg-white">
-    <div class="grid-stack-item bg-red-400">
-      <div class="grid-stack-item-content">Item 1</div>
-    </div>
-    <div class="grid-stack-item bg-green-400" gs-w="2">
-      <div class="grid-stack-item-content">Item 2</div>
-    </div>
+    <slot />
   </div>
 </template>
