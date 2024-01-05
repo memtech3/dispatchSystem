@@ -19,30 +19,18 @@ watchEffect(async () => {
 
 <template>
   <CallFormWindow />
-  <GridStack gs-row="20" class="page-bg" :editable="editable">
-    <GridStackItem gs-w="3" gs-h="5">
+  <GridStack class="page-bg" :editable="editable">
+    <GridStackItem gs-w="4" gs-h="9">
       <CallDetailsPanel />
     </GridStackItem>
-    <GridStackItem gs-w="4" gs-h="5">
+    <GridStackItem gs-w="8" gs-h="9">
       <CallCardBoard />
     </GridStackItem>
-    <GridStackItem gs-w="4" gs-h="2">
+    <GridStackItem gs-w="8" gs-h="4">
       <MapComponent />
     </GridStackItem>
-    <GridStackItem gs-w="4" gs-h="2">
+    <GridStackItem gs-w="8" gs-h="4">
       <UnitsList />
     </GridStackItem>
   </GridStack>
 </template>
-
-<style scoped>
-#main-grid {
-  width: 100%;
-  height: 100%;
-}
-
-.halfHeight {
-  /* set height of element to half of (height of viewport minus height of navbar) */
-  height: calc((100vh - 59px - 24px) / 2);
-}
-</style>

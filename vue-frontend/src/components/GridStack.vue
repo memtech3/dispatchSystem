@@ -9,8 +9,9 @@ const props = defineProps({
 
 let grid = null
 let options = {
-  columnWidth: 1
-  // This isn't working hmm
+  margin: 0,
+  column: 20,
+  float: true
 }
 
 onMounted(() => {
@@ -32,3 +33,22 @@ onMounted(() => {
     <slot />
   </div>
 </template>
+
+<style lang="scss">
+$columns: 20;
+@function fixed($float) {
+  @return round(calc($float * 1000) / 1000); // total 2+3 digits being %
+}
+.gs-#{$columns} > .grid-stack-item {
+  width: fixed(calc(100% / $columns));
+
+  @for $i from 1 through $columns - 1 {
+    &[gs-x='#{$i}'] {
+      left: fixed((calc(100% / $columns)) * $i);
+    }
+    &[gs-w='#{$i+1}'] {
+      width: fixed((calc(100% / $columns)) * ($i + 1));
+    }
+  }
+}
+</style>
