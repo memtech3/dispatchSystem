@@ -8,6 +8,7 @@ import FooterItem from './FooterItem.vue'
       <FooterItem keyboardShorcut="F2" actionName="New Event (Ext Src)" />
       <FooterItem keyboardShorcut="F3" actionName="New Event (Int Src)" />
       <FooterItem keyboardShorcut="F4" actionName="Post Current Event" />
+      <FooterItem keyboardShorcut="Ctrl + Alt" actionName="Move Grid Items (Hold)" />
     </ul>
   </footer>
 </template>
