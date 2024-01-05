@@ -6,11 +6,18 @@ import MapComponent from '../components/dispatching/MapComponent.vue'
 import CallFormWindow from '../components/callFormWindow/CallFormWindow.vue'
 import GridStack from '@/components/GridStack.vue'
 import GridStackItem from '@/components/GridStackItem.vue'
+import { ref } from 'vue'
+
+const editable = ref(true)
 </script>
 
 <template>
   <CallFormWindow />
-  <GridStack gs-row="20">
+  <button class="ui button toggle" @click="editable = !editable">OFF</button>
+  <span class="bg-white">
+    {{ editable }}
+  </span>
+  <GridStack gs-row="20" class="page-bg" :editable="editable">
     <GridStackItem gs-w="3" gs-h="5">
       <CallDetailsPanel />
     </GridStackItem>
