@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/vue3'
 import '../src/index.css'
 import { initFlowbite } from 'flowbite'
+import { withThemeByClassName } from "@storybook/addon-themes";
 initFlowbite()
 const preview: Preview = {
   parameters: {
@@ -12,7 +13,16 @@ const preview: Preview = {
       }
     }
   }
-  }
+}
 
+export const decorators = [
+  withThemeByClassName({
+    themes: {
+      light: '',
+      dark: 'dark',
+    },
+    defaultTheme: 'dark'
+  }),
+];
 
 export default preview

@@ -6,6 +6,7 @@ module.exports = {
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
     "./node_modules/flowbite/**/*.js",
+    "./.storybook/**/*.html"
   ],
   theme: {
     extend: {
