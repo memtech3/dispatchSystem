@@ -23,23 +23,23 @@ setInterval(() => {
 </template>
 
 <style lang="scss">
-    .winbox {
-    @apply bg-gray-700;
-    box-shadow: none;
+.winbox {
+  @apply bg-gray-700;
+  box-shadow: none;
 }
 
 .winbox.min {
 }
 
 .wb-body {
-    /* set the width of window border via margin: */
-    margin: 4px;
-    @apply bg-gray-950 text-white;
+  /* set the width of window border via margin: */
+  margin: 4px;
+  @apply bg-gray-950 text-white;
 }
 
 .wb-title {
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 </style>
