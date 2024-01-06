@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-import { colors } from 'tailwindcss/colors'
-import { plugin } from 'flowbite/plugin'
+import colors from 'tailwindcss/colors'
+import plugin from 'flowbite/plugin'
 
 export default {
   content: [
@@ -10,7 +10,11 @@ export default {
     "./.storybook/**/*.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: colors.blue
+      }
+    },
   },
   plugins: [
     plugin
