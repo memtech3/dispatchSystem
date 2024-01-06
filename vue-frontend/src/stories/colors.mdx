@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/blocks'
+import { ColorPalette, ColorItem } from '@storybook/blocks'
+
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../tailwind.config.js'
+
+const fullConfig = resolveConfig(tailwindConfig)
+
+fullConfig.theme.width[4]
+// => '1rem'
+
+fullConfig.theme.screens.md
+// => '768px'
+
+fullConfig.theme.boxShadow['2xl']
+// => '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+
+<Meta title="System/Colors" />
+
+<ColorPalette>
+  <ColorItem title="Page Background" subtitle="page-bg" colors={{ "Light (gray-50)": "#f9fafb", "Dark (gray 950)":"#030712"}} />
+  <ColorItem title="Header Background" subtitle="header-bg" colors={{ "Light (gray-100)": "#f3f4f6", "Dark (gray 900)":"#111827"}} />
+  <ColorItem title="Page Background" subtitle="page-bg" colors={{ "Light (gray-50)": "#f9fafb", "Dark (gray 950)":"#030712"}} />
+
+</ColorPalette>
+
+<span class="">test</span>
