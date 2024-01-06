@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors')
+import colors from 'tailwindcss/colors'
+import plugin from 'flowbite/plugin'
 
-module.exports = {
+export default {
   content: [
     "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./src/**/*.{vue,js,ts,jsx,tsx,mdx}",
     "./node_modules/flowbite/**/*.js",
     "./.storybook/**/*.html"
   ],
@@ -16,7 +17,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    plugin
   ],
   darkMode: 'class',
 }
