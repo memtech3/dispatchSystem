@@ -4,24 +4,32 @@ import { ColorPalette, ColorItem } from '@storybook/blocks'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from '../../tailwind.config.js'
 
-const fullConfig = resolveConfig(tailwindConfig)
-
-fullConfig.theme.width[4]
-// => '1rem'
-
-fullConfig.theme.screens.md
-// => '768px'
-
-fullConfig.theme.boxShadow['2xl']
-// => '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+export const fullConfig = resolveConfig(tailwindConfig)
+export const colors = fullConfig.theme.accentColor
 
 <Meta title="System/Colors" />
-
 <ColorPalette>
-  <ColorItem title="Page Background" subtitle="page-bg" colors={{ "Light (gray-50)": "#f9fafb", "Dark (gray 950)":"#030712"}} />
-  <ColorItem title="Header Background" subtitle="header-bg" colors={{ "Light (gray-100)": "#f3f4f6", "Dark (gray 900)":"#111827"}} />
-  <ColorItem title="Page Background" subtitle="page-bg" colors={{ "Light (gray-50)": "#f9fafb", "Dark (gray 950)":"#030712"}} />
+  <ColorItem title="Page Background" subtitle="page-bg" colors={{ 
+    "Light (gray-50)": colors.gray[50], 
+    "Dark (gray 950)":colors.gray[950]
+    }} />
+  <ColorItem title="Header Background" subtitle="header-bg" colors={{ 
+    "Light (gray-300)": colors.gray[300], 
+    "Dark (gray 700)":colors.gray[700]
+    }} />
+  <ColorItem title="Item Background" subtitle="item-bg" colors={{ 
+    "Light (white)": colors.white, 
+    "Light Hover (gray-200)": colors.gray[200], 
+    "Dark (gray 800)":colors.gray[800],
+    "Dark Hover (gray 600)":colors.gray[600]
+    }} />
+  <ColorItem title="General Colors" subtitle="" colors={{ 
+    "Primary": colors.blue[600], "Primary Hover": colors.blue[700],
+    "Success": colors.green[600], "Success Hover": colors.green[700],
+    "Danger": colors.red[600], "Danger Hover": colors.red[700],
+    "Warning": colors.amber[600], "Warning Hover": colors.amber[700],
+    "Alert": colors.orange[600], "Alert Hover": colors.orange[700]
+
+    }} />
 
 </ColorPalette>
-
-<span class="">test</span>
