@@ -2,6 +2,7 @@
 import CallCardBoard from '../components/dispatching/CallCardBoard.vue'
 import CallDetailsPanel from '../components/dispatching/CallDetailsPanel.vue'
 import UnitsList from '../components/dispatching/UnitsList.vue'
+import UnitsList2 from '../components/dispatching/UnitsList2.vue'
 import MapComponent from '../components/dispatching/MapComponent.vue'
 import CallFormWindow from '../components/callFormWindow/CallFormWindow.vue'
 import GridStack from '@/components/GridStack.vue'
@@ -31,6 +32,9 @@ watchEffect(async () => {
     </GridStackItem>
     <GridStackItem gs-w="8" gs-h="4">
       <UnitsList />
+    </GridStackItem>
+    <GridStackItem gs-w="8" gs-h="4">
+      <UnitsList2 />
     </GridStackItem>
   </GridStack>
 </template>
