@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import CallsList from './CallsList.vue'
-import TextInput from '../TextInput.vue'
+import InputText from '../InputText.vue'
 </script>
 
 <template>
   <div class="px-2">
     <div class="my-2">
-      <TextInput
+      <InputText
         name="Search"
         type="text"
         id="searchBar"
