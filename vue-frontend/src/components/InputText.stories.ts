@@ -1,9 +1,9 @@
 import test from 'node:test'
-import TextInput from './TextInput.vue'
+import InputText from './InputText.vue'
 
 export default {
-  component: TextInput,
-  title: 'Text Input',
+  component: InputText,
+  title: 'Input Text',
   tags: ['autodocs']
 }
 

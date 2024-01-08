@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TextInput from '../../TextInput.vue'
+import InputText from '@/components/InputText.vue';
 import { UseDark } from '@vueuse/components'
 </script>
 
@@ -19,7 +19,7 @@ import { UseDark } from '@vueuse/components'
             >
           </a>
           <div class="hidden lg:flex lg:flex-grow lg:pl-2">
-            <TextInput
+            <InputText
               name="Command Bar"
               type="text"
               id="commandBar"

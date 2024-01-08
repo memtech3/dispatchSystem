@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import InputText from 'primevue/inputtext'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 defineProps<{
@@ -17,7 +18,14 @@ defineProps<{
     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
       <span class="text-gray-500 dark:text-gray-400" :class="icon"></span>
     </div>
-    <input :type="type" :name="name" :id="id" class="" :placeholder="placeholder" />
+    <InputText
+      :type="type"
+      :name="name"
+      :id="id"
+      class=""
+      :placeholder="placeholder"
+      v-model="value"
+    />
   </div>
 </template>
 

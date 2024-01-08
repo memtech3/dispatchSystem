@@ -32,5 +32,8 @@ watchEffect(async () => {
     <GridStackItem gs-w="8" gs-h="4">
       <UnitsList />
     </GridStackItem>
+    <GridStackItem gs-w="8" gs-h="4">
+      <UnitsList2 />
+    </GridStackItem>
   </GridStack>
 </template>
