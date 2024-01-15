@@ -22,5 +22,10 @@
     "jsonc",
     "yaml",
     "toml"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#511A2E",
+    "titleBar.activeBackground": "#722441",
+    "titleBar.activeForeground": "#FEFBFC"
+  }
 }
