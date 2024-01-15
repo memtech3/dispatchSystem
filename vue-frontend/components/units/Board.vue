@@ -1,7 +1,107 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const units = ref()
+const columns = [
+  {
+    key: 'unitID',
+    label: 'Unit ID',
+  },
+  {
+    key: 'type',
+    label: 'Type',
+  },
+  {
+    key: 'status',
+    label: 'Status',
+  },
+  {
+    key: 'event',
+    label: 'Event',
+  },
+  {
+    key: 'currentLocation',
+    label: 'Current Location',
+  },
+]
+units.value = [
+  {
+    unitID: '1A-45',
+    type: 'Police',
+    status: 'Available',
+    event: '',
+    currentLocation: '123 Sesame Street',
+    agency: 'SPD',
+    selected: false,
+  },
+  {
+    unitID: '1A-30',
+    type: 'Police',
+    status: 'Available',
+    event: '',
+    currentLocation: '123 Sesame Street',
+    agency: 'SPD',
+    selected: false,
+  },
+  {
+    unitID: '1A-30',
+    type: 'Police',
+    status: 'Available',
+    event: '',
+    currentLocation: '123 Sesame Street',
+    agency: 'SPD',
+    selected: false,
+  },
+  {
+    unitID: '1A-30',
+    type: 'Police',
+    status: 'Available',
+    event: '',
+    currentLocation: '123 Sesame Street',
+    agency: 'SPD',
+    selected: false,
+  },
+  {
+    unitID: '1A-30',
+    type: 'Police',
+    status: 'Available',
+    event: '',
+    currentLocation: '123 Sesame Street',
+    agency: 'SPD',
+    selected: false,
+  },
+  {
+    unitID: '1A-30',
+    type: 'Police',
+    status: 'Available',
+    event: '',
+    currentLocation: '123 Sesame Street',
+    agency: 'SPD',
+    selected: false,
+  },
+  {
+    unitID: '1A-30',
+    type: 'Police',
+    status: 'Available',
+    event: '',
+    currentLocation: '123 Sesame Street',
+    agency: 'SPD',
+    selected: false,
+  },
+  {
+    unitID: '1A-30',
+    type: 'Police',
+    status: 'Available',
+    event: '',
+    currentLocation: '123 Sesame Street',
+    agency: 'SPD',
+    selected: false,
+  },
+]
+</script>
+
 <template>
-  <div></div>
+  <UTable :rows="units" :columns="columns" />
 </template>
 
-<script lang="ts" setup></script>
-
-<style></style>
+<style lang="scss"></style>
