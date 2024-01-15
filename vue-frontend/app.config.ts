@@ -2,19 +2,25 @@ export default defineAppConfig({
   ui: {
     primary: 'blue',
     gray: 'cool',
-    table: {
-      thead: 'bg-gray-50 dark:bg-gray-700',
-      tbody: '',
-      tr: {
-        base: 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600',
-        selected: '',
-        active: '',
-      },
-      th: {
-        color: '',
-      },
-      td: {
-        color: '',
+    button: {
+      rounded: 'rounded-none',
+    },
+    card: {
+      rounded: 'rounded-none',
+    },
+    checkbox: {
+      rounded: 'rounded-none',
+    },
+    input: {
+      rounded: 'rounded-none',
+    },
+    select: {
+      rounded: 'rounded-none',
+    },
+    selectMenu: {
+      rounded: 'rounded-none',
+      option: {
+        rounded: 'rounded-none',
       },
     },
   },
