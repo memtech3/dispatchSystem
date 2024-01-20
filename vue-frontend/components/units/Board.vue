@@ -45,32 +45,9 @@ const actions = [
 ]
 
 // Filters
-const todoStatus = [
-  {
-    key: 'uncompleted',
-    label: 'In Progress',
-    value: false,
-  },
-  {
-    key: 'completed',
-    label: 'Completed',
-    value: true,
-  },
-]
 
 const search = ref('')
 const selectedStatus = ref([])
-const searchStatus = computed(() => {
-  if (selectedStatus.value?.length === 0) {
-    return ''
-  }
-
-  if (selectedStatus?.value?.length > 1) {
-    return `?completed=${selectedStatus.value[0].value}&completed=${selectedStatus.value[1].value}`
-  }
-
-  return `?completed=${selectedStatus.value[0].value}`
-})
 
 const resetFilters = () => {
   search.value = ''
@@ -224,8 +201,13 @@ units.value = [
       sort-asc-icon="i-heroicons-arrow-up"
       sort-desc-icon="i-heroicons-arrow-down"
       sort-mode="manual"
-      class="w-full"
-      :ui="{ td: { base: 'max-w-[0] truncate' } }"
+      class="w-full overflow-auto"
+      :ui="{
+        tbody: '',
+        td: {
+          base: 'max-w-[0] truncate',
+        },
+      }"
       @select="select"
     >
       <template #status-data="{ row }">
@@ -263,28 +245,6 @@ units.value = [
           label="Distress"
           color="red"
           variant="subtle"
-        />
-      </template>
-
-      <template #actions-data="{ row }">
-        <UButton
-          v-if="!row.completed"
-          icon="i-heroicons-check"
-          size="2xs"
-          color="emerald"
-          variant="outline"
-          :ui="{ rounded: 'rounded-full' }"
-          square
-        />
-
-        <UButton
-          v-else
-          icon="i-heroicons-arrow-path"
-          size="2xs"
-          color="orange"
-          variant="outline"
-          :ui="{ rounded: 'rounded-full' }"
-          square
         />
       </template>
     </UTable>
