@@ -3,8 +3,6 @@ import { ref, watchEffect } from 'vue'
 import { useMagicKeys } from '@vueuse/core'
 // import CallCardBoard from '../components/dispatching/CallCardBoard.vue'
 // import CallDetailsPanel from '../components/dispatching/CallDetailsPanel.vue'
-// import UnitsList from '../components/dispatching/UnitsList.vue'
-// import MapComponent from '../components/dispatching/MapComponent.vue'
 // import CallFormWindow from '../components/callFormWindow/CallFormWindow.vue'
 
 const editable = ref(false)
@@ -16,19 +14,17 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <CallFormWindow />
-  <GridStack class="page-bg" :editable="editable">
-    <GridStackItem gs-w="4" gs-h="9">
-      <CallDetailsPanel />
-    </GridStackItem>
-    <GridStackItem gs-w="8" gs-h="9">
-      <CallCardBoard />
-    </GridStackItem>
-    <GridStackItem gs-w="8" gs-h="4">
-      <MapComponent />
-    </GridStackItem>
-    <GridStackItem gs-w="8" gs-h="4">
-      <UnitsBoard />
-    </GridStackItem>
-  </GridStack>
+  <!-- <CallFormWindow /> -->
+  <div class="grid grid-cols-[25%_1fr_1fr] h-full w-full gap-4">
+    <div class="bg-blue-500">1</div>
+    <div>2</div>
+    <div class="h-full grid grid-rows-2 gap-4 overflow-auto">
+      <div class="">
+        <MapComponent />
+      </div>
+      <div class="overflow-auto">
+        <UnitsBoard />
+      </div>
+    </div>
+  </div>
 </template>
