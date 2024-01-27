@@ -1,64 +1,8 @@
 <script lang="ts" setup>
-// Columns
-const columns = [
-  { key: 'unitID', label: 'Unit ID' },
-  { key: 'type', label: 'Type' },
-  { key: 'status', label: 'Status' },
-  { key: 'event', label: 'Event' },
-  { key: 'currentLocation', label: 'Current Location' },
-  { key: 'agency', label: 'Agency' },
-]
+import { prependOnceListener } from 'process'
 
-const selectedColumns = ref(columns)
-const columnsTable = computed(() =>
-  columns.filter((column) => selectedColumns.value.includes(column))
-)
-
-// Selected Rows
-const selectedRows = ref([])
-
-function select(row: { id: string }) {
-  const index = selectedRows.value.findIndex((item) => item.id === row.id)
-  if (index === -1) {
-    selectedRows.value.push(row)
-  } else {
-    selectedRows.value.splice(index, 1)
-  }
-}
-
-// Actions
-const actions = [
-  [
-    {
-      key: 'completed',
-      label: 'Completed',
-      icon: 'i-heroicons-check',
-    },
-  ],
-  [
-    {
-      key: 'uncompleted',
-      label: 'In Progress',
-      icon: 'i-heroicons-arrow-path',
-    },
-  ],
-]
-
-// Filters
-
-const search = ref('')
-const selectedStatus = ref([])
-
-const resetFilters = () => {
-  search.value = ''
-  selectedStatus.value = []
-}
-
-// Pagination
-const sort = ref({ column: 'unitID', direction: 'asc' as const })
-
-const units = ref()
-units.value = [
+// Mock data
+const units = [
   {
     unitID: '1A-10',
     type: 'Police',
@@ -124,16 +68,89 @@ units.value = [
     agency: 'SPD',
   },
 ]
+
+// Columns
+const columns = [
+  { key: 'unitID', label: 'Unit ID' },
+  { key: 'type', label: 'Type' },
+  { key: 'status', label: 'Status' },
+  { key: 'event', label: 'Event' },
+  { key: 'currentLocation', label: 'Current Location' },
+  { key: 'agency', label: 'Agency' },
+]
+
+const selectedColumns = ref(columns)
+const columnsTable = computed(() =>
+  columns.filter((column) => selectedColumns.value.includes(column))
+)
+
+// Selected Rows
+const selectedRows = ref([])
+
+function select(row: { id: string }) {
+  const index = selectedRows.value.findIndex((item) => item.id === row.id)
+  if (index === -1) {
+    selectedRows.value.push(row)
+  } else {
+    selectedRows.value.splice(index, 1)
+  }
+}
+
+// Actions
+const actions = [
+  [
+    {
+      key: 'completed',
+      label: 'Completed',
+      icon: 'i-heroicons-check',
+    },
+  ],
+  [
+    {
+      key: 'uncompleted',
+      label: 'In Progress',
+      icon: 'i-heroicons-arrow-path',
+    },
+  ],
+]
+
+// Filters
+
+const search = ref('')
+const selectedStatus = ref([])
+
+const resetFilters = () => {
+  search.value = ''
+  selectedStatus.value = []
+}
+
+// Pagination
+const sort = ref({ column: 'unitID', direction: 'asc' as const })
+
+// Search
+const searchQuery = ref('')
+
+const filteredRows = computed(() => {
+  if (!searchQuery.value) {
+    return units
+  }
+
+  return units.filter((unit) => {
+    return Object.values(unit).some((value) => {
+      return String(value)
+        .toLowerCase()
+        .includes(searchQuery.value.toLowerCase())
+    })
+  })
+})
 </script>
 
 <template>
   <UCard
-    class="w-full"
+    class="h-min-full"
     :ui="{
-      base: '',
-      ring: '',
       divide: 'divide-y divide-gray-200 dark:divide-gray-700',
-      header: { padding: 'px-4 py-1' },
+      header: { padding: 'py-1' },
       body: {
         padding: '',
         base: 'divide-y divide-gray-200 dark:divide-gray-700',
@@ -152,7 +169,7 @@ units.value = [
     <div class="flex justify-between items-center w-full px-4 py-2">
       <div class="flex items-center gap-1.5">
         <UInput
-          v-model="search"
+          v-model="searchQuery"
           icon="i-heroicons-magnifying-glass-20-solid"
           placeholder="Search..."
         />
@@ -196,19 +213,16 @@ units.value = [
     <UTable
       v-model="selectedRows"
       v-model:sort="sort"
-      :rows="units"
+      :rows="filteredRows"
       :columns="columnsTable"
       sort-asc-icon="i-heroicons-arrow-up"
       sort-desc-icon="i-heroicons-arrow-down"
       sort-mode="manual"
-      class="w-full overflow-auto"
       :ui="{
         th: {
           padding: 'py-2',
         },
-        tbody: 'overflow-auto',
         td: {
-          base: 'max-w-[0] truncate',
           padding: 'py-2',
         },
       }"
