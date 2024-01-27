@@ -149,7 +149,7 @@ units.value = [
     </template>
 
     <!-- Header and Action buttons -->
-    <div class="flex justify-between items-center w-full px-4 py-3">
+    <div class="flex justify-between items-center w-full px-4 py-2">
       <div class="flex items-center gap-1.5">
         <UInput
           v-model="search"
@@ -203,9 +203,13 @@ units.value = [
       sort-mode="manual"
       class="w-full overflow-auto"
       :ui="{
-        tbody: '',
+        th: {
+          padding: 'py-2',
+        },
+        tbody: 'overflow-auto',
         td: {
           base: 'max-w-[0] truncate',
+          padding: 'py-2',
         },
       }"
       @select="select"
