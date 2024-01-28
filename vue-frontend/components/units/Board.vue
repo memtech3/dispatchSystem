@@ -12,12 +12,12 @@ const units = [
     agency: 'SPD',
   },
   {
-    unitID: '1A-11',
-    type: 'Police',
+    unitID: 'E-11',
+    type: 'Fire',
     status: 'En Route',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SPD',
+    agency: 'SFD',
   },
   {
     unitID: '1A-30',
@@ -28,12 +28,12 @@ const units = [
     agency: 'SPD',
   },
   {
-    unitID: '1A-35',
-    type: 'Police',
+    unitID: 'ALS-1',
+    type: 'EMS',
     status: 'Out of Service',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SPD',
+    agency: 'SFD',
   },
   {
     unitID: '1A-36',
