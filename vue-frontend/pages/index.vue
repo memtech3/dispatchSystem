@@ -18,7 +18,7 @@ watchEffect(async () => {
   <div class="grid grid-cols-[25%_1fr_1fr] h-full w-full">
     <div class="bg-blue-500">1</div>
     <div>2</div>
-    <div class="h-full grid grid-rows-2 gap-4 overflow-auto">
+    <div class="h-full grid grid-rows-2 overflow-auto divide-x divide-y divide-gray-200 dark:divide-gray-700">
       <div class="">
         <MapComponent />
       </div>

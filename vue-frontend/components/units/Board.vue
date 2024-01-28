@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { prependOnceListener } from 'process'
 
 // Mock data
 const units = [
@@ -147,7 +146,7 @@ const filteredRows = computed(() => {
 
 <template>
   <UCard
-    class="h-min-full"
+    class="h-full"
     :ui="{
       divide: 'divide-y divide-gray-200 dark:divide-gray-700',
       header: { padding: 'py-1' },
