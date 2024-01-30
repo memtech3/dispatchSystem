@@ -27,5 +27,9 @@
     "activityBar.background": "#511A2E",
     "titleBar.activeBackground": "#722441",
     "titleBar.activeForeground": "#FEFBFC"
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "SonarCloud connection",
+    "projectKey": "memtech3_dispatchSystem"
   }
 }

@@ -1,4 +1,4 @@
-import UnitsBoard from "../components/units/Board.vue"
+import UnitsBoard from '../components/units/Board.vue'
 
 export default {
   component: UnitsBoard,
