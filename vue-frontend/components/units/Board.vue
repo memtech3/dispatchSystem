@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 // Mock data
 const units = [
   {
