@@ -64,14 +64,14 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     @submit="onSubmit"
   >
     <div class="p-2">
-      <UDivider class="py-2" label="LOCATION" />
+      <UDivider class="pb-2" label="LOCATION" />
       <div class="grid grid-cols-4 gap-2">
         <UFormGroup class="col-span-4" name="location" label="Location">
           <UInputMenu v-model="state.location" :options="options" />
         </UFormGroup>
       </div>
 
-      <UDivider class="pt-8 pb-2" label="EVENT INFO" />
+      <UDivider class="pt-4 pb-2" label="EVENT INFO" />
       <div class="grid grid-cols-4 gap-2">
         <UFormGroup class="col-span-2" name="eventType" label="Type">
           <UInputMenu v-model="state.callSource" />
@@ -84,7 +84,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         </UFormGroup>
       </div>
 
-      <UDivider class="pt-8 pb-2" label="CALLER" />
+      <UDivider class="pt-4 pb-2" label="CALLER" />
       <div class="grid grid-cols-4 gap-2">
         <UFormGroup class="col-span-2" name="callSource" label="Source">
           <UInputMenu v-model="state.callSource" />

@@ -14,7 +14,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <!-- <CallFormWindow /> -->
+  <NewEventWindow />
   <div
     class="grid grid-cols-[25%_1fr_1fr] h-full w-full divide-x divide-y divide-gray-200 dark:divide-gray-700"
   >

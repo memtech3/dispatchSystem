@@ -13,6 +13,14 @@ export default defineAppConfig({
     },
     input: {
       rounded: 'rounded-none',
+      padding: {
+        '2xs': 'py-1',
+        xs: 'py-1',
+        sm: 'py-1',
+        md: 'py-1',
+        lg: 'py-1',
+        xl: 'py-1',
+      },
     },
     select: {
       rounded: 'rounded-none',
