@@ -12,7 +12,7 @@ onMounted(() => {
       sources: {
         MIERUNEMAP: {
           type: 'raster',
-          tiles: ['http://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+          tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
           tileSize: 256,
           attribution:
             "Maptiles by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> DO NOT USE IN PRODUCTION REPLACE WITH SELF HOSTED MAPTILES SERVER.",
