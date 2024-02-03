@@ -5,6 +5,5 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/storybook',
   ],
 })
