@@ -1,0 +1,7 @@
+{
+  "omnisharp.enableEditorConfigSupport": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "dotnet.automaticallyCreateSolutionInWorkspace": false,
+}
