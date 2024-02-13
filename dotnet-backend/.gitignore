@@ -1,3 +1,7 @@
+# Gitignore migrations while in the experimentation and getting started phase
+# Revaluate this decision when/if this starts to become a stable solution
+Migrations/*
+
 # Created by https://www.toptal.com/developers/gitignore/api/csharp,dotnetcore
 # Edit at https://www.toptal.com/developers/gitignore?templates=csharp,dotnetcore
 
