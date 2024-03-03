@@ -34,17 +34,14 @@ defineProps<{
 </script>
 
 <template>
-  <div class="grid grid-cols-4 h-36 outline outline-1">
+  <div class="card">
     <div class="triagePane">
       <div class="typeIcon">I</div>
       <h3 class="priority">P1</h3>
       <p class="callID">SFD18015</p>
     </div>
     <div class="detailsPane">
-      <div class="callType">
-        Line 1 <br />
-        Line 2
-      </div>
+      <div class="callType">Line 1 Keep going until we overflow</div>
       <span class="callSubtype"> Line 1</span>
       <br />
       <span class="location">
@@ -53,7 +50,12 @@ defineProps<{
       </span>
       <div class="assignedUnits">Line 1: unit chips</div>
     </div>
-    <div>time pane</div>
+    <div class="flex flex-col">
+      <span>10:35</span>
+      <span>10:35</span>
+      <span>10:35</span>
+      <span>10:35</span>
+    </div>
     <div>actions pane</div>
   </div>
 </template>
@@ -69,33 +71,43 @@ defineProps<{
 @include cardPriorityColor('green');
 @include cardPriorityColor('red');
 @include cardPriorityColor('purple');
-.triagePane {
-  @apply priorityColor-orange w-16 h-full text-slate-50 p-1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  .typeIcon {
-    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-    aspect-ratio: 1;
-    @apply text-slate-900 text-center bg-slate-50 w-full p-1;
+
+.card {
+  display: grid;
+  grid-template-columns: 4rem 1fr 3rem 1.25rem;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0.375rem;
+  grid-row-gap: 0.375rem;
+
+  @apply h-36 outline outline-1;
+  .triagePane {
+    @apply priorityColor-orange w-16 h-full text-slate-50 p-1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .typeIcon {
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      aspect-ratio: 1;
+      @apply text-slate-900 text-center bg-slate-50 w-full p-1;
+    }
+    .priority {
+      @apply text-4xl font-medium text-center;
+    }
+    .callID {
+      @apply text-xs font-normal text-center;
+    }
   }
-  .priority {
-    @apply text-4xl font-medium text-center;
-  }
-  .callID {
-    @apply text-xs font-normal text-center;
-  }
-}
-.detailsPane {
-  @apply w-44;
-  .callType {
-    @apply text-lg font-normal;
-  }
-  .callSubtype {
-    @apply text-sm font-light;
-  }
-  .location {
-    @apply text-sm font-normal;
+  .detailsPane {
+    @apply w-44;
+    .callType {
+      @apply text-lg font-normal;
+    }
+    .callSubtype {
+      @apply text-sm font-light;
+    }
+    .location {
+      @apply text-sm font-normal;
+    }
   }
 }
 </style>
