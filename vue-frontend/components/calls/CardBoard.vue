@@ -13,7 +13,7 @@
       />
     </div>
     <div class="grid grid-cols-2 space-x-2 overflow-auto">
-      <CallsList />
+      <CallsCardList />
       <CallsList />
     </div>
   </div>

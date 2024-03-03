@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
-import { useMagicKeys } from '@vueuse/core'
+// import { ref, watchEffect } from 'vue'
+// import { useMagicKeys } from '@vueuse/core'
 // import CallCardBoard from '../components/dispatching/CallCardBoard.vue'
 // import CallDetailsPanel from '../components/dispatching/CallDetailsPanel.vue'
 // import CallFormWindow from '../components/callFormWindow/CallFormWindow.vue'
 
-const editable = ref(false)
-const keys = useMagicKeys()
+// const editable = ref(false)
+// const keys = useMagicKeys()
 
-watchEffect(async () => {
-  editable.value = keys['Ctrl+Alt'].value
-})
+// watchEffect(async () => {
+//   editable.value = keys['Ctrl+Alt'].value
+// })
 </script>
 
 <template>
