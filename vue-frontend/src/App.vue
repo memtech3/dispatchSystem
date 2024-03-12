@@ -1,6 +1,9 @@
+<script setup>
+import Navbar from './components/applicationFrame/Navbar.vue';
+</script>
 <template>
   <div class="appGrid h-screen w-screen">
-    <ApplicationFrameNavbar class="self-start w-full" />
+    <Navbar class="self-start w-full" />
     <main class="overflow-auto">
       <slot />
     </main>
