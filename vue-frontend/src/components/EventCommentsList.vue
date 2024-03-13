@@ -1,7 +1,5 @@
 <template>
-  <section
-    class="flex flex-col p-4 w-full max-w-sm flex-none bg-gray-100 min-h-0 overflow-auto"
-  >
+  <section class="flex flex-col p-4 w-full max-w-sm flex-none bg-gray-100 min-h-0 overflow-auto">
     <h1 class="font-semibold mb-3">Updates to your tickets</h1>
     <ul>
       <li>
@@ -21,8 +19,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -45,8 +42,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -69,8 +65,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -93,8 +88,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -117,8 +111,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -141,8 +134,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -165,8 +157,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -189,8 +180,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -213,8 +203,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -237,8 +226,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -261,8 +249,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>
@@ -285,8 +272,7 @@
               <h1 class="inline">"RE: WPMS issue".</h1>
             </header>
             <p class="text-gray-600">
-              Hi Mazhar, Please note this issue comes when user is not closing
-              or logout sy…
+              Hi Mazhar, Please note this issue comes when user is not closing or logout sy…
             </p>
             <footer class="text-gray-500 mt-2 text-sm">Friday 22:16</footer>
           </div>

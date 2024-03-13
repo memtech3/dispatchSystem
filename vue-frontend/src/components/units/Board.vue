@@ -7,7 +7,7 @@ const units = [
     status: 'Available',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SPD',
+    agency: 'SPD'
   },
   {
     unitID: 'E-11',
@@ -15,7 +15,7 @@ const units = [
     status: 'En Route',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SFD',
+    agency: 'SFD'
   },
   {
     unitID: '1A-30',
@@ -23,7 +23,7 @@ const units = [
     status: 'On Scene',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SPD',
+    agency: 'SPD'
   },
   {
     unitID: 'ALS-1',
@@ -31,7 +31,7 @@ const units = [
     status: 'Out of Service',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SFD',
+    agency: 'SFD'
   },
   {
     unitID: '1A-36',
@@ -39,7 +39,7 @@ const units = [
     status: 'Distress',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SPD',
+    agency: 'SPD'
   },
   {
     unitID: '1A-37',
@@ -47,7 +47,7 @@ const units = [
     status: 'Available',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SPD',
+    agency: 'SPD'
   },
   {
     unitID: '7A-15',
@@ -55,7 +55,7 @@ const units = [
     status: 'Available',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SPD',
+    agency: 'SPD'
   },
   {
     unitID: '7A-16',
@@ -63,8 +63,8 @@ const units = [
     status: 'Available',
     event: '',
     currentLocation: '123 Sesame Street',
-    agency: 'SPD',
-  },
+    agency: 'SPD'
+  }
 ]
 
 // Columns
@@ -74,7 +74,7 @@ const columns = [
   { key: 'status', label: 'Status' },
   { key: 'event', label: 'Event' },
   { key: 'currentLocation', label: 'Current Location' },
-  { key: 'agency', label: 'Agency' },
+  { key: 'agency', label: 'Agency' }
 ]
 
 const selectedColumns = ref(columns)
@@ -100,16 +100,16 @@ const actions = [
     {
       key: 'completed',
       label: 'Completed',
-      icon: 'i-heroicons-check',
-    },
+      icon: 'i-heroicons-check'
+    }
   ],
   [
     {
       key: 'uncompleted',
       label: 'In Progress',
-      icon: 'i-heroicons-arrow-path',
-    },
-  ],
+      icon: 'i-heroicons-arrow-path'
+    }
+  ]
 ]
 
 // Filters
@@ -135,9 +135,7 @@ const filteredRows = computed(() => {
 
   return units.filter((unit) => {
     return Object.values(unit).some((value) => {
-      return String(value)
-        .toLowerCase()
-        .includes(searchQuery.value.toLowerCase())
+      return String(value).toLowerCase().includes(searchQuery.value.toLowerCase())
     })
   })
 })
@@ -151,14 +149,12 @@ const filteredRows = computed(() => {
       header: { padding: 'py-1' },
       body: {
         padding: '',
-        base: 'divide-y divide-gray-200 dark:divide-gray-700',
-      },
+        base: 'divide-y divide-gray-200 dark:divide-gray-700'
+      }
     }"
   >
     <template #header>
-      <header
-        class="font-semibold text-sm text-gray-900 dark:text-white leading-tight"
-      >
+      <header class="font-semibold text-sm text-gray-900 dark:text-white leading-tight">
         Units
       </header>
     </template>
@@ -174,25 +170,14 @@ const filteredRows = computed(() => {
       </div>
 
       <div class="flex gap-1.5 items-center">
-        <UDropdown
-          v-if="selectedRows.length > 1"
-          :items="actions"
-          :ui="{ width: 'w-36' }"
-        >
-          <UButton
-            icon="i-heroicons-chevron-down"
-            trailing
-            color="gray"
-            size="xs"
-          >
+        <UDropdown v-if="selectedRows.length > 1" :items="actions" :ui="{ width: 'w-36' }">
+          <UButton icon="i-heroicons-chevron-down" trailing color="gray" size="xs">
             Mark as
           </UButton>
         </UDropdown>
 
         <USelectMenu v-model="selectedColumns" :options="columns" multiple>
-          <UButton icon="i-heroicons-view-columns" color="gray" size="xs">
-            Columns
-          </UButton>
+          <UButton icon="i-heroicons-view-columns" color="gray" size="xs"> Columns </UButton>
         </USelectMenu>
 
         <UButton
@@ -218,11 +203,11 @@ const filteredRows = computed(() => {
       sort-mode="manual"
       :ui="{
         th: {
-          padding: 'py-2',
+          padding: 'py-2'
         },
         td: {
-          padding: 'py-2',
-        },
+          padding: 'py-2'
+        }
       }"
       @select="select"
     >
