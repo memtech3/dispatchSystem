@@ -8,7 +8,7 @@
 <script lang="ts" setup>
 const props = defineProps({
   keyboardShortcut: String,
-  actionName: String,
+  actionName: String
 })
 </script>
 
