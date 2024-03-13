@@ -1,5 +1,3 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
@@ -8,6 +6,8 @@ import router from './router'
 
 import PrimeVue from 'primevue/config'
 import 'primevue/resources/themes/aura-dark-noir/theme.css'
+
+import './tailwind.css'
 
 const app = createApp(App)
 
