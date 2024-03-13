@@ -22,3 +22,4 @@ import Footer from './components/applicationFrame/Footer.vue'
   grid-row-gap: 0px;
 }
 </style>
+./components/applicationFrame/AppFooter.vue

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import Footer from './Footer.vue'
+import Footer from './AppFooter.vue'
 
 const meta: Meta<typeof Footer> = {
   component: Footer,
