@@ -6,7 +6,7 @@ import AppFooter from './components/applicationFrame/AppFooter.vue'
   <div class="appGrid h-screen w-screen">
     <Navbar class="self-start w-full" />
     <main class="overflow-auto">
-      <slot />
+      <RouterView />
     </main>
     <AppFooter class="self-end w-full" />
   </div>
