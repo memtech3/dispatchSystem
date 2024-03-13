@@ -7,7 +7,7 @@ const wbRef = ref()
 //WinBox options
 const options = {
   title: 'New Event',
-  overflow: true,
+  overflow: true
 }
 </script>
 

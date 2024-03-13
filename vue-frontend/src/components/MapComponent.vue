@@ -15,8 +15,8 @@ onMounted(() => {
           tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
           tileSize: 256,
           attribution:
-            "Maptiles by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> DO NOT USE IN PRODUCTION REPLACE WITH SELF HOSTED MAPTILES SERVER.",
-        },
+            "Maptiles by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> DO NOT USE IN PRODUCTION REPLACE WITH SELF HOSTED MAPTILES SERVER."
+        }
       },
       layers: [
         {
@@ -24,17 +24,17 @@ onMounted(() => {
           type: 'raster',
           source: 'MIERUNEMAP',
           minzoom: 0,
-          maxzoom: 18,
-        },
-      ],
+          maxzoom: 18
+        }
+      ]
     },
     center: [-95.4929164, 29.6877036],
-    zoom: 11,
+    zoom: 11
   })
 
   map.addControl(
     new NavigationControl({
-      visualizePitch: true,
+      visualizePitch: true
     })
   )
 })
