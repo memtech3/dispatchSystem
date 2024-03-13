@@ -1,6 +1,6 @@
 <script setup>
 import Navbar from './components/applicationFrame/Navbar.vue'
-import Footer from './components/applicationFrame/Footer.vue'
+import AppFooter from './components/applicationFrame/AppFooter.vue'
 </script>
 <template>
   <div class="appGrid h-screen w-screen">
@@ -8,7 +8,7 @@ import Footer from './components/applicationFrame/Footer.vue'
     <main class="overflow-auto">
       <slot />
     </main>
-    <Footer class="self-end w-full" />
+    <AppFooter class="self-end w-full" />
   </div>
 </template>
 <script lang="ts" setup></script>
