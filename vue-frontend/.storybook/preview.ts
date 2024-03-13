@@ -4,6 +4,7 @@ import { setup } from '@storybook/vue3'
 import PrimeVue from 'primevue/config'
 import 'primevue/resources/themes/aura-dark-noir/theme.css'
 
+import '../src/tailwind.css'
 
 setup((app) => {
   app.use(PrimeVue)
