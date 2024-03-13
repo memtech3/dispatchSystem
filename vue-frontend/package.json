@@ -16,6 +16,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "maplibre-gl": "^4.1.0",
     "pinia": "^2.1.7",
     "primevue": "^3.49.1",
     "sass": "^1.71.1",
