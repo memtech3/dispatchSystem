@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { Map, NavigationControl } from 'maplibre-gl'
+import { onMounted } from 'vue'
 
 // TODO: Update map attribution, replace openstreetmap tiles server with self hosted tile server
 // TODO: Set up tile server
