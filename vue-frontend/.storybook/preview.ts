@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/vue3'
 import { setup } from '@storybook/vue3'
 
 import PrimeVue from 'primevue/config'
-import 'primevue/resources/themes/aura-light-green/theme.css'
+import 'primevue/resources/themes/aura-dark-noir/theme.css'
 
 
 setup((app) => {
