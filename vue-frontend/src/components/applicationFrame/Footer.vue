@@ -1,23 +1,23 @@
 <template>
   <footer class="bg-gray-800 text-white">
     <ul class="list-none flex gap-4">
-      <ApplicationFrameFooterItem
+      <FooterItem
         keyboard-shortcut="F1"
         action-name="Command Bar"
       />
-      <ApplicationFrameFooterItem
+      <FooterItem
         keyboard-shortcut="F2"
         action-name="New Event (Ext Src)"
       />
-      <ApplicationFrameFooterItem
+      <FooterItem
         keyboard-shortcut="F3"
         action-name="New Event (Int Src)"
       />
-      <ApplicationFrameFooterItem
+      <FooterItem
         keyboard-shortcut="F4"
         action-name="Post Current Event"
       />
-      <ApplicationFrameFooterItem
+      <FooterItem
         keyboard-shortcut="Ctrl + Alt"
         action-name="Move Grid Items (Hold)"
       />
@@ -25,6 +25,8 @@
   </footer>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import FooterItem from './FooterItem.vue'
+</script>
 
 <style></style>
