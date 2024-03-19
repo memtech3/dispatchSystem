@@ -3,8 +3,8 @@ import Navbar from './components/applicationFrame/Navbar.vue'
 import AppFooter from './components/applicationFrame/AppFooter.vue'
 </script>
 <template>
-  <div class="appGrid h-screen w-screen">
-    <Navbar class="self-start w-full" />
+  <div class="appGrid">
+    <Navbar class="mainNav" />
     <main class="overflow-auto">
       <RouterView />
     </main>
@@ -20,6 +20,12 @@ import AppFooter from './components/applicationFrame/AppFooter.vue'
   grid-template-rows: auto 1fr auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  height: 100vh;
+  width: 100vw;
+}
+.mainNav {
+  align-self: flex-start;
+  width: 100;
 }
 </style>
 ./components/applicationFrame/AppFooter.vue
