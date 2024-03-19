@@ -2,12 +2,12 @@ import type { Preview } from '@storybook/vue3'
 import { setup } from '@storybook/vue3'
 
 import PrimeVue from 'primevue/config'
-import 'primevue/resources/themes/aura-dark-noir/theme.css'
+import Wind from '@/themes/wind' //import preset
 
 import '../src/tailwind.css'
 
 setup((app) => {
-  app.use(PrimeVue)
+  app.use(PrimeVue, { unstyled: true, pt: Wind })
 })
 
 const preview: Preview = {
