@@ -2,6 +2,7 @@
 import NewEventWindow from '@/components/NewEventWindow.vue'
 import EventForm from '@/components/EventForm.vue'
 import MapComponent from '@/components/MapComponent.vue'
+import UnitsTable from '@/components/UnitsTable.vue'
 </script>
 <template>
   <NewEventWindow />
@@ -18,8 +19,8 @@ import MapComponent from '@/components/MapComponent.vue'
       <div class="">
         <MapComponent />
       </div>
-      <div class="overflow-auto">
-        <UnitsBoard />
+      <div>
+        <UnitsTable />
       </div>
     </div>
   </div>
