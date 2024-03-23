@@ -6,8 +6,24 @@ import FloatLabel from 'primevue/floatlabel'
 </script>
 
 <template>
-  <FloatLabel>
-    <InputText id="username" />
-    <label for="username">Username</label>
-  </FloatLabel>
+  <div class="flex flex-col gap-8 p-5">
+    <div class="flex flex-row gap-8">
+      <FloatLabel>
+        <InputText id="username" />
+        <label for="username">Username</label>
+      </FloatLabel>
+      <FloatLabel>
+        <InputText id="username" />
+        <label for="username">Username</label>
+      </FloatLabel>
+    </div>
+    <FloatLabel>
+      <InputText id="username" />
+      <label for="username">Username</label>
+    </FloatLabel>
+    <FloatLabel>
+      <InputText id="username" />
+      <label for="username">Username</label>
+    </FloatLabel>
+  </div>
 </template>
