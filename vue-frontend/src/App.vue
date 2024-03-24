@@ -3,7 +3,7 @@ import Navbar from './components/applicationFrame/Navbar.vue'
 import AppFooter from './components/applicationFrame/AppFooter.vue'
 </script>
 <template>
-  <div class="appGrid">
+  <div class="appGrid bg-slate-950">
     <Navbar class="mainNav" />
     <main class="overflow-auto">
       <RouterView />
