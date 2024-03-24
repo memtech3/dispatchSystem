@@ -1,11 +1,11 @@
 <script setup>
 import NewEventWindow from '@/components/NewEventWindow.vue'
-import EventForm from '@/components/EventForm.vue'
+import EventForm from '@/components/EventForm/EventForm.vue'
 import MapComponent from '@/components/MapComponent.vue'
 import UnitsTable from '@/components/UnitsTable.vue'
 </script>
 <template>
-  <NewEventWindow />
+  <!-- <NewEventWindow /> -->
   <div
     class="grid grid-cols-[25%_1fr_1fr] h-full w-full divide-x divide-y divide-gray-200 dark:divide-gray-700"
   >
