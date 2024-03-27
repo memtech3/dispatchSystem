@@ -81,7 +81,7 @@ const columns = [
 ]
 </script>
 <template>
-  <DataTable :value="units" scrollable scrollHeight="flex" tableStyle="min-width: 50rem">
+  <DataTable :value="units" scrollable scrollHeight="flex" class="text-white">
     <Column v-for="col of columns" :key="col.key" :field="col.key" :header="col.label"></Column>
   </DataTable>
 </template>
