@@ -3,6 +3,7 @@ import NewEventWindow from '@/components/NewEventWindow.vue'
 import EventForm from '@/components/EventForm/EventForm.vue'
 import MapComponent from '@/components/MapComponent.vue'
 import UnitsTable from '@/components/UnitsTable.vue'
+import CallsCardBoard from '@/components/calls/CallCardBoard.vue'
 </script>
 <template>
   <!-- <NewEventWindow /> -->

@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CallList from './CallList.vue'
+</script>
 
 <template>
   <div class="px-2">
@@ -13,8 +15,8 @@
       />
     </div>
     <div class="grid grid-cols-2 space-x-2 overflow-auto">
-      <CallsList />
-      <CallsList />
+      <CallList />
+      <CallList />
     </div>
   </div>
 </template>
