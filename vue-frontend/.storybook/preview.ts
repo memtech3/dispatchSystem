@@ -2,7 +2,6 @@ import type { Preview, VueRenderer } from '@storybook/vue3'
 import { setup } from '@storybook/vue3'
 
 import PrimeVue from 'primevue/config'
-import Wind from '@/themes/wind' //import preset
 
 import '../src/tailwind.css'
 
