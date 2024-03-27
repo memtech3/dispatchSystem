@@ -9,7 +9,7 @@ import '../src/tailwind.css'
 import { withThemeByClassName } from '@storybook/addon-themes'
 
 setup((app) => {
-  app.use(PrimeVue, { unstyled: true, pt: Wind })
+  app.use(PrimeVue, { unstyled: true })
 })
 
 const preview: Preview = {
@@ -25,7 +25,7 @@ const preview: Preview = {
     withThemeByClassName<VueRenderer>({
       themes: {
         light: '',
-        dark: 'dark'
+        dark: 'dark bg-slate-950'
       },
       defaultTheme: 'dark'
     })

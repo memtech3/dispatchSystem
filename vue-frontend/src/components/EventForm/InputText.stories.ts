@@ -10,4 +10,4 @@ const meta: Meta<typeof InputText> = {
 export default meta
 type Story = StoryObj<typeof InputText>
 
-export const Primary: Story = {}
+export const Primary: Story = { args: { id: 'sampleField', label: 'Sample Field' } }
