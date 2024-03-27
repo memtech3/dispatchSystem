@@ -28,4 +28,3 @@ import AppFooter from './components/applicationFrame/AppFooter.vue'
   width: 100;
 }
 </style>
-./components/applicationFrame/AppFooter.vue
