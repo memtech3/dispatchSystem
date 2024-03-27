@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CallListItem from './CallListItem.vue'
+</script>
 
 <template>
   <div>
@@ -7,7 +9,7 @@
     </div>
     <ul class="space-y-2 text-sm font-medium text-gray-900 dark:text-white">
       <li>
-        <CallsListItem
+        <CallListItem
           call-id="H345"
           call-priority="1"
           call-priority-clr="priorityColor-green"
@@ -19,7 +21,7 @@
         />
       </li>
       <li>
-        <CallsListItem
+        <CallListItem
           call-id="H345"
           call-priority="1"
           call-priority-clr="priorityColor-green"
@@ -31,7 +33,7 @@
         />
       </li>
       <li>
-        <CallsListItem
+        <CallListItem
           call-id="H345"
           call-priority="1"
           call-priority-clr="priorityColor-green"
@@ -43,7 +45,7 @@
         />
       </li>
       <li>
-        <CallsListItem
+        <CallListItem
           call-id="H345"
           call-priority="1"
           call-priority-clr="priorityColor-green"
@@ -55,7 +57,7 @@
         />
       </li>
       <li>
-        <CallsListItem
+        <CallListItem
           call-id="H345"
           call-priority="1"
           call-priority-clr="priorityColor-green"
