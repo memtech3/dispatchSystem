@@ -16,6 +16,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@storybook/addon-themes": "^8.0.4",
     "maplibre-gl": "^4.1.0",
     "pinia": "^2.1.7",
     "primevue": "^3.49.1",
