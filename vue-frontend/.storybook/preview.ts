@@ -23,6 +23,10 @@ const preview: Preview = {
     }
   },
   decorators: [
+    (story) => ({
+      components: { story },
+      template: '<div class="pf-v5-c-page"><story /></div>'
+    }),
     withThemeByClassName<VueRenderer>({
       themes: {
         light: '',
