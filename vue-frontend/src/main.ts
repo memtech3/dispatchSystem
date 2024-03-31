@@ -7,6 +7,8 @@ import router from './router'
 import PrimeVue from 'primevue/config'
 
 import './tailwind.css'
+import '@patternfly/patternfly/patternfly.scss'
+import '@patternfly/patternfly/patternfly-addons.scss'
 
 const app = createApp(App)
 
