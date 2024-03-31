@@ -5,14 +5,14 @@ import UnitsTable from '@/components/UnitsTable.vue'
 import CallsCardBoard from '@/components/calls/CallCardBoard.vue'
 </script>
 <template>
-  <section class="pf-v5-c-page__main-section">
-    <div class="pf-v5-l-grid pf-m-gutter">
-      <div class="pf-v5-l-grid__item pf-m-gutter pf-m-3-col">
-        <div class="pf-v5-c-card" id="dashboard-demo-details-card-1">
+  <section class="pf-v5-c-page__main-section pf-v5-u-h-100">
+    <div class="pf-v5-l-grid pf-m-gutter pf-v5-u-h-100">
+      <div class="pf-v5-l-grid__item pf-m-gutter pf-m-3-col pf-v5-u-h-100">
+        <div class="pf-v5-c-card pf-m-compact pf-v5-u-h-100" id="dashboard-demo-details-card-1">
           <div class="pf-v5-c-card__title">
             <h2 class="pf-v5-c-title pf-m-xl">Event Form</h2>
           </div>
-          <div class="pf-v5-c-card__body">
+          <div class="pf-v5-c-card__body overflow-auto">
             <EventForm />
           </div>
           <hr class="pf-v5-c-divider" />
@@ -21,8 +21,8 @@ import CallsCardBoard from '@/components/calls/CallCardBoard.vue'
           </div>
         </div>
       </div>
-      <div class="pf-v5-l-grid__item pf-m-gutter pf-m-4-col">
-        <div class="pf-v5-c-card" id="dashboard-demo-details-card-1">
+      <div class="pf-v5-l-grid__item pf-m-gutter pf-m-4-col pf-v5-u-h-100">
+        <div class="pf-v5-c-card pf-m-compact pf-v5-u-h-100" id="dashboard-demo-details-card-1">
           <div class="pf-v5-c-card__title">
             <h2 class="pf-v5-c-title pf-m-xl">Calls Board</h2>
           </div>
@@ -31,17 +31,11 @@ import CallsCardBoard from '@/components/calls/CallCardBoard.vue'
           </div>
         </div>
       </div>
-      <div class="pf-v5-l-grid__item pf-m-gutter pf-m-5-col">
-        <div class="pf-v5-l-flex pf-m-column pf-m-row-on-md pf-m-column-on-lg">
-          <div class="pf-v5-c-card" id="dashboard-demo-details-card-1">
-            <div class="pf-v5-c-card__title">
-              <h2 class="pf-v5-c-title pf-m-xl">Map</h2>
-            </div>
-            <div class="pf-v5-c-card__body">
-              <MapComponent />
-            </div>
-          </div>
-          <div class="pf-v5-c-card" id="dashboard-demo-details-card-1">
+      <div class="pf-v5-l-grid__item pf-m-gutter pf-m-5-col pf-v5-u-h-100">
+        <div class="pf-v5-l-flex pf-m-column pf-v5-u-h-100">
+          <MapComponent class="pf-m-flex-1" />
+          <hr class="pf-v5-c-divider" />
+          <div class="pf-v5-c-card pf-m-compact pf-m-flex-1" id="dashboard-demo-details-card-1">
             <div class="pf-v5-c-card__title">
               <h2 class="pf-v5-c-title pf-m-xl">Units Board</h2>
             </div>
