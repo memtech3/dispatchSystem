@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import AppNavbar from './components/applicationFrame/AppNavbar.vue'
 import AppFooter from './components/applicationFrame/AppFooter.vue'
 </script>
@@ -11,4 +11,3 @@ import AppFooter from './components/applicationFrame/AppFooter.vue'
     <!-- <AppFooter class="self-end w-full" /> -->
   </div>
 </template>
-<script lang="ts" setup></script>
