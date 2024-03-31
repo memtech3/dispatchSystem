@@ -1,5 +1,12 @@
 <template>
-  <header class="pf-v5-c-masthead" id="nav-horizontal-example-masthead">
+  <header
+    class="pf-v5-c-masthead"
+    id="nav-horizontal-example-masthead"
+    style="
+      --pf-v5-c-masthead--m-display-inline__main--MinHeight: 1rem;
+      --pf-v5-c-masthead--m-display-inline__content--MinHeight: 1rem;
+    "
+  >
     <div class="pf-v5-c-masthead__main">
       <a class="pf-v5-c-masthead__brand" href="#">
         <img
