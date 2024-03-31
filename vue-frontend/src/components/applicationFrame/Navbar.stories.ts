@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import Navbar from './Navbar.vue'
+import AppNavbar from './AppNavbar.vue'
 
-const meta: Meta<typeof Navbar> = {
-  component: Navbar,
+const meta: Meta<typeof AppNavbar> = {
+  component: AppNavbar,
   tags: ['autodocs']
 }
 
 export default meta
-type Story = StoryObj<typeof Navbar>
+type Story = StoryObj<typeof AppNavbar>
 
 export const Primary: Story = {}
