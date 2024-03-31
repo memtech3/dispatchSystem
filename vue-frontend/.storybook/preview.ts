@@ -4,6 +4,8 @@ import { setup } from '@storybook/vue3'
 import PrimeVue from 'primevue/config'
 
 import '../src/tailwind.css'
+import '@patternfly/patternfly/patternfly.scss'
+import '@patternfly/patternfly/patternfly-addons.scss'
 
 import { withThemeByClassName } from '@storybook/addon-themes'
 
@@ -24,7 +26,7 @@ const preview: Preview = {
     withThemeByClassName<VueRenderer>({
       themes: {
         light: '',
-        dark: 'dark bg-slate-950'
+        dark: 'dark bg-slate-950 pf-v5-theme-dark'
       },
       defaultTheme: 'dark'
     })

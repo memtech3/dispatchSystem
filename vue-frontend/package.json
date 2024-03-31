@@ -16,6 +16,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@patternfly/patternfly": "^5.2.1",
     "@storybook/addon-themes": "^8.0.4",
     "bootstrap-icons": "^1.11.3",
     "maplibre-gl": "^4.1.0",
