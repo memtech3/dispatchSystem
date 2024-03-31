@@ -39,5 +39,10 @@ import AppFooter from './components/applicationFrame/AppFooter.vue'
   --pf-v5-global--FontSize--md: calc(1rem * var(--font-size-scaler));
   --pf-v5-global--FontSize--sm: calc(0.875rem * var(--font-size-scaler));
   --pf-v5-global--FontSize--xs: calc(0.75rem * var(--font-size-scaler));
+
+  --gutter-size-scaler: 0.75;
+
+  --pf-v5-global--gutter: calc(1rem * var(--gutter-size-scaler));
+  --pf-v5-global--gutter--md: calc(1.5rem * var(--gutter-size-scaler));
 }
 </style>
