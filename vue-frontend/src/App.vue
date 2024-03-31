@@ -13,7 +13,7 @@ import AppFooter from './components/applicationFrame/AppFooter.vue'
 </template>
 <style>
 :root {
-  --spacer-scaler: .5;
+  --spacer-scaler: 0.5;
 
   --pf-v5-global--spacer--xs: calc(0.25rem * var(--spacer-scaler));
   --pf-v5-global--spacer--sm: calc(0.5rem * var(--spacer-scaler));
