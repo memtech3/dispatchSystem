@@ -5,7 +5,7 @@ import CommentsPanel from './CommentsPanel.vue'
 </script>
 
 <template>
-  <form action="" class="pf-v5-c-form pf-v5-u-p-sm">
+  <form action="" class="pf-v5-c-form">
     <div class="pf-v5-l-grid pf-m-gutter">
       <section class="pf-v5-c-form__section" role="group">
         <div

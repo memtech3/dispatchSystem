@@ -1,83 +1,130 @@
 <template>
-  <header
-    class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-4 dark:bg-gray-800"
-  >
-    <nav
-      class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
-      aria-label="Global"
-    >
-      <div class="flex items-center justify-between">
-        <a class="flex-none text-xl font-semibold dark:text-white" href="#">Brand</a>
-        <div class="sm:hidden">
-          <button
-            type="button"
-            class="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-gray-700 dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            data-hs-collapse="#navbar-alignment"
-            aria-controls="navbar-alignment"
-            aria-label="Toggle navigation"
-          >
-            <svg
-              class="hs-collapse-open:hidden flex-shrink-0 size-4"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="3" x2="21" y1="6" y2="6" />
-              <line x1="3" x2="21" y1="12" y2="12" />
-              <line x1="3" x2="21" y1="18" y2="18" />
-            </svg>
-            <svg
-              class="hs-collapse-open:block hidden flex-shrink-0 size-4"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
+  <header class="pf-v5-c-masthead" id="nav-horizontal-example-masthead">
+    <div class="pf-v5-c-masthead__main">
+      <a class="pf-v5-c-masthead__brand" href="#">
+        <img
+          class="pf-v5-c-brand"
+          src="https://patternfly.org/assets/images/pf-logo.svg"
+          alt="PatternFly logo"
+          style="--pf-v5-c-brand--Height: 36px"
+        />
+      </a>
+    </div>
+    <div class="pf-v5-c-masthead__content">
       <div
-        id="navbar-alignment"
-        class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
+        class="pf-v5-c-toolbar pf-m-full-height pf-m-static"
+        id="nav-horizontal-example-masthead-toolbar"
       >
-        <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:mt-0 sm:ps-5">
-          <a
-            class="font-medium text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-            aria-current="page"
-            >Landing</a
-          >
-          <a
-            class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-            >Account</a
-          >
-          <a
-            class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-            >Work</a
-          >
-          <a
-            class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-            >Blog</a
-          >
+        <div class="pf-v5-c-toolbar__content">
+          <div class="pf-v5-c-toolbar__content-section">
+            <div
+              class="pf-v5-c-toolbar__item pf-m-overflow-container"
+              style="--pf-v5-c-toolbar__item--MinWidth: 18ch"
+            >
+              <nav
+                class="pf-v5-c-nav pf-m-horizontal pf-m-scrollable"
+                id="-horizontal-nav"
+                aria-label="Global"
+              >
+                <button class="pf-v5-c-nav__scroll-button" disabled="" aria-label="Scroll left">
+                  <i class="fas fa-angle-left" aria-hidden="true"></i>
+                </button>
+                <ul class="pf-v5-c-nav__list" role="list">
+                  <li class="pf-v5-c-nav__item">
+                    <a href="#" class="pf-v5-c-nav__link">Horizontal nav item 1</a>
+                  </li>
+                  <li class="pf-v5-c-nav__item">
+                    <a href="#" class="pf-v5-c-nav__link">Horizontal nav item 2</a>
+                  </li>
+                  <li class="pf-v5-c-nav__item">
+                    <a href="#" class="pf-v5-c-nav__link">Horizontal nav item 3</a>
+                  </li>
+                  <li class="pf-v5-c-nav__item">
+                    <a href="#" class="pf-v5-c-nav__link">Horizontal nav item 4</a>
+                  </li>
+                  <li class="pf-v5-c-nav__item">
+                    <a href="#" class="pf-v5-c-nav__link pf-m-current" aria-current="page"
+                      >Horizontal nav item 5</a
+                    >
+                  </li>
+                </ul>
+                <button class="pf-v5-c-nav__scroll-button" aria-label="Scroll right">
+                  <i class="fas fa-angle-right" aria-hidden="true"></i>
+                </button>
+              </nav>
+            </div>
+            <div
+              class="pf-v5-c-toolbar__group pf-m-icon-button-group pf-m-align-right pf-m-spacer-none pf-m-spacer-md-on-md"
+            >
+              <div
+                class="pf-v5-c-toolbar__group pf-m-icon-button-group pf-m-hidden pf-m-visible-on-lg"
+              >
+                <div class="pf-v5-c-toolbar__item">
+                  <button
+                    class="pf-v5-c-menu-toggle pf-m-plain"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Application launcher"
+                  >
+                    <i class="fas fa-th" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="pf-v5-c-toolbar__item">
+                  <button
+                    class="pf-v5-c-menu-toggle pf-m-plain"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Settings"
+                  >
+                    <i class="fas fa-cog" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="pf-v5-c-toolbar__item">
+                  <button
+                    class="pf-v5-c-menu-toggle pf-m-plain"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Help"
+                  >
+                    <i class="fas fa-question-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="pf-v5-c-toolbar__item pf-m-hidden-on-lg">
+                <button
+                  class="pf-v5-c-menu-toggle pf-m-plain"
+                  type="button"
+                  aria-expanded="false"
+                  aria-label="Actions"
+                >
+                  <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="pf-v5-c-toolbar__item pf-m-hidden pf-m-visible-on-sm">
+              <button
+                class="pf-v5-c-menu-toggle pf-m-full-height"
+                type="button"
+                aria-expanded="false"
+              >
+                <span class="pf-v5-c-menu-toggle__icon">
+                  <img
+                    class="pf-v5-c-avatar"
+                    alt="Avatar image"
+                    src="https://patternfly.org/assets/images/img_avatar-light.svg"
+                  />
+                </span>
+                <span class="pf-v5-c-menu-toggle__text">Ned Username</span>
+                <span class="pf-v5-c-menu-toggle__controls">
+                  <span class="pf-v5-c-menu-toggle__toggle-icon">
+                    <i class="fas fa-caret-down" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
+    </div>
   </header>
 </template>
