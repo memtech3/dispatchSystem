@@ -2,15 +2,18 @@ import type { Preview, VueRenderer } from '@storybook/vue3'
 import { setup } from '@storybook/vue3'
 
 import PrimeVue from 'primevue/config'
+import VuePatternFly from '@vue-patternfly/core'
 
-import '../src/tailwind.css'
+import '@/tailwind.css'
 import '@patternfly/patternfly/patternfly.scss'
 import '@patternfly/patternfly/patternfly-addons.scss'
+import '@/main.scss'
 
 import { withThemeByClassName } from '@storybook/addon-themes'
 
 setup((app) => {
   app.use(PrimeVue, { unstyled: true })
+  app.use(VuePatternFly)
 })
 
 const preview: Preview = {
