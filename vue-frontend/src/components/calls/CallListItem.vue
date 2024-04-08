@@ -34,61 +34,73 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex h-32 dark:text-white dark:bg-gray-800">
-    <div
-      class="w-14 flex flex-col content-center items-center py-5 text-white"
-      :class="callPriorityClr"
-    >
-      <span
-        class="inline-flex items-center justify-center w-10 h-10 text-2xl font-semibold text-gray-800 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-300 mb-5"
-      >
-        <span class="" :class="callTypeIcon"></span>
-        <span class="sr-only">{{ callTypeIcon }}</span>
-      </span>
-      <span class=""> P{{ callPriority }} </span>
-    </div>
-    <div class="p-2 grow min-w-96">
-      {{ callTypeCode }}: {{ callTypeDescription }} <br />
-      {{ callLocation }} <br />
-      {{ callID }} <br />
-      {{ callAssignedResources }}
-    </div>
-    <div class="w-28">
-      <div class="flex flex-col content-center items-end p-2">
-        <span>2:43 PM</span>
-        <span
-          class="bg-gray-100 text-gray-800 text-sm font-medium px-1 py-0.05 rounded dark:bg-gray-700 dark:text-gray-300"
-        >
-          <span class="bi bi-stopwatch"></span>
-          10 min
-        </span>
-        <span>4 min</span>
+  <li
+    class="pf-v5-c-data-list__item"
+    aria-labelledby="data-list-static-bottom-example-data-list-item-1"
+  >
+    <div class="pf-v5-c-card pf-m-plain pf-m-compact">
+      <div class="pf-v5-l-grid pf-m-all-6-col-on-md">
+        <div class="pf-v5-l-grid__item pf-m-2-col" :class="'priorityColor-' + callPriorityClr">
+          <div class="pf-v5-l-stack pf-v5-u-p-sm">
+            <div class="pf-v5-l-stack__item pf-v5-u-m-auto">
+              <span class="fas fa-fw fa-info-circle"></span>
+            </div>
+            <div class="pf-v5-l-stack__item pf-m-fill pf-v5-u-m-auto">
+              <span class="pf-v5-u-font-size-3xl pf-v5-u-font-weight-bold"
+                >P{{ callPriority }}</span
+              >
+            </div>
+            <div class="pf-v5-l-stack__item">
+              <span class="pf-v5-u-font-size-xs">{{ callID }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="pf-v5-l-grid__item pf-m-8-col">
+          <div class="pf-v5-l-stack pf-v5-u-p-sm">
+            <div class="pf-v5-l-stack__item">
+              <h2 class="pf-v5-c-content">{{ callTypeDescription }}</h2>
+            </div>
+            <div class="pf-v5-l-stack__item pf-m-fill">
+              {{ callLocation }}
+            </div>
+            <div class="pf-v5-l-stack__item">
+              <span class="pf-v5-c-label pf-m-blue pf-m-compact">
+                <span class="pf-v5-c-label__content">
+                  <span class="pf-v5-c-label__icon">
+                    <i class="fas fa-fw fa-info-circle" aria-hidden="true"></i>
+                  </span>
+                  <span class="pf-v5-c-label__text" style="--pf-v5-c-label__text--MaxWidth: 38ch"
+                    >1A75</span
+                  >
+                </span>
+              </span>
+              <span class="pf-v5-c-label pf-m-purple pf-m-compact">
+                <span class="pf-v5-c-label__content">
+                  <span class="pf-v5-c-label__icon">
+                    <i class="fas fa-fw fa-info-circle" aria-hidden="true"></i>
+                  </span>
+                  <span class="pf-v5-c-label__text" style="--pf-v5-c-label__text--MaxWidth: 38ch"
+                    >ENG1</span
+                  >
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="w-8 flex flex-col items-center py-2 ms-3 me-1">
-      <button type="button" class="actionButton mb-8">
-        <span class="bi bi-three-dots-vertical"></span>
-      </button>
-      <button type="button" class="actionButton">
-        <span class="bi bi-chevron-double-down"></span>
-      </button>
-    </div>
-  </div>
+  </li>
 </template>
 
 <style lang="scss" scoped>
-@mixin cardPriorityColor($color) {
+@mixin priorityColor($color) {
   .priorityColor-#{$color} {
-    @apply bg-#{$color}-100 dark:bg-#{$color}-400 text-gray-800 font-bold;
+    background-color: var(--pf-v5-global--palette--#{$color}-300);
   }
 }
 
-@include cardPriorityColor('orange');
-@include cardPriorityColor('green');
-@include cardPriorityColor('red');
-@include cardPriorityColor('purple');
-
-.actionButton {
-  @apply text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg p-0.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 text-lg;
-}
+@include priorityColor('blue');
+@include priorityColor('red');
+@include priorityColor('green');
+@include priorityColor('purple');
 </style>
