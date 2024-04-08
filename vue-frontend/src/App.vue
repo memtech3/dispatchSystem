@@ -11,4 +11,3 @@ import AppFooter from './components/applicationFrame/AppFooter.vue'
     <!-- <AppFooter class="self-end w-full" /> -->
   </div>
 </template>
-<style></style>

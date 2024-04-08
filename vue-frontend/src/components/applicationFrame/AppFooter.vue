@@ -13,5 +13,3 @@
 <script lang="ts" setup>
 import FooterItem from './FooterItem.vue'
 </script>
-
-<style></style>
