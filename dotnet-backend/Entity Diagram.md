@@ -6,21 +6,26 @@
     Unit {
         int ID
         string callSign
-        array attributes 
+        array[attribute] attributes
         %% attributes could be type of unit, rank/permissions, etc...
     }
+    
     Event {
         int ID
+        type primaryType
+        array[type] additionalTypes
     }
         
     Call {
         int ID
+        type primaryType
+        array[type] additionalTypes
     }
     
     User {
         int ID
         string userName
-        array attributes
+        array[attribute] attributes
     }
 
     Attribute {
@@ -28,6 +33,16 @@
         string name
         array eligibleEntities
         %% entities this attribute can be assigned to
+    }
+
+    CallType {
+        int ID
+        string name
+    }
+
+    EventType {
+        int ID
+        string name
     }
 
     %% Entity relationships
@@ -47,6 +62,9 @@
     User }o--o{ Attribute: "has"
     Event }o--o{ Attribute: "has"
     Call }o--o{ Attribute: "has"
+
+    Call }|--o{ CallType: "has"
+    Event }|--o{ EventType: "has"
 
 
 
