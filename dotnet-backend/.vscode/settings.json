@@ -4,4 +4,13 @@
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "dotnet.automaticallyCreateSolutionInWorkspace": false,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#203308",
+    "titleBar.activeBackground": "#2C470B",
+    "titleBar.activeForeground": "#F6FCEF"
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "SonarCloud connection",
+    "projectKey": "memtech3_dispatchSystem"
+  },
 }
