@@ -13,4 +13,6 @@
     "connectionId": "SonarCloud connection",
     "projectKey": "memtech3_dispatchSystem"
   },
+  "markdown.preview.scrollPreviewWithEditor": false,
+  "markdown.preview.scrollEditorWithPreview": false,
 }
