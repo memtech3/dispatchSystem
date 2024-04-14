@@ -1,4 +1,4 @@
-namespace dotnet_backend.Models
+namespace DispatchSystemBackend.Models
 {
     public class EventRecord
     {

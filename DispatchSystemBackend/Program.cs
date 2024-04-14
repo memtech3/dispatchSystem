@@ -1,13 +1,13 @@
-using dotnet_backend.Data;
+using DispatchSystemBackend.Data;
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 ConfigurationManager Configuration = builder.Configuration;
 
-builder.Services.AddDbContextPool<dotnet_backendContext>(options =>
+builder.Services.AddDbContextPool<DispatchSystemBackendContext>(options =>
         options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddGraphQLServer().RegisterDbContext<dotnet_backendContext>()
+builder.Services.AddGraphQLServer().RegisterDbContext<DispatchSystemBackendContext>()
 .AddQueryType<Query>().AddMutationType<Mutation>();
 
 WebApplication app = builder.Build();

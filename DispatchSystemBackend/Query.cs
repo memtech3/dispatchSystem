@@ -1,5 +1,5 @@
-using dotnet_backend.Data;
-using dotnet_backend.Models;
+using DispatchSystemBackend.Data;
+using DispatchSystemBackend.Models;
 
 public class Query
 {
@@ -8,7 +8,7 @@ public class Query
         return $"Hello, {name}!";
     }
 
-    public IQueryable<EventRecord> GetEvents(int id, dotnet_backendContext context)
+    public IQueryable<EventRecord> GetEvents(int id, DispatchSystemBackendContext context)
     {
         return context.EventRecords;
     }
