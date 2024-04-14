@@ -9,8 +9,13 @@ Install project dependencies and tools:
 `dotnet tool restore`
 
 
-Migrate database:
+EF core commands:
 
+Drop db (destroy everything):
 `dotnet ef database drop`
 
+Make a new migration:
+`dotnet ef migrations add MIGRATION_NAME_HERE`
+
+Apply the migration:
 `dotnet ef database update`
