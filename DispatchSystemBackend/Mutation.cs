@@ -4,8 +4,12 @@ using DispatchSystemBackend.Models;
 public class Mutation
 {
 
-    public IQueryable<EventRecord> GetEvents(int id, DispatchSystemBackendContext context)
+    public EventModel CreateEvent(DispatchSystemBackendContext context, EventModel inputEvent)
     {
-        return context.EventRecords;
+        EventModel eventEntity = new EventModel() { ID = inputEvent.ID, Name = inputEvent.Name };
+        context.Events.Add(eventEntity);
+        context.SaveChanges();
+
+        return eventEntity;
     }
 }
