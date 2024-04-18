@@ -8,8 +8,8 @@ public class Query
         return $"Hello, {name}!";
     }
 
-    public IQueryable<EventRecord> GetEvents(int id, DispatchSystemBackendContext context)
+    public IQueryable<EventModel> GetEvents(int id, DispatchSystemBackendContext context)
     {
-        return context.EventRecords;
+        return context.Events;
     }
 }
