@@ -4,9 +4,9 @@ using DispatchSystemBackend.Models;
 public class Mutation
 {
 
-    public EventModel CreateEvent(DispatchSystemBackendContext context, EventModel inputEvent)
+    public CadEventModel CreateEvent(DispatchSystemBackendContext context, CadEventModel inputEvent)
     {
-        EventModel eventEntity = new EventModel() { ID = inputEvent.ID, Name = inputEvent.Name };
+        CadEventModel eventEntity = new CadEventModel() { ID = inputEvent.ID, Name = inputEvent.Name };
         context.Events.Add(eventEntity);
         context.SaveChanges();
 

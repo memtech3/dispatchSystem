@@ -5,18 +5,18 @@
 
     Unit {
         int ID
-        string callSign
+        string EventSign
         array[attribute] attributes
         %% attributes could be type of unit, rank/permissions, etc...
     }
     
-    Event {
+    LogEntry {
         int ID
         type primaryType
         array[type] additionalTypes
     }
         
-    Call {
+    Event {
         int ID
         type primaryType
         array[type] additionalTypes
@@ -35,12 +35,12 @@
         %% entities this attribute can be assigned to
     }
 
-    CallType {
+    EventType {
         int ID
         string name
     }
 
-    EventType {
+    LogEntryType {
         int ID
         string name
     }
@@ -49,22 +49,22 @@
 
     Unit }o--o{ User: "belongs to"
 
+    LogEntry }o--o{ User: "belongs to"
+    LogEntry }o--o{ Unit: "belongs to"
+
+
     Event }o--o{ User: "belongs to"
     Event }o--o{ Unit: "belongs to"
 
-
-    Call }o--o{ User: "belongs to"
-    Call }o--o{ Unit: "belongs to"
-
-    Event }o--o{ Call: "belongs to"
+    LogEntry }o--o{ Event: "belongs to"
 
     Unit }o--o{ Attribute: "has"
     User }o--o{ Attribute: "has"
+    LogEntry }o--o{ Attribute: "has"
     Event }o--o{ Attribute: "has"
-    Call }o--o{ Attribute: "has"
 
-    Call }|--o{ CallType: "has"
     Event }|--o{ EventType: "has"
+    LogEntry }|--o{ LogEntryType: "has"
 
 
 

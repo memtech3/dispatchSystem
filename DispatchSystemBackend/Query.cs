@@ -8,7 +8,7 @@ public class Query
         return $"Hello, {name}!";
     }
 
-    public IQueryable<EventModel> GetEvents(int id, DispatchSystemBackendContext context)
+    public IQueryable<CadEventModel> GetEvents(int id, DispatchSystemBackendContext context)
     {
         return context.Events;
     }
