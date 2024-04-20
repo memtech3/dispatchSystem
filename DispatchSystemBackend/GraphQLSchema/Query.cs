@@ -9,20 +9,5 @@ namespace DispatchSystemBackend.GraphQLSchema
         {
             return $"Hello, {name}!";
         }
-
-        public IQueryable<CadEventEntity> GetEvents(DispatchSystemBackendContext context)
-        {
-            return context.CadEvents;
-        }
-
-        public IQueryable<CadLogEntryEntity> GetLogEntries(DispatchSystemBackendContext context)
-        {
-            return context.CadLogEntries;
-        }
-
-        public IQueryable<UnitEntity> GetUnits(DispatchSystemBackendContext context)
-        {
-            return context.Units;
-        }
     }
 }

@@ -10,7 +10,14 @@ builder.Services.AddDbContextPool<DispatchSystemBackendContext>(options =>
 builder.Services.AddGraphQLServer()
 .RegisterDbContext<DispatchSystemBackendContext>()
 .AddQueryType<DispatchSystemBackend.GraphQLSchema.Query>()
-.AddMutationType<DispatchSystemBackend.GraphQLSchema.Mutation>();
+.AddMutationType<DispatchSystemBackend.GraphQLSchema.Mutation>()
+.AddTypeExtension<DispatchSystemBackend.GraphQLSchema.CadEventQueries>()
+.AddTypeExtension<DispatchSystemBackend.GraphQLSchema.CadEventMutations>()
+.AddTypeExtension<DispatchSystemBackend.GraphQLSchema.CadLogEntryQueries>()
+.AddTypeExtension<DispatchSystemBackend.GraphQLSchema.CadLogEntryMutations>()
+.AddTypeExtension<DispatchSystemBackend.GraphQLSchema.UnitQueries>()
+.AddTypeExtension<DispatchSystemBackend.GraphQLSchema.UnitMutations>();
+
 
 WebApplication app = builder.Build();
 
