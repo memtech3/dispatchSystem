@@ -12,7 +12,7 @@ namespace DispatchSystemBackend.GraphQLSchema
 
         public IQueryable<CadEventEntity> GetEvents(int id, DispatchSystemBackendContext context)
         {
-            return context.Events;
+            return context.CadEvents;
         }
     }
 }

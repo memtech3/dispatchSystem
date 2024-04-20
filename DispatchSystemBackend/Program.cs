@@ -7,8 +7,10 @@ ConfigurationManager Configuration = builder.Configuration;
 builder.Services.AddDbContextPool<DispatchSystemBackendContext>(options =>
         options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddGraphQLServer().RegisterDbContext<DispatchSystemBackendContext>()
-.AddQueryType<Query>().AddMutationType<Mutation>();
+builder.Services.AddGraphQLServer()
+.RegisterDbContext<DispatchSystemBackendContext>()
+.AddQueryType<DispatchSystemBackend.GraphQLSchema.Query>()
+.AddMutationType<DispatchSystemBackend.GraphQLSchema.Mutation>();
 
 WebApplication app = builder.Build();
 

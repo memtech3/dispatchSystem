@@ -8,11 +8,11 @@ namespace DispatchSystemBackend.GraphQLSchema
 
         public CadEventEntity CreateEvent(DispatchSystemBackendContext context, CadEventEntity inputEvent)
         {
-            CadEventEntity eventEntity = new CadEventEntity() { ID = inputEvent.ID, Name = inputEvent.Name };
-            context.Events.Add(eventEntity);
+            CadEventEntity cadEvent = new CadEventEntity() { ID = inputEvent.ID, Name = inputEvent.Name };
+            context.CadEvents.Add(cadEvent);
             context.SaveChanges();
 
-            return eventEntity;
+            return cadEvent;
         }
     }
 }
