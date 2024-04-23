@@ -22,7 +22,9 @@ namespace DispatchSystemBackend.Data
             Faker<CadLogEntryEntity> cadLogEntryFaker = new Faker<CadLogEntryEntity>()
                 .RuleFor(i => i.ID, _ => cadLogEntryID++)
                 .RuleFor(i => i.Name, f => f.Hacker.Phrase())
-                .RuleFor(i => i.CadEventEntries, f => f.PickRandom(cadEvents));
+                // FIXME: CadEventEntries foreign key rules desn't work because faker returns CadLogEntity items 
+                // instead of a list of CadLogEntity IDs
+                .RuleFor(i => i.CadEventEntries, f => f.Random.ListItems(cadEventEntities));
             List<CadLogEntryEntity> cadLogEntryEntities = cadLogEntryFaker.Generate(count);
 
             int unitID = 1;
