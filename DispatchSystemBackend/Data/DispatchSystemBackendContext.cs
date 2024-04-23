@@ -9,7 +9,7 @@ namespace DispatchSystemBackend.Data
         public DbSet<Models.CadLogEntryEntity> CadLogEntries { get; set; }
         public DbSet<Models.UnitEntity> Units { get; set; }
 
-        protected void OodelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
