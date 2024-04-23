@@ -5,9 +5,9 @@ namespace DispatchSystemBackend.Data
 {
     public class DispatchSystemBackendContext(DbContextOptions<DispatchSystemBackendContext> options) : DbContext(options)
     {
-        public DbSet<Models.CadEventEntity> CadEvents { get; set; }
-        public DbSet<Models.CadLogEntryEntity> CadLogEntries { get; set; }
-        public DbSet<Models.UnitEntity> Units { get; set; }
+        public DbSet<CadEventEntity> CadEvents { get; set; }
+        public DbSet<CadLogEntryEntity> CadLogEntries { get; set; }
+        public DbSet<UnitEntity> Units { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
