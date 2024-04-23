@@ -34,9 +34,9 @@ namespace DispatchSystemBackend.Data
 
 
 
-            FakeData.cadEvents.AddRange(cadEventEntities);
-            FakeData.cadLogEntries.AddRange(cadLogEntryEntities);
-            FakeData.units.AddRange(unitEntities);
+            cadEvents.AddRange(cadEventEntities);
+            cadLogEntries.AddRange(cadLogEntryEntities);
+            units.AddRange(unitEntities);
 
         }
     }
