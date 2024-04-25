@@ -17,7 +17,7 @@ namespace DispatchSystemBackend.Data
                 // FIXME: EF Core complains about duplicate IDs, what am I doing wrong?
                 .RuleFor(i => i.ID, _ => cadEventID++)
                 .RuleFor(i => i.Name, f => f.Hacker.Phrase());
-            List<CadEventEntity> cadEventEntities = cadEventFaker.Generate(count);
+            cadEvents.AddRange(cadEventFaker.Generate(count));
 
             int cadLogEntryID = 1;
             Faker<CadLogEntryEntity> cadLogEntryFaker = new Faker<CadLogEntryEntity>()
@@ -26,21 +26,13 @@ namespace DispatchSystemBackend.Data
                 // FIXME: CadEventEntries foreign key rules desn't work because faker returns CadLogEntity items 
                 // instead of a list of CadLogEntity IDs
                 // .RuleFor(i => i.CadEventEntries, f => f.Random.ListItems(cadEventEntities));
-            List<CadLogEntryEntity> cadLogEntryEntities = cadLogEntryFaker.Generate(count);
+            cadLogEntries.AddRange(cadLogEntryFaker.Generate(count));
 
             int unitID = 1;
             Faker<UnitEntity> unitFaker = new Faker<UnitEntity>()
                 .RuleFor(i => i.ID, _ => unitID++)
                 .RuleFor(i => i.Name, f => f.Person.FullName);
-            List<UnitEntity> unitEntities = unitFaker.Generate(count);
-
-
-
-
-            cadEvents.AddRange(cadEventEntities);
-            cadLogEntries.AddRange(cadLogEntryEntities);
-            units.AddRange(unitEntities);
-
+            units.AddRange(unitFaker.Generate(count));
         }
     }
 }
