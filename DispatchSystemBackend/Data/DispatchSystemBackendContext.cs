@@ -13,10 +13,12 @@ namespace DispatchSystemBackend.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            FakeData.Init(10);
-            modelBuilder.Entity<CadEventEntity>().HasData(FakeData.cadEvents);
-            modelBuilder.Entity<CadLogEntryEntity>().HasData(FakeData.cadLogEntries);
-            modelBuilder.Entity<UnitEntity>().HasData(FakeData.units);
+            FakeData fakeData = new FakeData();
+            fakeData.Init(10);
+
+            modelBuilder.Entity<CadEventEntity>().HasData(fakeData.cadEvents);
+            modelBuilder.Entity<CadLogEntryEntity>().HasData(fakeData.cadLogEntries);
+            modelBuilder.Entity<UnitEntity>().HasData(fakeData.units);
 
         }
     }

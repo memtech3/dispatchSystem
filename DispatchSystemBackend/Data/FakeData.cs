@@ -3,14 +3,14 @@ using DispatchSystemBackend.Models;
 
 namespace DispatchSystemBackend.Data
 {
-    public static class FakeData
+    public class FakeData
     {
-        public static List<CadEventEntity> cadEvents = new List<CadEventEntity>();
-        public static List<CadLogEntryEntity> cadLogEntries = new List<CadLogEntryEntity>();
-        public static List<UnitEntity> units = new List<UnitEntity>();
+        public List<CadEventEntity> cadEvents = new List<CadEventEntity>();
+        public List<CadLogEntryEntity> cadLogEntries = new List<CadLogEntryEntity>();
+        public List<UnitEntity> units = new List<UnitEntity>();
 
-
-        public static void Init(int count)
+        public FakeData() { }
+        public void Init(int count)
         {
             int seed = 3660; // seed for Bogus's pseudo random generator, keeps output consistent
 
