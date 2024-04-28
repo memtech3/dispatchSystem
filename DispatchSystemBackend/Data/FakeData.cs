@@ -1,0 +1,40 @@
+using Bogus;
+using DispatchSystemBackend.Models;
+
+namespace DispatchSystemBackend.Data
+{
+    public class FakeData
+    {
+        public List<CadEventEntity> cadEvents = new List<CadEventEntity>();
+        public List<CadLogEntryEntity> cadLogEntries = new List<CadLogEntryEntity>();
+        public List<UnitEntity> units = new List<UnitEntity>();
+
+        public FakeData() { }
+        public void Init(int count)
+        {
+            int seed = 3660; // seed for Bogus's pseudo random generator, keeps output consistent
+
+            int cadEventID = 1;
+            Faker<CadEventEntity> cadEventFaker = new Faker<CadEventEntity>()
+                // FIXME: EF Core complains about duplicate IDs, what am I doing wrong?
+                .RuleFor(i => i.ID, _ => cadEventID++)
+                .RuleFor(i => i.Name, f => f.Hacker.Phrase());
+            cadEvents.AddRange(cadEventFaker.UseSeed(seed).Generate(count));
+
+            int cadLogEntryID = 1;
+            Faker<CadLogEntryEntity> cadLogEntryFaker = new Faker<CadLogEntryEntity>()
+                .RuleFor(i => i.ID, _ => cadLogEntryID++)
+                .RuleFor(i => i.Name, f => f.Hacker.Phrase());
+            // FIXME: CadEventEntries foreign key rules desn't work because faker returns CadLogEntity items 
+            // instead of a list of CadLogEntity IDs
+            // .RuleFor(i => i.CadEventEntries, f => f.Random.ListItems(cadEventEntities));
+            cadLogEntries.AddRange(cadLogEntryFaker.UseSeed(seed).Generate(count));
+
+            int unitID = 1;
+            Faker<UnitEntity> unitFaker = new Faker<UnitEntity>()
+                .RuleFor(i => i.ID, _ => unitID++)
+                .RuleFor(i => i.Name, f => f.Person.FullName);
+            units.AddRange(unitFaker.UseSeed(seed).Generate(count));
+        }
+    }
+}

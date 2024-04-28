@@ -5,7 +5,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 ConfigurationManager Configuration = builder.Configuration;
 
 builder.Services.AddDbContextPool<DispatchSystemBackendContext>(options =>
-        options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+        options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+        .EnableSensitiveDataLogging());
 
 builder.Services.AddGraphQLServer()
 .InitializeOnStartup()

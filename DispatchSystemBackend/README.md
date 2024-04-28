@@ -19,3 +19,7 @@ Make a new migration:
 
 Apply the migration:
 `dotnet ef database update`
+
+
+oneliner (DO NOT USE IN PRODUCTION, THIS DESTROYS THE DATABASE AND ANY PAST MIGRATIONS)
+`dotnet ef database drop && rm -rf Migrations/ && dotnet ef migrations add INITIAL_MIGRATION && dotnet ef database update`
