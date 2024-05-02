@@ -4,44 +4,44 @@
     %% Definitions for all entities
 
     Unit {
-        int ID
+        int Id
         string EventSign
         array[attribute] attributes
         %% attributes could be type of unit, rank/permissions, etc...
     }
     
     LogEntry {
-        int ID
+        int Id
         type primaryType
         array[type] additionalTypes
     }
         
     Event {
-        int ID
+        int Id
         type primaryType
         array[type] additionalTypes
     }
     
     User {
-        int ID
+        int Id
         string userName
         array[attribute] attributes
     }
 
     Attribute {
-        int ID
+        int Id
         string name
         array eligibleEntities
         %% entities this attribute can be assigned to
     }
 
     EventType {
-        int ID
+        int Id
         string name
     }
 
     LogEntryType {
-        int ID
+        int Id
         string name
     }
 

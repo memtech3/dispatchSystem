@@ -24,9 +24,9 @@ namespace DispatchSystemBackend.GraphQLSchema
             return cadLogEntry;
         }
 
-        public CadLogEntryEntity UpdateLogEntry(DispatchSystemBackendContext context, int logEntryID, CadLogEntryEntity inputLogEntry)
+        public CadLogEntryEntity UpdateLogEntry(DispatchSystemBackendContext context, int logEntryId, CadLogEntryEntity inputLogEntry)
         {
-            CadLogEntryEntity cadLogEntry = context.CadLogEntries.FirstOrDefault(item => item.ID == logEntryID) ?? throw new Exception("CadLogEntry not found");
+            CadLogEntryEntity cadLogEntry = context.CadLogEntries.FirstOrDefault(item => item.Id == logEntryId) ?? throw new Exception("CadLogEntry not found");
             cadLogEntry.Name = inputLogEntry.Name;
             context.SaveChanges();
 
