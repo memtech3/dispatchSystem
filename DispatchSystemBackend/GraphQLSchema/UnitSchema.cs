@@ -1,32 +1,32 @@
-using Bogus.DataSets;
 using DispatchSystemBackend.Data;
 using DispatchSystemBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DispatchSystemBackend.GraphQLSchema
 {
-    public class UnitInputType
-    {
-        public string Name { get; set; }
-        public string Status { get; set; }
-    }
     [ExtendObjectType(typeof(Query))]
     public class UnitQueries
     {
         public IQueryable<UnitEntity> GetUnits(DispatchSystemBackendContext context)
         {
-            return context.Units;
+            return context.Units.Include(u => u.CadEventEntities).Include(u => u.CadLogEntries);
+        }
+        public UnitEntity GetUnitById(DispatchSystemBackendContext context, int Id)
+        {
+            UnitEntity unit = context.Units.Find(Id) ?? throw new Exception("Unit not found");
+            return unit;
         }
     }
 
     [ExtendObjectType(typeof(Mutation))]
     public class UnitMutations
     {
-        public UnitEntity CreateUnit(DispatchSystemBackendContext context, UnitInputType unitInput)
+        public UnitEntity CreateUnit(DispatchSystemBackendContext context, string name, string initialStatus)
         {
             UnitEntity unit = new UnitEntity()
             {
-                Name = unitInput.Name,
-                Status = unitInput.Status
+                Name = name,
+                Status = initialStatus
             };
 
             _ = context.Units.Add(unit);
@@ -35,12 +35,42 @@ namespace DispatchSystemBackend.GraphQLSchema
             return unit;
         }
 
-        public UnitEntity UpdateUnit(DispatchSystemBackendContext context, int Id, UnitInputType unitInput)
+        public UnitEntity UpdateUnit(DispatchSystemBackendContext context, int Id, string name)
         {
             // FIXME: graphql client doesn't get this exception, check that it's getting thrown properly
             UnitEntity unit = context.Units.Find(Id) ?? throw new Exception("Unit not found");
-            unit.Name = unitInput.Name;
-            unit.Status = unitInput.Status;
+            unit.Name = name;
+            _ = context.SaveChanges();
+
+            return unit;
+        }
+
+        public UnitEntity UpdateUnitStatus(DispatchSystemBackendContext context, int Id, string status)
+        {
+            UnitEntity unit = context.Units.Find(Id) ?? throw new Exception("Unit not found");
+            unit.Status = status;
+            _ = context.SaveChanges();
+
+            return unit;
+        }
+
+        public UnitEntity AttachUnitToEvent(DispatchSystemBackendContext context, int unitId, int eventId)
+        {
+            UnitEntity unit = context.Units.Find(unitId) ?? throw new Exception("Unit not found");
+            CadEventEntity cadEvent = context.CadEvents.Find(eventId) ?? throw new Exception("Event not found");
+
+            unit.CadEventEntities.Add(cadEvent);
+            _ = context.SaveChanges();
+
+            return unit;
+        }
+
+        public UnitEntity DetachUnitFromEvent(DispatchSystemBackendContext context, int unitId, int eventId)
+        {
+            UnitEntity unit = context.Units.Find(unitId) ?? throw new Exception("Unit not found");
+            CadEventEntity cadEvent = context.CadEvents.Find(eventId) ?? throw new Exception("Event not found");
+
+            _ = unit.CadEventEntities.Remove(cadEvent);
             _ = context.SaveChanges();
 
             return unit;
