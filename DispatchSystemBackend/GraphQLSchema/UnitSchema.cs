@@ -14,6 +14,9 @@ namespace DispatchSystemBackend.GraphQLSchema
         public UnitEntity GetUnitById(DispatchSystemBackendContext context, int Id)
         {
             UnitEntity unit = context.Units.Find(Id) ?? throw new Exception("Unit not found");
+            context.Entry(unit)
+                .Collection(u => u.CadEventEntities)
+                .Load();
             return unit;
         }
     }
@@ -70,7 +73,14 @@ namespace DispatchSystemBackend.GraphQLSchema
             UnitEntity unit = context.Units.Find(unitId) ?? throw new Exception("Unit not found");
             CadEventEntity cadEvent = context.CadEvents.Find(eventId) ?? throw new Exception("Event not found");
 
+            // TODO: make sure this is a proper use of dotnet
+            // this fixes issues with Detach not doing anything
+            context.Entry(unit)
+                .Collection(u => u.CadEventEntities)
+                .Load();
+
             _ = unit.CadEventEntities.Remove(cadEvent);
+
             _ = context.SaveChanges();
 
             return unit;
