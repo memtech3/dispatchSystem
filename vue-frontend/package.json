@@ -18,10 +18,12 @@
   "dependencies": {
     "@patternfly/patternfly": "^5.2.1",
     "@storybook/addon-themes": "^8.0.4",
+    "@urql/vue": "^1.2.0",
     "@vue-patternfly/core": "^0.1.0-beta.25",
     "@vue-patternfly/icons": "^0.4.2",
     "@vue-patternfly/table": "^0.2.3",
     "bootstrap-icons": "^1.11.3",
+    "graphql": "^16.8.1",
     "maplibre-gl": "^4.1.0",
     "pinia": "^2.1.7",
     "primevue": "^3.49.1",
