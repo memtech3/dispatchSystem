@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import CallListItem from './CallListItem.vue'
+import EventListItem from './EventListItem.vue'
 import { gql, useQuery } from '@urql/vue'
 
 const result = useQuery({
@@ -9,6 +9,7 @@ const result = useQuery({
       events {
         id
         location
+        priority
         cadLogEntries {
           id
           name
@@ -41,12 +42,12 @@ const reactiveResult = ref(result)
           :key="event.id"
           class="pf-v5-c-data-list__item"
         >
-          <CallListItem
+          <EventListItem
             :call-ID="event.id"
-            call-priority="1"
+            :call-priority="event.priority"
             call-priority-clr="green"
             call-type-code="2319"
-            call-type-description=""
+            call-type-description="Human Contamination"
             call-type-icon="bi bi-virus"
             :call-location="event.location"
             call-assigned-resources="P135, PS34, H43, H44"
@@ -55,7 +56,7 @@ const reactiveResult = ref(result)
       </ul>
     </div>
     <!--
-    <CallListItem
+    <EventListItem
       call-ID="H345"
       call-priority="1"
       call-priority-clr="green"
