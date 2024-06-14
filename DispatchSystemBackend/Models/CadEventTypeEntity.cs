@@ -8,5 +8,6 @@ namespace DispatchSystemBackend.Models
         public string Description { get; set; }
         public string Icon { get; set; }
         public int DefaultPriority { get; set; }
+        public List<CadEventEntity> CadEventEntries { get; set; } = [];
     }
 }

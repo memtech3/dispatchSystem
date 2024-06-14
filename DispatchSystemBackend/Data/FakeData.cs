@@ -31,7 +31,8 @@ namespace DispatchSystemBackend.Data
             Faker<CadEventEntity> cadEventFaker = new Faker<CadEventEntity>()
                 .RuleFor(i => i.Id, _ => cadEventId++)
                 .RuleFor(i => i.Location, f => f.Address.StreetAddress())
-                .RuleFor(i => i.Type, f => f.PickRandom(cadEventTypes));
+                .RuleFor(i => i.CadEventTypeId, f => f.PickRandom(cadEventTypes).Id)
+                .RuleFor(i => i.Priority, f => f.PickRandom(cadEventTypes).DefaultPriority);
             cadEvents.AddRange(cadEventFaker.UseSeed(seed).Generate(count));
 
             int cadLogEntryId = 1;
