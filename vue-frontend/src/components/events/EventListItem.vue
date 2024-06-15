@@ -2,18 +2,18 @@
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 defineProps<{
-  callID: string
-  callPriority: number
-  callPriorityClr: string
-  callTypeCode: string
-  callTypeDescription: string
-  callTypeIcon: string
-  callLocation: string
-  callAssignedResources: string // this needs to be an array
-  callCreatedTime: Date
+  eventID: string
+  eventPriority: number
+  eventPriorityClr: string
+  eventTypeCode: string
+  eventTypeDescription: string
+  eventTypeIcon: string
+  eventLocation: string
+  eventAssignedResources: string // this needs to be an array
+  eventCreatedTime: Date
 }>()
 
-// Attempt at call elapsed time counter:
+// Attempt at event elapsed time counter:
 //
 // data() {
 //   return {
@@ -28,7 +28,7 @@ defineProps<{
 // methods: {
 //   updateTimer() {
 //     const currentDate = new Date();
-//     let elapsedDate = currentDate - this.callCreatedTime;
+//     let elapsedDate = currentDate - this.eventCreatedTime;
 //   }
 // }
 </script>
@@ -36,26 +36,26 @@ defineProps<{
 <template>
   <div class="pf-v5-c-card pf-m-plain pf-m-compact">
     <div class="pf-v5-l-grid pf-m-all-6-col-on-md">
-      <div class="pf-v5-l-grid__item pf-m-2-col" :class="'priorityColor-' + callPriorityClr">
+      <div class="pf-v5-l-grid__item pf-m-2-col" :class="'priorityColor-' + eventPriorityClr">
         <div class="pf-v5-l-stack pf-v5-u-p-sm">
           <div class="pf-v5-l-stack__item pf-v5-u-m-auto">
             <span class="fas fa-fw fa-info-circle"></span>
           </div>
           <div class="pf-v5-l-stack__item pf-m-fill pf-v5-u-m-auto">
-            <span class="pf-v5-u-font-size-3xl pf-v5-u-font-weight-bold">P{{ callPriority }}</span>
+            <span class="pf-v5-u-font-size-3xl pf-v5-u-font-weight-bold">P{{ eventPriority }}</span>
           </div>
           <div class="pf-v5-l-stack__item">
-            <span class="pf-v5-u-font-size-xs">{{ callID }}</span>
+            <span class="pf-v5-u-font-size-xs">{{ eventID }}</span>
           </div>
         </div>
       </div>
       <div class="pf-v5-l-grid__item pf-m-8-col">
         <div class="pf-v5-l-stack pf-v5-u-p-sm">
           <div class="pf-v5-l-stack__item">
-            <h2 class="pf-v5-c-content">{{ callTypeDescription }}</h2>
+            <h2 class="pf-v5-c-content">{{ eventTypeDescription }}</h2>
           </div>
           <div class="pf-v5-l-stack__item pf-m-fill">
-            {{ callLocation }}
+            {{ eventLocation }}
           </div>
           <div class="pf-v5-l-stack__item">
             <span class="pf-v5-c-label pf-m-blue pf-m-compact">

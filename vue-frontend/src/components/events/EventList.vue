@@ -43,28 +43,29 @@ const reactiveResult = ref(result)
           class="pf-v5-c-data-list__item"
         >
           <EventListItem
-            :call-ID="event.id"
-            :call-priority="event.priority"
-            call-priority-clr="green"
-            call-type-code="2319"
-            call-type-description="Human Contamination"
-            call-type-icon="bi bi-virus"
-            :call-location="event.location"
-            call-assigned-resources="P135, PS34, H43, H44"
+            :event-ID="event.id"
+            :event-priority="event.priority"
+            event-priority-clr="green"
+            event-type-code="2319"
+            event-type-description="Human Contamination"
+            event-type-icon="bi bi-virus"
+            :event-location="event.location"
+            event-assigned-resources="P135, PS34, H43, H44"
+            event-created-time="test"
           />
         </li>
       </ul>
     </div>
     <!--
     <EventListItem
-      call-ID="H345"
-      call-priority="1"
-      call-priority-clr="green"
-      call-type-code="2319"
-      call-type-description="Human Contamination"
-      call-type-icon="bi bi-virus"
-      call-location="Scare Floor Sector 7G"
-      call-assigned-resources="P135, PS34, H43, H44"
+      event-ID="H345"
+      event-priority="1"
+      event-priority-clr="green"
+      event-type-code="2319"
+      event-type-description="Human Contamination"
+      event-type-icon="bi bi-virus"
+      event-location="Scare Floor Sector 7G"
+      event-assigned-resources="P135, PS34, H43, H44"
     /> -->
   </ul>
 </template>
