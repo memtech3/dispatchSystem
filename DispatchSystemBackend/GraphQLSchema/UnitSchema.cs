@@ -26,7 +26,7 @@ namespace DispatchSystemBackend.GraphQLSchema
     {
         public UnitEntity CreateUnit(DispatchSystemBackendContext context, string name, string initialStatus)
         {
-            UnitEntity unit = new UnitEntity()
+            UnitEntity unit = new()
             {
                 Name = name,
                 Status = initialStatus

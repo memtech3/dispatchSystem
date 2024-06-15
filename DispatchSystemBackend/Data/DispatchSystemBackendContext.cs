@@ -19,7 +19,7 @@ namespace DispatchSystemBackend.Data
 
             base.OnModelCreating(modelBuilder);
 
-            FakeData fakeData = new FakeData();
+            FakeData fakeData = new();
             fakeData.Init(10);
 
             _ = modelBuilder.Entity<CadEventTypeEntity>().HasData(fakeData.cadEventTypes);

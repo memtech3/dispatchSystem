@@ -18,8 +18,8 @@ namespace DispatchSystemBackend.GraphQLSchema
         public CadEventEntity CreateEvent(DispatchSystemBackendContext context, CadEventEntity inputEvent)
         {
             CadEventEntity cadEvent = inputEvent;
-            context.CadEvents.Add(cadEvent);
-            context.SaveChanges();
+            _ = context.CadEvents.Add(cadEvent);
+            _ = context.SaveChanges();
 
             return cadEvent;
         }
@@ -28,7 +28,7 @@ namespace DispatchSystemBackend.GraphQLSchema
         {
             CadEventEntity cadEvent = context.CadEvents.FirstOrDefault(item => item.Id == eventId) ?? throw new Exception("CadEvent not found");
             // Implement update logic here
-            context.SaveChanges();
+            _ = context.SaveChanges();
 
             return cadEvent;
         }

@@ -5,10 +5,10 @@ namespace DispatchSystemBackend.Data
 {
     public class FakeData
     {
-        public List<CadEventTypeEntity> cadEventTypes = new List<CadEventTypeEntity>();
-        public List<CadEventEntity> cadEvents = new List<CadEventEntity>();
-        public List<CadLogEntryEntity> cadLogEntries = new List<CadLogEntryEntity>();
-        public List<UnitEntity> units = new List<UnitEntity>();
+        public List<CadEventTypeEntity> cadEventTypes = [];
+        public List<CadEventEntity> cadEvents = [];
+        public List<CadLogEntryEntity> cadLogEntries = [];
+        public List<UnitEntity> units = [];
 
         public FakeData() { }
         public void Init(int count)
