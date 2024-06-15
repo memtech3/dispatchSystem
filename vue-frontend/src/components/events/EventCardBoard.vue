@@ -184,8 +184,8 @@ import EventList from './EventList.vue'
         ></div>
       </div>
     </div>
-    <div class="pf-v5-c-card__body">
-      <div class="grid grid-cols-2 space-x-2 overflow-auto">
+    <div class="pf-v5-c-card__body overflow-auto">
+      <div class="grid grid-cols-2 space-x-2">
         <EventList />
         <EventList />
       </div>
