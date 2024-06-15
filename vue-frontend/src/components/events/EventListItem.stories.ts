@@ -12,13 +12,13 @@ type Story = StoryObj<typeof EventListItem>
 
 export const Primary: Story = {
   args: {
-    callID: 'IFD105',
-    callPriority: 1,
-    callPriorityClr: 'red',
-    callTypeCode: 'F1',
-    callTypeDescription: 'Structure Fire',
-    callTypeIcon: 'string',
-    callLocation: 'string',
-    callAssignedResources: 'string'
+    eventID: 'IFD105',
+    eventPriority: 1,
+    eventPriorityClr: 'red',
+    eventTypeCode: 'F1',
+    eventTypeDescription: 'Structure Fire',
+    eventTypeIcon: 'string',
+    eventLocation: 'string',
+    eventAssignedResources: 'string'
   }
 }
