@@ -185,9 +185,13 @@ import EventList from './EventList.vue'
       </div>
     </div>
     <div class="pf-v5-c-card__body overflow-auto">
-      <div class="grid grid-cols-2 space-x-2">
-        <EventList />
-        <EventList />
+      <div class="pf-v5-l-grid">
+        <div class="pf-v5-l-grid__item pf-m-6-col">
+          <EventList />
+        </div>
+        <div class="pf-v5-l-grid__item pf-m-6-col">
+          <EventList />
+        </div>
       </div>
     </div>
     <div class="pf-v5-c-pagination pf-m-bottom pf-m-static">
