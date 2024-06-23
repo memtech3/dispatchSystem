@@ -43,15 +43,15 @@ const reactiveResult = ref(result)
           class="pf-v5-c-data-list__item"
         >
           <EventListItem
-            :event-ID="event.id"
-            :event-priority="event.priority"
-            event-priority-clr="green"
-            event-type-code="2319"
-            event-type-description="Human Contamination"
-            event-type-icon="bi bi-virus"
-            :event-location="event.location"
-            event-assigned-resources="P135, PS34, H43, H44"
-            event-created-time="test"
+            :id="event.id.toString()"
+            :priority="event.priority"
+            priority-clr="green"
+            type-code="2319"
+            type-description="Human Contamination"
+            type-icon="bi bi-virus"
+            :location="event.location"
+            assigned-resources="P135, PS34, H43, H44"
+            created-time="11:11 PM"
           />
         </li>
       </ul>
