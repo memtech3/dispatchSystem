@@ -6,16 +6,23 @@ import UnitsTable from '@/components/UnitsTable.vue'
 import EventCardBoard from '@/components/events/EventCardBoard.vue'
 import { useMagicKeys, whenever } from '@vueuse/core'
 
+import { ref } from 'vue'
+import { VueWinBox, useWinBox } from 'vue-winbox'
+
+const wbRef = ref()
+const windowIsOpen = ref(true)
+
+//WinBox options
+const options = {
+  title: 'New Event',
+  overflow: true,
+  index: 2000
+}
+
 const keys = useMagicKeys()
 
-whenever(keys.F2, async () => {
-  // Dynamically import the NewEventWindow component
-  const { default: NewEventWindow } = await import('@/components/NewEventWindow.vue')
-  // Create an instance of the component
-  const NewEventWindowInstance = createApp(NewEventWindow)
-  // Mount the component to the body or a specific element
-  NewEventWindowInstance.mount("#windows")
-  console.log('Stuff')
+whenever(keys.F2, () => {
+    wbRef.value?.initialize()
 })
 </script>
 <template>
@@ -36,7 +43,31 @@ whenever(keys.F2, async () => {
     </div>
   </section>
 
-  <div id="windows" v-for="number in numbers">
-
+  <div id="windows">
+    <VueWinBox
+      ref="wbRef"
+      :options="options"
+    >
+      winbox window
+    </VueWinBox>
   </div>
 </template>
+
+<style lang="scss">
+.winbox {
+  @apply bg-gray-700;
+  box-shadow: none;
+}
+
+.wb-body {
+  /* set the width of window border via margin: */
+  margin: 4px;
+  @apply bg-gray-950 text-white;
+}
+
+.wb-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+</style>
