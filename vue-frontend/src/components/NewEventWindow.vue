@@ -12,16 +12,7 @@ const options = {
 </script>
 
 <template>
-  <VueWinBox ref="wbRef" :options="options" @onmove="onMove">
-    <div class="grid grid-cols-2 w-fit h-full">
-      <div class="w-96 h-full overflow-auto">
-        <EventForm />
-      </div>
-      <div class="w-96 h-full overflow-auto">
-        <EventCommentsList />
-      </div>
-    </div>
-  </VueWinBox>
+  <VueWinBox ref="wbRef" :options="options" @onmove="onMove"> winbox window </VueWinBox>
 </template>
 
 <style lang="scss">
