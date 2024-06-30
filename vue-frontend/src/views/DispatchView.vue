@@ -8,6 +8,8 @@ import { useMagicKeys, whenever } from '@vueuse/core'
 import { ref } from 'vue'
 import { VueWinBox } from 'vue-winbox'
 
+import NewEventForm from '@/components/newEventForm/NewEventForm.vue'
+
 const wbRef = ref()
 const windowIsOpenRef = ref(false)
 
@@ -56,7 +58,13 @@ whenever(keys.F2, () => {
       @focus="windowIsOpenRef = true"
       @close="windowIsOpenRef = false"
     >
-      winbox window
+    <div class="pf-v5-c-panel">
+      <div class="pf-v5-c-panel__main">
+        <div class="pf-v5-c-panel__main-body">
+          <NewEventForm />
+        </div>
+      </div>
+    </div>
     </VueWinBox>
   </div>
 </template>
