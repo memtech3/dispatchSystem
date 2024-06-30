@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CallList from './CallList.vue'
+import EventList from './EventList.vue'
 </script>
 
 <template>
@@ -184,10 +184,14 @@ import CallList from './CallList.vue'
         ></div>
       </div>
     </div>
-    <div class="pf-v5-c-card__body">
-      <div class="grid grid-cols-2 space-x-2 overflow-auto">
-        <CallList />
-        <CallList />
+    <div class="pf-v5-c-card__body overflow-auto">
+      <div class="pf-v5-l-grid">
+        <div class="pf-v5-l-grid__item pf-m-6-col">
+          <EventList />
+        </div>
+        <div class="pf-v5-l-grid__item pf-m-6-col">
+          <EventList />
+        </div>
       </div>
     </div>
     <div class="pf-v5-c-pagination pf-m-bottom pf-m-static">

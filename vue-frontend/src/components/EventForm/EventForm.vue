@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import InputText from './InputText.vue'
 import AutoCompleteDropdown from './AutoCompleteDropdown.vue'
 import CommentsPanel from './CommentsPanel.vue'

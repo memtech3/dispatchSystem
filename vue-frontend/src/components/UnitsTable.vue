@@ -1,81 +1,35 @@
 <script setup>
-// Mock data
-const units = [
-  {
-    unitID: '1A-10',
-    type: 'Police',
-    status: 'Available',
-    event: '',
-    currentLocation: '123 Sesame Street',
-    agency: 'SPD'
-  },
-  {
-    unitID: 'E-11',
-    type: 'Fire',
-    status: 'En Route',
-    event: '',
-    currentLocation: '123 Sesame Street',
-    agency: 'SFD'
-  },
-  {
-    unitID: '1A-30',
-    type: 'Police',
-    status: 'On Scene',
-    event: '',
-    currentLocation: '123 Sesame Street',
-    agency: 'SPD'
-  },
-  {
-    unitID: 'ALS-1',
-    type: 'EMS',
-    status: 'Out of Service',
-    event: '',
-    currentLocation: '123 Sesame Street',
-    agency: 'SFD'
-  },
-  {
-    unitID: '1A-36',
-    type: 'Police',
-    status: 'Distress',
-    event: '',
-    currentLocation: '123 Sesame Street',
-    agency: 'SPD'
-  },
-  {
-    unitID: '1A-37',
-    type: 'Police',
-    status: 'Available',
-    event: '',
-    currentLocation: '123 Sesame Street',
-    agency: 'SPD'
-  },
-  {
-    unitID: '7A-15',
-    type: 'Police',
-    status: 'Available',
-    event: '',
-    currentLocation: '123 Sesame Street',
-    agency: 'SPD'
-  },
-  {
-    unitID: '7A-16',
-    type: 'Police',
-    status: 'Available',
-    event: '',
-    currentLocation: '123 Sesame Street',
-    agency: 'SPD'
-  }
-]
+import { ref } from 'vue'
+import { gql, useQuery } from '@urql/vue'
 
-// Columns
-const columns = [
-  { key: 'unitID', label: 'Unit ID' },
-  { key: 'type', label: 'Type' },
-  { key: 'status', label: 'Status' },
-  { key: 'event', label: 'Event' },
-  { key: 'currentLocation', label: 'Current Location' },
-  { key: 'agency', label: 'Agency' }
-]
+const result = useQuery({
+  query: gql`
+    {
+      units {
+        id
+        name
+        status
+        cadLogEntries {
+          id
+          cadEventEntries {
+            id
+          }
+          units {
+            id
+          }
+        }
+        cadEventEntities {
+          id
+          cadLogEntries {
+            id
+          }
+        }
+      }
+    }
+  `
+})
+
+const reactiveResult = ref(result)
 </script>
 <template>
   <div class="pf-v5-c-card pf-m-compact pf-m-flex-1" id="dashboard-demo-details-card-1">
@@ -468,114 +422,126 @@ const columns = [
           ></div>
         </div>
       </div>
-      <table
-        class="pf-v5-c-table pf-m-compact pf-m-grid-lg"
-        role="grid"
-        aria-label="This is a compact table example"
-        id="compact-demo-table"
-      >
-        <thead class="pf-v5-c-table__thead">
-          <tr class="pf-v5-c-table__tr" role="row">
-            <td class="pf-v5-c-table__td"></td>
-            <th class="pf-v5-c-table__th" role="columnheader" scope="col">Unit ID</th>
-            <th class="pf-v5-c-table__th" role="columnheader" scope="col">Type</th>
-            <th class="pf-v5-c-table__th" role="columnheader" scope="col">Status</th>
-            <th class="pf-v5-c-table__th" role="columnheader" scope="col">Event</th>
-            <th class="pf-v5-c-table__th" role="columnheader" scope="col">Location</th>
-            <th class="pf-v5-c-table__th" role="columnheader" scope="col">Agency</th>
+      <div v-if="reactiveResult.fetching">Loading...</div>
+      <div v-else-if="reactiveResult.error">Oh no... {{ reactiveResult.error }}</div>
+      <div v-else>
+        <table
+          class="pf-v5-c-table pf-m-compact pf-m-grid-lg"
+          role="grid"
+          aria-label="This is a compact table example"
+          id="compact-demo-table"
+        >
+          <thead class="pf-v5-c-table__thead">
+            <tr class="pf-v5-c-table__tr" role="row">
+              <td class="pf-v5-c-table__td"></td>
+              <th class="pf-v5-c-table__th" role="columnheader" scope="col">Unit ID</th>
+              <th class="pf-v5-c-table__th" role="columnheader" scope="col">Type</th>
+              <th class="pf-v5-c-table__th" role="columnheader" scope="col">Status</th>
+              <th class="pf-v5-c-table__th" role="columnheader" scope="col">Event</th>
+              <th class="pf-v5-c-table__th" role="columnheader" scope="col">Location</th>
+              <th class="pf-v5-c-table__th" role="columnheader" scope="col">Agency</th>
 
-            <th class="pf-v5-c-table__th pf-v5-c-table__icon" role="columnheader" scope="col"></th>
-            <td class="pf-v5-c-table__td"></td>
-          </tr>
-        </thead>
-
-        <tbody class="pf-v5-c-table__tbody" role="rowgroup">
-          <tr v-for="unit in units" class="pf-v5-c-table__tr" role="row">
-            <td class="pf-v5-c-table__td pf-v5-c-table__check" role="cell">
-              <div class="pf-v5-c-check pf-m-standalone">
-                <input
-                  class="pf-v5-c-check__input"
-                  type="checkbox"
-                  name="checkrow1"
-                  aria-labelledby="compact-demo-table-name1"
-                />
-              </div>
-            </td>
-            <th
-              id="unit-row-{{ unit.unitID }}"
-              class="pf-v5-c-table__th"
-              role="columnheader"
-              data-label="Contributor"
+              <th
+                class="pf-v5-c-table__th pf-v5-c-table__icon"
+                role="columnheader"
+                scope="col"
+              ></th>
+              <td class="pf-v5-c-table__td"></td>
+            </tr>
+          </thead>
+          <tbody class="pf-v5-c-table__tbody">
+            <tr
+              v-for="unit in reactiveResult.data.units"
+              :key="unit.id"
+              class="pf-v5-c-table__tr"
+              role="row"
             >
-              <span id="compact-demo-table-name1">{{ unit.unitID }}</span>
-            </th>
-            <td class="pf-v5-c-table__td" role="cell" data-label="Position">{{ unit.type }}</td>
-            <td class="pf-v5-c-table__td" role="cell" data-label="Location">{{ unit.status }}</td>
-            <td class="pf-v5-c-table__td" role="cell" data-label="Last seen">{{ unit.event }}</td>
-            <td class="pf-v5-c-table__td" role="cell" data-label="Numbers">
-              {{ unit.currentLocation }}
-            </td>
-            <td class="pf-v5-c-table__td" role="cell" data-label="Numbers">{{ unit.agency }}</td>
-            <td class="pf-v5-c-table__td pf-v5-c-table__icon" role="cell" data-label="Icon">
-              <i class="fas fa-check"></i>
-            </td>
-            <td class="pf-v5-c-table__td pf-v5-c-table__action" role="cell">
-              <div class="pf-v5-c-dropdown">
-                <button
-                  class="pf-v5-c-dropdown__toggle pf-m-plain"
-                  id="compact-demo-table-dropdown-kebab-1-button"
-                  aria-expanded="false"
-                  type="button"
-                  aria-label="Actions"
-                >
-                  <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
-                </button>
-                <ul
-                  class="pf-v5-c-dropdown__menu pf-m-align-right"
-                  aria-labelledby="compact-demo-table-dropdown-kebab-1-button"
-                  hidden=""
-                  role="menu"
-                >
-                  <li role="none">
-                    <a class="pf-v5-c-dropdown__menu-item" role="menuitem" href="#">Link</a>
-                  </li>
-                  <li role="none">
-                    <button class="pf-v5-c-dropdown__menu-item" role="menuitem" type="button">
-                      Action
-                    </button>
-                  </li>
-                  <li role="none">
-                    <a
-                      class="pf-v5-c-dropdown__menu-item pf-m-disabled"
-                      role="menuitem"
-                      href="#"
-                      aria-disabled="true"
-                      tabindex="-1"
-                      >Disabled link</a
-                    >
-                  </li>
-                  <li role="none">
-                    <button
-                      class="pf-v5-c-dropdown__menu-item"
-                      role="menuitem"
-                      type="button"
-                      disabled=""
-                    >
-                      Disabled action
-                    </button>
-                  </li>
-                  <li class="pf-v5-c-divider" role="separator"></li>
-                  <li role="none">
-                    <a class="pf-v5-c-dropdown__menu-item" role="menuitem" href="#"
-                      >Separated link</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <td class="pf-v5-c-table__td pf-v5-c-table__check" role="cell">
+                <div class="pf-v5-c-check pf-m-standalone">
+                  <input
+                    class="pf-v5-c-check__input"
+                    type="checkbox"
+                    name="checkrow1"
+                    aria-labelledby="compact-demo-table-name1"
+                  />
+                </div>
+              </td>
+              <th
+                id="unit-row-{{ unit.id }}"
+                class="pf-v5-c-table__th"
+                role="columnheader"
+                data-label="Contributor"
+              >
+                <span id="compact-demo-table-name1">{{ unit.id }}</span>
+              </th>
+              <td class="pf-v5-c-table__td" role="cell" data-label="Position">{{ unit.type }}</td>
+              <td class="pf-v5-c-table__td" role="cell" data-label="Location">{{ unit.status }}</td>
+              <td class="pf-v5-c-table__td" role="cell" data-label="Last seen">{{ unit.event }}</td>
+              <td class="pf-v5-c-table__td" role="cell" data-label="Numbers">
+                {{ unit.currentLocation }}
+              </td>
+              <td class="pf-v5-c-table__td" role="cell" data-label="Numbers">{{ unit.agency }}</td>
+              <td class="pf-v5-c-table__td pf-v5-c-table__icon" role="cell" data-label="Icon">
+                <i class="fas fa-check"></i>
+              </td>
+              <td class="pf-v5-c-table__td pf-v5-c-table__action" role="cell">
+                <div class="pf-v5-c-dropdown">
+                  <button
+                    class="pf-v5-c-dropdown__toggle pf-m-plain"
+                    id="compact-demo-table-dropdown-kebab-1-button"
+                    aria-expanded="false"
+                    type="button"
+                    aria-label="Actions"
+                  >
+                    <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                  </button>
+                  <ul
+                    class="pf-v5-c-dropdown__menu pf-m-align-right"
+                    aria-labelledby="compact-demo-table-dropdown-kebab-1-button"
+                    hidden=""
+                    role="menu"
+                  >
+                    <li role="none">
+                      <a class="pf-v5-c-dropdown__menu-item" role="menuitem" href="#">Link</a>
+                    </li>
+                    <li role="none">
+                      <button class="pf-v5-c-dropdown__menu-item" role="menuitem" type="button">
+                        Action
+                      </button>
+                    </li>
+                    <li role="none">
+                      <a
+                        class="pf-v5-c-dropdown__menu-item pf-m-disabled"
+                        role="menuitem"
+                        href="#"
+                        aria-disabled="true"
+                        tabindex="-1"
+                        >Disabled link</a
+                      >
+                    </li>
+                    <li role="none">
+                      <button
+                        class="pf-v5-c-dropdown__menu-item"
+                        role="menuitem"
+                        type="button"
+                        disabled=""
+                      >
+                        Disabled action
+                      </button>
+                    </li>
+                    <li class="pf-v5-c-divider" role="separator"></li>
+                    <li role="none">
+                      <a class="pf-v5-c-dropdown__menu-item" role="menuitem" href="#"
+                        >Separated link</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div class="pf-v5-c-pagination pf-m-bottom">
         <div class="pf-v5-c-options-menu pf-m-top">
           <button
