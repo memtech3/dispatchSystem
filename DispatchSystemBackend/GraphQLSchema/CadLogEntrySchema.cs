@@ -1,4 +1,5 @@
 using DispatchSystemBackend.Data;
+using DispatchSystemBackend.GraphQLSchema.Types;
 using DispatchSystemBackend.Models;
 
 namespace DispatchSystemBackend.GraphQLSchema
@@ -6,31 +7,64 @@ namespace DispatchSystemBackend.GraphQLSchema
     [ExtendObjectType(typeof(Query))]
     public class CadLogEntryQueries
     {
-        public IQueryable<CadLogEntryEntity> GetLogEntries(DispatchSystemBackendContext context)
+        public IQueryable<CadLogEntryResult> GetLogEntries(DispatchSystemBackendContext context)
         {
-            return context.CadLogEntries;
+            return context.CadLogEntries.Select(c => new CadLogEntryResult
+            {
+                Id = c.Id,
+                Name = c.Name,
+                CadEventEntryIds = c.CadEventEntries.Select(l => l.Id).ToList(),
+                UnitIds = c.Units.Select(u => u.Id).ToList()
+            });
         }
     }
 
     [ExtendObjectType(typeof(Mutation))]
     public class CadLogEntryMutations
     {
-        public CadLogEntryEntity CreateLogEntry(DispatchSystemBackendContext context, CadLogEntryEntity inputLogEntry)
+        public CadLogEntryResult CreateLogEntry(DispatchSystemBackendContext context, CadLogEntryInput cadLogEntryInput)
         {
-            CadLogEntryEntity cadLogEntry = inputLogEntry;
+            CadLogEntryEntity cadLogEntry = new CadLogEntryEntity
+            {
+                Name = cadLogEntryInput.Name
+                // TODO: add CadEvents and Units fields
+            };
+
             _ = context.CadLogEntries.Add(cadLogEntry);
             _ = context.SaveChanges();
 
-            return cadLogEntry;
+            CadLogEntryResult cadLogEntryResult = new CadLogEntryResult
+            {
+                Id = cadLogEntry.Id,
+                Name = cadLogEntry.Name,
+                CadEventEntryIds = cadLogEntry.CadEventEntries.Select(l => l.Id).ToList(),
+                UnitIds = cadLogEntry.Units.Select(u => u.Id).ToList()
+            };
+
+            return cadLogEntryResult;
         }
 
-        public CadLogEntryEntity UpdateLogEntry(DispatchSystemBackendContext context, int logEntryId, CadLogEntryEntity inputLogEntry)
+        public CadLogEntryResult UpdateLogEntry(DispatchSystemBackendContext context, int Id, CadLogEntryInput cadLogEntryInput)
         {
-            CadLogEntryEntity cadLogEntry = context.CadLogEntries.FirstOrDefault(item => item.Id == logEntryId) ?? throw new Exception("CadLogEntry not found");
-            cadLogEntry.Name = inputLogEntry.Name;
+            CadLogEntryEntity cadLogEntry = new CadLogEntryEntity
+            {
+                Id = Id,
+                Name = cadLogEntryInput.Name
+                // TODO: add CadEvents and Units fields
+            };
+
+            _ = context.CadLogEntries.Update(cadLogEntry);
             _ = context.SaveChanges();
 
-            return cadLogEntry;
+            CadLogEntryResult cadLogEntryResult = new CadLogEntryResult
+            {
+                Id = cadLogEntry.Id,
+                Name = cadLogEntry.Name,
+                CadEventEntryIds = cadLogEntry.CadEventEntries.Select(l => l.Id).ToList(),
+                UnitIds = cadLogEntry.Units.Select(u => u.Id).ToList()
+            };
+
+            return cadLogEntryResult;
         }
     }
 }
