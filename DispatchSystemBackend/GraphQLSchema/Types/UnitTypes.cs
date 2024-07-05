@@ -2,8 +2,7 @@ namespace DispatchSystemBackend.GraphQLSchema.Types
 {
     public class UnitInput
     {
-        public string Name { get; set; }
-        public string Status { get; set; }
+        public required string Name { get; set; }
     }
 
     public class UnitResult : UnitInput
