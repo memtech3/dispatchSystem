@@ -34,7 +34,6 @@ namespace DispatchSystemBackend.GraphQLSchema
             UnitEntity unitEntity = new UnitEntity
             {
                 Name = unitInput.Name,
-                Status = unitInput.Status
             };
 
             _ = context.Units.Add(unitEntity);
@@ -56,7 +55,6 @@ namespace DispatchSystemBackend.GraphQLSchema
             {
                 Id = Id,
                 Name = unitInput.Name,
-                Status = unitInput.Status
             };
 
             _ = context.Units.Update(unitEntity);
