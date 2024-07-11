@@ -24,6 +24,19 @@ namespace DispatchSystemBackend.GraphQLSchema
                 .Load();
             return unit;
         }
+
+        public IQueryable<UnitResult> GetUnitsByCadEventId(DispatchSystemBackendContext context, int cadEventId)
+        {
+            IQueryable<UnitEntity> unitEntities = context.Units.Where(u => u.CadEventEntities.Any(e => e.Id == cadEventId));
+
+            return unitEntities.Select(u => new UnitResult
+            {
+                Id = u.Id,
+                Name = u.Name,
+                Status = u.Status,
+            });
+
+        }
     }
 
     [ExtendObjectType(typeof(Mutation))]

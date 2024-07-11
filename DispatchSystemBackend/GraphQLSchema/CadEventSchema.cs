@@ -1,13 +1,14 @@
 using DispatchSystemBackend.Data;
 using DispatchSystemBackend.GraphQLSchema.Types;
 using DispatchSystemBackend.Models;
+using HotChocolate.Resolvers;
 
 namespace DispatchSystemBackend.GraphQLSchema
 {
     [ExtendObjectType(typeof(Query))]
     public class CadEventQueries
     {
-        public IQueryable<CadEventResult> GetEvents(DispatchSystemBackendContext context)
+        public IQueryable<CadEventResult> GetEvents(DispatchSystemBackendContext context, IResolverContext resolverContext)
         {
             return context.CadEvents.Select(c => new CadEventResult
             {
@@ -15,8 +16,10 @@ namespace DispatchSystemBackend.GraphQLSchema
                 CadEventTypeId = c.CadEventTypeId,
                 Priority = c.Priority,
                 Location = c.Location,
-                CadLogEntryIds = c.CadLogEntries.Select(l => l.Id).ToList(),
-                AssignedUnitIds = c.AssignedUnits.Select(u => u.Id).ToList()
+                // CadLogEntryIds = c.CadLogEntries.Select(l => l.Id).ToList(),
+                // AssignedUnitIds = c.AssignedUnits.Select(u => u.Id).ToList()
+                AssignedUnits = resolverContext.Resolver<UnitQueries>().GetUnitsByCadEventId(context, c.Id),
+                CadEventType = resolverContext.Resolver<CadEventTypeQueries>().GetEventTypeByEventId(context, c.CadEventTypeId)
             });
         }
     }
@@ -44,8 +47,8 @@ namespace DispatchSystemBackend.GraphQLSchema
                 CadEventTypeId = cadEventEntity.CadEventTypeId,
                 Priority = cadEventEntity.Priority,
                 Location = cadEventEntity.Location,
-                CadLogEntryIds = cadEventEntity.CadLogEntries.Select(l => l.Id).ToList(),
-                AssignedUnitIds = cadEventEntity.AssignedUnits.Select(u => u.Id).ToList()
+                // CadLogEntryIds = cadEventEntity.CadLogEntries.Select(l => l.Id).ToList(),
+                // AssignedUnitIds = cadEventEntity.AssignedUnits.Select(u => u.Id).ToList()
             };
 
             return cadEventResult;
@@ -72,8 +75,8 @@ namespace DispatchSystemBackend.GraphQLSchema
                 CadEventTypeId = cadEventEntity.CadEventTypeId,
                 Priority = cadEventEntity.Priority,
                 Location = cadEventEntity.Location,
-                CadLogEntryIds = cadEventEntity.CadLogEntries.Select(l => l.Id).ToList(),
-                AssignedUnitIds = cadEventEntity.AssignedUnits.Select(u => u.Id).ToList()
+                // CadLogEntryIds = cadEventEntity.CadLogEntries.Select(l => l.Id).ToList(),
+                // AssignedUnitIds = cadEventEntity.AssignedUnits.Select(u => u.Id).ToList()
             };
 
             return cadEventResult;
