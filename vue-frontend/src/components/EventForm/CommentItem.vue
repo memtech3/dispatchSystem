@@ -1,26 +1,27 @@
 <script setup lang="ts">
 defineProps<{
-  id: string
+  commentId: string
   comment: string
+  when: string
+  source: string
 }>()
 </script>
 
 <template>
-  <!-- Chat Bubble -->
-  <li class="p-2 border">
-    <div class="max-w-4xl">
-      <div class="max-w-2xl flex gap-x-2 sm:gap-x-4">
-        <span
-          class="flex-shrink-0 inline-flex items-center justify-center size-[38px] rounded-full bg-gray-600"
-        >
-          <span class="text-sm font-medium text-white leading-none">AZ</span>
-        </span>
-
-        <div class="grow mt-2 space-y-3">
-          <p class="text-gray-800 dark:text-gray-200">{{ comment }}</p>
-        </div>
+  <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+    <img
+      src="https://github.com/twbs.png"
+      alt="twbs"
+      width="32"
+      height="32"
+      class="rounded-circle flex-shrink-0"
+    />
+    <div class="d-flex gap-2 w-100 justify-content-between">
+      <div>
+        <h6 class="mb-0">{{ source }}</h6>
+        <p class="mb-0 opacity-75">{{ comment }}</p>
       </div>
+      <small class="opacity-50 text-nowrap">{{ when }}</small>
     </div>
-  </li>
-  <!-- End Chat Bubble -->
+  </a>
 </template>

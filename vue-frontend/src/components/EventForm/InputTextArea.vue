@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const model = defineModel()
-
 defineProps<{
   id: string
   label: string
@@ -8,8 +6,8 @@ defineProps<{
 }>()
 </script>
 <template>
-  <div class="col-md-6">
+  <div class="col-md-12">
     <label for="{{id}}-input" class="form-label">{{ label }}</label>
-    <input v-model="model" type="text" class="form-control" id="{{id}}-input" />
+    <textarea class="form-control" id="{{id}}-input" />
   </div>
 </template>

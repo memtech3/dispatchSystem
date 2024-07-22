@@ -1,30 +1,93 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { VueWinBox } from 'vue-winbox'
+import { useMagicKeys, whenever } from '@vueuse/core'
+import { useCadEventsStore, type CadEvent } from '@/stores/cadEvents'
+import InputText from '@/components/EventForm/InputText.vue'
+import AutoCompleteDropdown from '@/components/EventForm/AutoCompleteDropdown.vue'
+
+const cadEventsStore = useCadEventsStore()
+const cadEventRef = ref(<CadEvent>{})
+const formFirstInputRef = ref()
+
+function createCadEvent() {
+  if (cadEventRef.value === <CadEvent>{}) {
+    console.log('Warning: event is empty')
+    return false
+  } else {
+    cadEventsStore.create(cadEventRef.value)
+    cadEventRef.value = <CadEvent>{}
+    return true
+  }
+}
 
 const wbRef = ref()
+const windowIsOpenRef = ref(false)
 
 //WinBox options
 const options = {
   title: 'New Event',
-  overflow: true
+  overflow: true,
+  index: 2000,
+  x: 'center',
+  y: 'bottom'
 }
+
+const keys = useMagicKeys()
+
+whenever(keys.F2, () => {
+  if (windowIsOpenRef.value) {
+    wbRef.value.winbox.focus()
+    formFirstInputRef.value.focus()
+  } else {
+    windowIsOpenRef.value = true
+    wbRef.value?.initialize()
+  }
+})
 </script>
 
 <template>
-  <VueWinBox ref="wbRef" :options="options" @onmove="onMove"> winbox window </VueWinBox>
+  <div id="windows" v-if="windowIsOpenRef">
+    <VueWinBox
+      ref="wbRef"
+      :options="options"
+      @focus="windowIsOpenRef = true"
+      @close="windowIsOpenRef = false"
+    >
+      <form class="row g-3" @submit.prevent="createCadEvent()">
+        <InputText
+          class="col-md-12"
+          id="location"
+          label="Location"
+          v-model="cadEventRef.location"
+        />
+        <InputText
+          class="col-md-6"
+          id="type"
+          label="Event Type"
+          v-model="cadEventRef.eventType"
+          ref="formFirstInputRef"
+        />
+        <InputText class="col-md-6" id="subtype" label="Event Subtype" />
+        <InputText class="col-md-6" label="Source" id="callSource" />
+        <InputText class="col-md-6" label="Reporting Party" id="reportingParty" />
+        <InputText class="col-md-12" label="Callback Number" id="callBackNumber" />
+        <InputText class="col-md-12" label="Additional Persons" id="additionalPersons" />
+        <button class="btn btn-primary col-2" type="submit">Create Event</button>
+      </form>
+    </VueWinBox>
+  </div>
 </template>
 
 <style lang="scss">
 .winbox {
-  @apply bg-gray-700;
   box-shadow: none;
 }
 
 .wb-body {
   /* set the width of window border via margin: */
   margin: 4px;
-  @apply bg-gray-950 text-white;
+  background: var(--bs-body-bg);
 }
 
 .wb-title {
