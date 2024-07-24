@@ -6,7 +6,7 @@ import EventCardBoard from '@/components/events/EventCardBoard.vue'
 import NewEventWindow from '@/components/NewEventWindow.vue'
 </script>
 <template>
-  <div class="row h-100 p-2">
+  <div class="row h-100">
     <div class="col-3 h-100">
       <EventForm />
     </div>
