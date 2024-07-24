@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { VueWinBox } from 'vue-winbox'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { useCadEventsStore, type CadEvent } from '@/stores/cadEvents'
@@ -36,12 +36,15 @@ const options = {
 const keys = useMagicKeys()
 
 whenever(keys.F2, () => {
-  if (windowIsOpenRef.value) {
+  if (windowIsOpenRef.value && wbRef.value) {
     wbRef.value.winbox.focus()
-    formFirstInputRef.value.focus()
+    formFirstInputRef.value.inputRef.focus()
   } else {
     windowIsOpenRef.value = true
     wbRef.value?.initialize()
+    nextTick(() => {
+      formFirstInputRef.value.inputRef.focus()
+    })
   }
 })
 </script>
@@ -60,14 +63,9 @@ whenever(keys.F2, () => {
           id="location"
           label="Location"
           v-model="cadEventRef.location"
-        />
-        <InputText
-          class="col-md-6"
-          id="type"
-          label="Event Type"
-          v-model="cadEventRef.eventType"
           ref="formFirstInputRef"
         />
+        <InputText class="col-md-6" id="type" label="Event Type" v-model="cadEventRef.eventType" />
         <InputText class="col-md-6" id="subtype" label="Event Subtype" />
         <InputText class="col-md-6" label="Source" id="callSource" />
         <InputText class="col-md-6" label="Reporting Party" id="reportingParty" />
