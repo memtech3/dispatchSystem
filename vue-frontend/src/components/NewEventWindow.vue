@@ -71,7 +71,9 @@ whenever(keys.F2, () => {
         <InputText class="col-md-6" label="Reporting Party" id="reportingParty" />
         <InputText class="col-md-12" label="Callback Number" id="callBackNumber" />
         <InputText class="col-md-12" label="Additional Persons" id="additionalPersons" />
-        <button class="btn btn-primary col-2" type="submit">Create Event</button>
+        <div class="div">
+          <button class="btn btn-primary" type="submit">Create Event</button>
+        </div>
       </form>
     </VueWinBox>
   </div>
