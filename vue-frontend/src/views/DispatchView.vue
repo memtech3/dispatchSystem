@@ -15,7 +15,7 @@ import NewEventWindow from '@/components/NewEventWindow.vue'
     </div>
     <div class="col h-100">
       <MapComponent class="h-50" />
-      <UnitsTable />
+      <UnitsTable class="h-50" />
     </div>
   </div>
 
