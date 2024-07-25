@@ -57,7 +57,7 @@ whenever(keys.F2, () => {
       @focus="windowIsOpenRef = true"
       @close="windowIsOpenRef = false"
     >
-      <form class="row g-3" @submit.prevent="createCadEvent()">
+      <form class="row g-3 p-3" @submit.prevent="createCadEvent()">
         <InputText
           class="col-md-12"
           id="location"
