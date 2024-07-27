@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CommentItem from './CommentItem.vue'
-import InputTextArea from './InputTextArea.vue'
+import InputTextArea from '@/components/Common/InputTextArea.vue'
 </script>
 <template>
   <div class="row g-3">

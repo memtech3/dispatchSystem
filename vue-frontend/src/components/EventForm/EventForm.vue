@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import InputText from './InputText.vue'
-import AutoCompleteDropdown from './AutoCompleteDropdown.vue'
+import InputText from '@/components/Common/InputText.vue'
+import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 import CommentsPanel from './CommentsPanel.vue'
 </script>
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import InputText from './InputText.vue'
+import InputText from '@/components/Common/InputText.vue'
 
 const meta: Meta<typeof InputText> = {
   component: InputText,

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import AutoCompleteDropdown from './AutoCompleteDropdown.vue'
+import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 
 const meta: Meta<typeof AutoCompleteDropdown> = {
   component: AutoCompleteDropdown,

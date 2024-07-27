@@ -3,8 +3,8 @@ import { ref, nextTick } from 'vue'
 import { VueWinBox } from 'vue-winbox'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { useCadEventsStore, type CadEvent } from '@/stores/cadEvents'
-import InputText from '@/components/EventForm/InputText.vue'
-import AutoCompleteDropdown from '@/components/EventForm/AutoCompleteDropdown.vue'
+import InputText from '@/components/Common/InputText.vue'
+import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 
 const cadEventsStore = useCadEventsStore()
 const cadEventRef = ref(<CadEvent>{})
