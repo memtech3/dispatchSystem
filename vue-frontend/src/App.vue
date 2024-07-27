@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AppNavbar from './components/applicationFrame/AppNavbar.vue'
+import AppNavbar from '@/components/ApplicationFrame/AppNavbar.vue'
 </script>
 <template>
   <AppNavbar />
@@ -13,3 +13,4 @@ import AppNavbar from './components/applicationFrame/AppNavbar.vue'
   padding-top: 2.5rem;
 }
 </style>
+./components/ApplicationFrame/AppNavbar.vue
