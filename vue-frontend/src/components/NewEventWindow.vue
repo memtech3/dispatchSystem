@@ -47,6 +47,13 @@ whenever(keys.F2, () => {
     })
   }
 })
+
+whenever(keys.Escape, () => {
+  if (windowIsOpenRef.value && wbRef.value) {
+    wbRef.value.winbox.close()
+    cadEventRef.value = <CadEvent>{}
+  }
+})
 </script>
 
 <template>
@@ -57,7 +64,7 @@ whenever(keys.F2, () => {
       @focus="windowIsOpenRef = true"
       @close="windowIsOpenRef = false"
     >
-      <form class="row g-3 p-3" @submit.prevent="createCadEvent()">
+      <form class="row g-3 p-3" @submit.prevent="createCadEvent(), wbRef.winbox.close()">
         <InputText
           class="col-md-12"
           id="location"
