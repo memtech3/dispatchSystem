@@ -14,6 +14,6 @@ defineExpose({ inputRef })
 <template>
   <div class="col-md-6">
     <label for="{{id}}-input" class="form-label">{{ label }}</label>
-    <input ref="inputRef" v-model="model" type="text" class="form-control" id="{{id}}-input" />
+    <input ref="inputRef" v-model="model" type="text" class="form-control form-control-sm" id="{{id}}-input" />
   </div>
 </template>

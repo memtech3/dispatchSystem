@@ -64,7 +64,7 @@ whenever(keys.Escape, () => {
       @focus="windowIsOpenRef = true"
       @close="windowIsOpenRef = false"
     >
-      <form class="row g-3 p-3" @submit.prevent="createCadEvent(), wbRef.winbox.close()">
+      <form class="row gy-1 p-2" @submit.prevent="createCadEvent(), wbRef.winbox.close()">
         <InputText
           class="col-md-12"
           id="location"
@@ -78,7 +78,7 @@ whenever(keys.Escape, () => {
         <InputText class="col-md-6" label="Reporting Party" id="reportingParty" />
         <InputText class="col-md-12" label="Callback Number" id="callBackNumber" />
         <InputText class="col-md-12" label="Additional Persons" id="additionalPersons" />
-        <div class="div">
+        <div class="col-12">
           <button class="btn btn-primary" type="submit">Create Event</button>
         </div>
       </form>
