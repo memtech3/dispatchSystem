@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import EventForm from './EventForm/EventForm.vue'
+import EventForm from '@/components/EventForm/EventForm.vue'
 
 const meta: Meta<typeof EventForm> = {
   component: EventForm,
