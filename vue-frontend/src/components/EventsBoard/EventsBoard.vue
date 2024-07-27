@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EventList from './EventList.vue'
+import EventCardList from './EventCardList.vue'
 </script>
 
 <template>
@@ -19,8 +19,8 @@ import EventList from './EventList.vue'
     </div>
     <div class="card-body p-2 overflow-auto">
       <div class="row g-0">
-        <div class="col-6"><EventList /></div>
-        <div class="col-6"><EventList /></div>
+        <div class="col-6"><EventCardList /></div>
+        <div class="col-6"><EventCardList /></div>
       </div>
     </div>
   </div>

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import EventListItem from './EventListItem.vue'
+import EventCard from './EventCard.vue'
 
-import { useCadEventsStore} from '@/stores/cadEvents'
+import { useCadEventsStore } from '@/stores/cadEvents'
 
 const cadEventsStore = useCadEventsStore()
 </script>
 
 <template>
   <div class="list-group">
-    <EventListItem
+    <EventCard
       v-for="[cadEventId, cadEvent] in cadEventsStore.data"
       :key="cadEventId"
       :id="cadEventId.toString()"

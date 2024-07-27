@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import EventListItem from './EventListItem.vue'
+import EventCard from './EventCard.vue'
 
-const meta: Meta<typeof EventListItem> = {
-  component: EventListItem,
+const meta: Meta<typeof EventCard> = {
+  component: EventCard,
   tags: ['autodocs']
 }
 
 export default meta
-type Story = StoryObj<typeof EventListItem>
+type Story = StoryObj<typeof EventCard>
 
 export const Primary: Story = {
   args: {
