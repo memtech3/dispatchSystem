@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import { UnitPiniaORM } from '@/stores/unitPiniaORM'
 
 defineProps<{
   id: string
@@ -9,7 +10,7 @@ defineProps<{
   typeDescription: string
   typeIcon: string
   location: string
-  assignedResources: string // this needs to be an array
+  assignedUnits: UnitPiniaORM[]
   createdTime: string
 }>()
 </script>
@@ -25,14 +26,8 @@ defineProps<{
     <span class="subtype text-capitalize">subtype</span>
     <span class="location text-capitalize">{{ location }}</span>
     <div class="resources d-inline-flex gap-1 px-1">
-      <small>
-        <span class="badge rounded-pill text-bg-primary">7A-14</span>
-      </small>
-      <small>
-        <span class="badge rounded-pill text-bg-danger">7A-11</span>
-      </small>
-      <small>
-        <span class="badge rounded-pill text-bg-primary">E-10</span>
+      <small v-for="unit in assignedUnits" :key="unit.id">
+        <span class="badge rounded-pill text-bg-primary">{{ unit.callsign }}</span>
       </small>
     </div>
     <div class="timePane verticalStack">

@@ -1,24 +1,28 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRepo } from 'pinia-orm'
+import { CadEventPiniaORM } from '@/stores/cadEventsPiniaORM'
+
 import EventCard from './EventCard.vue'
 
-import { useCadEventsStore } from '@/stores/cadEvents'
-
-const cadEventsStore = useCadEventsStore()
+const cadEventsPiniaORMRepo = computed(() => {
+  return useRepo(CadEventPiniaORM)
+})
 </script>
 
 <template>
   <div class="list-group">
     <EventCard
-      v-for="[cadEventId, cadEvent] in cadEventsStore.data"
-      :key="cadEventId"
-      :id="cadEventId.toString()"
+      v-for="cadEvent in cadEventsPiniaORMRepo.withAll().get()"
+      :key="cadEvent.id"
+      id="CFS00"
       :priority="5"
       priority-clr="green"
       type-code="2319"
       :type-description="cadEvent.eventType"
       type-icon="bi bi-virus"
       :location="cadEvent.location"
-      assigned-resources="P135, PS34, H43, H44"
+      :assigned-units="cadEvent.assignedUnits"
       created-time="11:11 PM"
     />
   </div>
