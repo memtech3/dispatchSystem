@@ -11,7 +11,7 @@ const cadEventRef = ref(<CadEvent>{})
 const formFirstInputRef = ref()
 
 function createCadEvent() {
-  if (cadEventRef.value === <CadEvent>{}) {
+  if (Object.keys(cadEventRef.value).length === 0) {
     console.log('Warning: event is empty')
     return false
   } else {
