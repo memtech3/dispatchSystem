@@ -3,17 +3,17 @@ import { computed } from 'vue'
 // import { useUnitsStore } from '@/stores/units'
 
 import { useRepo } from 'pinia-orm'
-import { UnitPiniaORM } from '@/stores/unitsPiniaORM'
-import { CadEventPiniaORM } from '@/stores/cadEventsPiniaORM'
+import { UnitEntity } from '@/stores/units'
+import { CadEventEntity } from '@/stores/cadEvents'
 
-const unitsPiniaORMRepo = computed(() => {
-  return useRepo(UnitPiniaORM)
+const unitsRepo = computed(() => {
+  return useRepo(UnitEntity)
 })
 
-const cadEventsPiniaORMRepo = computed(() => {
-  return useRepo(CadEventPiniaORM)
+const cadEventsRepo = computed(() => {
+  return useRepo(CadEventEntity)
 })
-cadEventsPiniaORMRepo.value.save([
+cadEventsRepo.value.save([
   {
     eventType: 'Fire',
     location: '123 Main St',
@@ -40,7 +40,7 @@ cadEventsPiniaORMRepo.value.save([
     reportingParty: 'Jill'
   }
 ])
-unitsPiniaORMRepo.value.save([
+unitsRepo.value.save([
   {
     callsign: '7A-15',
     unitType: 'Police',
@@ -70,26 +70,22 @@ unitsPiniaORMRepo.value.save([
   }
 ])
 try {
-  let myUnit = unitsPiniaORMRepo.value.where('callsign', 'ALS-5').withAll().get()[0]
-  myUnit.assignedEventId = cadEventsPiniaORMRepo.value.where('eventType', 'Medical').get()[0].id
-  unitsPiniaORMRepo.value.save(myUnit)
+  let myUnit = unitsRepo.value.where('callsign', 'ALS-5').withAll().get()[0]
+  myUnit.assignedEventId = cadEventsRepo.value.where('eventType', 'Medical').get()[0].id
+  unitsRepo.value.save(myUnit)
 
-  let myEvent = cadEventsPiniaORMRepo.value.where('eventType', 'Fire').withAll().get()[0]
-  myEvent.assignedUnits.push(unitsPiniaORMRepo.value.where('callsign', 'E-12').get()[0])
+  let myEvent = cadEventsRepo.value.where('eventType', 'Fire').withAll().get()[0]
+  myEvent.assignedUnits.push(unitsRepo.value.where('callsign', 'E-12').get()[0])
   console.log(myEvent)
-  cadEventsPiniaORMRepo.value.save(myEvent)
+  cadEventsRepo.value.save(myEvent)
   console.log('Modified event')
-  console.log(cadEventsPiniaORMRepo.value.where('eventType', 'Fire').withAll().get()[0])
+  console.log(cadEventsRepo.value.where('eventType', 'Fire').withAll().get()[0])
   console.log('Modified unit')
-  console.log(unitsPiniaORMRepo.value.where('callsign', 'ALS-5').withAll().get()[0])
-  console.log(cadEventsPiniaORMRepo.value.where('eventType', 'Medical').withAll().get()[0])
+  console.log(unitsRepo.value.where('callsign', 'ALS-5').withAll().get()[0])
+  console.log(cadEventsRepo.value.where('eventType', 'Medical').withAll().get()[0])
 } catch (error) {
   console.log(error)
 }
-
-// unitsPiniaORMRepo.value.save( )
-
-// const unitsStore = useUnitsStore()
 </script>
 <template>
   <div class="card">
@@ -119,7 +115,7 @@ try {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="unit in unitsPiniaORMRepo.withAll().get()" :key="unit.id">
+            <tr v-for="unit in unitsRepo.withAll().get()" :key="unit.id">
               <th scope="row">{{ unit.callsign }}</th>
               <td>{{ unit.unitType }}</td>
               <td>{{ unit.status }}</td>
@@ -132,3 +128,4 @@ try {
     </div>
   </div>
 </template>
+@/stores/units

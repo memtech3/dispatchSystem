@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import { UnitPiniaORM } from '@/stores/unitPiniaORM'
+import { UnitEntity } from '@/stores/units'
 
 defineProps<{
   id: string
@@ -10,7 +10,7 @@ defineProps<{
   typeDescription: string
   typeIcon: string
   location: string
-  assignedUnits: UnitPiniaORM[]
+  assignedUnits: UnitEntity[]
   createdTime: string
 }>()
 </script>

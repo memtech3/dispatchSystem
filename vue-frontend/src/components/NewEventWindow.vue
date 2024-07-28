@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, computed } from 'vue'
 import { VueWinBox } from 'vue-winbox'
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { useCadEventsStore, type CadEvent } from '@/stores/cadEvents'
+import { useRepo } from 'pinia-orm'
+import { CadEventEntity } from '@/stores/cadEvents'
+
 import InputText from '@/components/Common/InputText.vue'
 import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 
-const cadEventsStore = useCadEventsStore()
-const cadEventRef = ref(<CadEvent>{})
+const cadEventsRepo = computed(() => {
+  return useRepo(CadEventEntity)
+})
+const cadEventRef = ref(<CadEventEntity>{})
 const formFirstInputRef = ref()
 
 function createCadEvent() {
@@ -15,8 +19,8 @@ function createCadEvent() {
     console.log('Warning: event is empty')
     return false
   } else {
-    cadEventsStore.create(cadEventRef.value)
-    cadEventRef.value = <CadEvent>{}
+    cadEventsRepo.value.save(cadEventRef.value)
+    cadEventRef.value = <CadEventEntity>{}
     return true
   }
 }
@@ -51,7 +55,7 @@ whenever(keys.F2, () => {
 whenever(keys.Escape, () => {
   if (windowIsOpenRef.value && wbRef.value) {
     wbRef.value.winbox.close()
-    cadEventRef.value = <CadEvent>{}
+    cadEventRef.value = <CadEventEntity>{}
   }
 })
 </script>
