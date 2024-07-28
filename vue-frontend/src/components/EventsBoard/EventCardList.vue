@@ -2,8 +2,11 @@
 import { computed } from 'vue'
 import { useRepo } from 'pinia-orm'
 import { CadEventEntity } from '@/stores/cadEvents'
+import { useConsoleStateStore } from '@/stores/consoleState'
 
 import EventCard from './EventCard.vue'
+
+const consoleStateStore = useConsoleStateStore()
 
 const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
@@ -24,6 +27,7 @@ const cadEventsRepo = computed(() => {
       :location="cadEvent.location"
       :assigned-units="cadEvent.assignedUnits"
       created-time="11:11 PM"
+      @click="consoleStateStore.setSelectedEvent(cadEvent?.id)"
     />
   </div>
 </template>

@@ -6,6 +6,7 @@ import { useRepo } from 'pinia-orm'
 import { CadEventEntity } from '@/stores/cadEvents'
 
 import InputText from '@/components/Common/InputText.vue'
+import InputTextArea from '@/components/Common/InputTextArea.vue'
 import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 
 const cadEventsRepo = computed(() => {
@@ -79,9 +80,10 @@ whenever(keys.Escape, () => {
         <InputText class="col-md-6" id="type" label="Event Type" v-model="cadEventRef.eventType" />
         <InputText class="col-md-6" id="subtype" label="Event Subtype" />
         <InputText class="col-md-6" label="Source" id="callSource" />
-        <InputText class="col-md-6" label="Reporting Party" id="reportingParty" />
+        <InputText class="col-md-6" label="Reporting Party" id="reportingParty" v-model="cadEventRef.reportingParty"/>
         <InputText class="col-md-12" label="Callback Number" id="callBackNumber" />
         <InputText class="col-md-12" label="Additional Persons" id="additionalPersons" />
+        <InputTextArea class="col-md-12" label="Narrative" id="narrative" v-model="cadEventRef.narrative"/>
         <div class="col-12">
           <button class="btn btn-primary" type="submit">Create Event</button>
         </div>
