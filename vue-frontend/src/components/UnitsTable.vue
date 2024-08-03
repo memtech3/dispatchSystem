@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Panel from '@/components/Common/Panel.vue'
 import { computed } from 'vue'
 // import { useUnitsStore } from '@/stores/units'
 
@@ -88,21 +89,8 @@ try {
 }
 </script>
 <template>
-  <div class="card">
-    <div class="card-header">
-      <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="true" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
-    <div class="card-body p-2 overflow-auto">
+  <Panel>
+    <template v-slot:body>
       <div class="row g-0">
         <table class="table table-sm">
           <thead>
@@ -125,7 +113,7 @@ try {
           </tbody>
         </table>
       </div>
-    </div>
-  </div>
+    </template>
+  </Panel>
 </template>
 @/stores/units
