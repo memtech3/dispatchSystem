@@ -104,7 +104,7 @@ try {
     </div>
     <div class="card-body p-2 overflow-auto">
       <div class="row g-0">
-        <table class="table">
+        <table class="table table-sm">
           <thead>
             <tr>
               <th scope="col">Unit</th>
