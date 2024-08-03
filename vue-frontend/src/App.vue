@@ -3,7 +3,7 @@ import AppNavbar from '@/components/ApplicationFrame/AppNavbar.vue'
 </script>
 <template>
   <AppNavbar />
-  <main class="container-fluid h-100" id="appMain">
+  <main class="container-fluid h-100 px-0" id="appMain">
     <RouterView />
   </main>
 </template>
