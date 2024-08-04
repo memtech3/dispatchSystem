@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 import { onKeyStroke } from '@vueuse/core'
 
-const tokensArray = ref(['a', 'b'])
+const tokensArray = ref<string[]>([])
 const inputValue = ref('')
 const inputRef = ref(null)
 
