@@ -98,7 +98,7 @@ const commands: Command[] = [
     <span class="text-secondary" v-for="token in tokensArray" :key="token">{{ token }}.</span>
     <div class="d-flex flex-fill">
       <input
-        class="flex-fill"
+        class="flex-fill p-0"
         ref="inputRef"
         type="text"
         v-model="inputValue"
@@ -109,7 +109,11 @@ const commands: Command[] = [
         class="list-group commandHints"
         :class="{ visible: inputFocused, invisible: !inputFocused }"
       >
-        <li class="list-group-item p-1" v-for="command in commands" :key="command.name">
+        <li
+          class="list-group-item p-1 bg-body-secondary"
+          v-for="command in commands"
+          :key="command.name"
+        >
           <p class="m-0">{{ command.name }}, {{ command.aliases }}</p>
           <small>
             <span v-for="arg in command.arguments" :key="arg.name">{{ arg.name }}, </span>
