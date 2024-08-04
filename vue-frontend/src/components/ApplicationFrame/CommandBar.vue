@@ -47,8 +47,33 @@ onKeyStroke(
 </script>
 
 <template>
-  <div class="form-control">
-    <span v-for="token in tokensArray" :key="token">{{ token }}.</span>
-    <input ref="inputRef" type="text" v-model="inputValue" />
+  <!-- TODO: add a focus ring -->
+  <div class="form-control position-relative d-flex align-items-center">
+    <i class="bi bi-terminal pe-2"></i>
+    <span class="text-secondary" v-for="token in tokensArray" :key="token">{{ token }}.</span>
+    <div class="d-flex flex-fill">
+      <input class="flex-fill" ref="inputRef" type="text" v-model="inputValue" />
+      <ul class="list-group flex-column-reverse commandHints">
+        <li class="list-group-item active" aria-current="true">An active item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+      </ul>
+    </div>
   </div>
 </template>
+
+<style lang="scss">
+.form-control input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.commandHints {
+  position: absolute;
+  bottom: 2.5em;
+  z-index: 9999;
+}
+</style>
