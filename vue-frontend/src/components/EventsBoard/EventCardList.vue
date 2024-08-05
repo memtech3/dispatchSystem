@@ -28,6 +28,13 @@ const cadEventsRepo = computed(() => {
       :assigned-units="cadEvent.assignedUnits"
       created-time="11:11 PM"
       @click="consoleStateStore.setSelectedEvent(cadEvent?.id)"
+      class="pointerCursor"
     />
   </div>
 </template>
+
+<style scoped lang="scss">
+.pointerCursor {
+  cursor: pointer;
+}
+</style>
