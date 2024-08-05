@@ -7,6 +7,7 @@ import { useConsoleStateStore } from '@/stores/consoleState'
 import InputText from '@/components/Common/InputText.vue'
 import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 import CommentsPanel from './CommentsPanel.vue'
+import EventCard from '@/components/EventsBoard/EventCard.vue'
 
 const consoleStateStore = useConsoleStateStore()
 
@@ -27,13 +28,20 @@ const currentCadEvent = computed(() => {
       </div>
       <div class="col-md-11 h-100">
         <div class="card-body h-100 overflow-auto">
-          <h5 class="card-title">Card title</h5>
-          <p>{{ currentCadEvent?.id }}</p>
-          <p>{{ currentCadEvent?.assignedUnits }}</p>
-          <p>{{ currentCadEvent?.eventType }}</p>
-          <p>{{ currentCadEvent?.location }}</p>
-          <p>{{ currentCadEvent?.reportingParty }}</p>
-          <p>{{ currentCadEvent?.narrative }}</p>
+          <EventCard
+            id="CFS00"
+            :priority="5"
+            priority-clr="green"
+            type-code="2319"
+            :type-description="currentCadEvent?.eventType"
+            type-icon="bi bi-virus"
+            :location="currentCadEvent?.location"
+            :assigned-units="currentCadEvent?.assignedUnits"
+            created-time="11:11 PM"
+          />
+          <p>ID: {{ currentCadEvent?.id }}</p>
+          <p>Reporting Party: {{ currentCadEvent?.reportingParty }}</p>
+          <p>Narrative: {{ currentCadEvent?.narrative }}</p>
           <CommentsPanel />
         </div>
       </div>
