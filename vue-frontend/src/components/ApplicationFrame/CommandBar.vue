@@ -124,7 +124,7 @@ const commands: Command[] = [
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .form-control input {
   border: none;
   outline: none;
