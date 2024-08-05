@@ -3,16 +3,36 @@ import AppNavbar from '@/components/ApplicationFrame/AppNavbar.vue'
 import CommandBar from '@/components/ApplicationFrame/CommandBar.vue'
 </script>
 <template>
-  <AppNavbar />
-  <main class="container-fluid h-100 px-0" id="appMain">
-    <RouterView />
-    <CommandBar />
-  </main>
+  <div id="mainGridContainer">
+    <AppNavbar id="appNavbar" />
+    <main class="container-fluid h-100 px-0" id="appMain">
+      <RouterView />
+    </main>
+    <CommandBar id="appCommandBar" />
+  </div>
 </template>
 
 <style scoped>
+#mainGridContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    'navbar'
+    'main'
+    'commandBar';
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+#appNavbar {
+  grid-area: navbar;
+}
 #appMain {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  grid-area: main;
+}
+#appCommandBar {
+  grid-area: commandBar;
 }
 </style>
