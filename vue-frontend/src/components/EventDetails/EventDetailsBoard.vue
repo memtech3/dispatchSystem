@@ -23,11 +23,11 @@ const currentCadEvent = computed(() => {
 <template>
   <div class="card h-100" style="max-width: 540px">
     <div class="row g-0 h-100">
-      <div class="col-md-1">
+      <div class="col-1 h-100 bg-body-tertiary">
         <!-- TODO: Navigation tabs go here -->
       </div>
-      <div class="col-md-11 h-100">
-        <div class="card-body h-100 overflow-auto">
+      <div class="col-11 h-100 d-flex flex-column">
+        <div>
           <EventCard
             id="CFS00"
             :priority="5"
@@ -38,7 +38,10 @@ const currentCadEvent = computed(() => {
             :location="currentCadEvent?.location"
             :assigned-units="currentCadEvent?.assignedUnits"
             created-time="11:11 PM"
+            class="border-bottom"
           />
+        </div>
+        <div class="card-body flex-fill overflow-auto">
           <p>ID: {{ currentCadEvent?.id }}</p>
           <p>Reporting Party: {{ currentCadEvent?.reportingParty }}</p>
           <p>Narrative: {{ currentCadEvent?.narrative }}</p>

@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
-import { onKeyStroke } from '@vueuse/core'
+import { onKeyStroke, useMagicKeys, whenever } from '@vueuse/core'
 
 const tokensArray = ref<string[]>([])
 const inputValue = ref('')
-const inputRef = ref(null)
+const inputRef = ref<HTMLElement | null>(null)
 const inputFocused = ref(false)
 
 const addToken = () => {
@@ -45,6 +44,12 @@ onKeyStroke(
 //   },
 //   { target: inputRef }
 // )
+
+const keys = useMagicKeys()
+
+whenever(keys.F1, () => {
+  inputRef.value?.focus()
+})
 
 type Argument = {
   name: string
@@ -92,8 +97,7 @@ const commands: Command[] = [
 </script>
 
 <template>
-  <!-- TODO: add a focus ring -->
-  <div class="form-control position-relative d-flex align-items-center">
+  <div class="commandBar form-control position-relative d-flex align-items-center">
     <i class="bi bi-terminal pe-2"></i>
     <span class="text-secondary" v-for="token in tokensArray" :key="token">{{ token }}.</span>
     <div class="d-flex flex-fill">
@@ -125,15 +129,23 @@ const commands: Command[] = [
 </template>
 
 <style scoped lang="scss">
-.form-control input {
+.commandBar input {
   border: none;
   outline: none;
   background-color: transparent;
 }
 
-.commandHints {
+.commandBar .commandHints {
   position: absolute;
   bottom: 2.5em;
   z-index: 9999;
+}
+
+.commandBar:focus-within {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 </style>

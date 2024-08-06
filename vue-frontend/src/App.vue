@@ -5,7 +5,7 @@ import CommandBar from '@/components/ApplicationFrame/CommandBar.vue'
 <template>
   <div id="mainGridContainer">
     <AppNavbar id="appNavbar" />
-    <main class="container-fluid h-100 px-0" id="appMain">
+    <main class="container-fluid px-0" id="appMain">
       <RouterView />
     </main>
     <CommandBar id="appCommandBar" />
@@ -28,11 +28,14 @@ import CommandBar from '@/components/ApplicationFrame/CommandBar.vue'
 }
 #appNavbar {
   grid-area: navbar;
+  overflow: auto;
 }
 #appMain {
   grid-area: main;
+  overflow: auto;
 }
 #appCommandBar {
   grid-area: commandBar;
+  overflow: auto;
 }
 </style>
