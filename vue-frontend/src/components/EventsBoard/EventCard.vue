@@ -18,8 +18,8 @@ defineProps<{
 <template>
   <div class="list-group-item list-group-item-action eventItemGrid p-0" aria-current="true">
     <div class="triagePane d-flex flex-column" :class="'priorityColor-' + priorityClr">
-      <div class="box m-1 bg-body-secondary d-flex align-items-center justify-content-center">
-        <span class="bi bi-exclamation-triangle"></span>
+      <div class="box d-flex align-items-center justify-content-center">
+        <span class="bi bi-exclamation-triangle fs-5"></span>
       </div>
       <span class="fs-2 text-center">P{{ priority }}</span>
     </div>
@@ -81,7 +81,5 @@ defineProps<{
 }
 .box {
   aspect-ratio: 1 / 1;
-  mask-image: url('@/assets/diamond-mask.svg');
-  mask-repeat: no-repeat;
 }
 </style>
