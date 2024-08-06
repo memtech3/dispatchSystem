@@ -28,7 +28,6 @@ import CommandBar from '@/components/ApplicationFrame/CommandBar.vue'
 }
 #appNavbar {
   grid-area: navbar;
-  overflow: auto;
 }
 #appMain {
   grid-area: main;
@@ -36,6 +35,5 @@ import CommandBar from '@/components/ApplicationFrame/CommandBar.vue'
 }
 #appCommandBar {
   grid-area: commandBar;
-  overflow: auto;
 }
 </style>
