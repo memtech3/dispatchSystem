@@ -95,6 +95,18 @@ const commands: Command[] = [
         position: 1
       }
     ]
+  },  {
+    name: 'New Field Initiated Event',
+    description: '',
+    aliases: ['nfe', 'newfieldevent'],
+    arguments: [
+      {
+        name: 'Event ID',
+        description: '',
+        required: true,
+        position: 1
+      }
+    ]
   }
 ]
 
@@ -107,8 +119,8 @@ const filteredCommands = computed(() => {
     })
   } else {
     return commands.filter((command) => {
-      return command.aliases.some((alias) =>
-        alias.toLowerCase().startsWith((tokensArray.value.at(0) ?? '').toLowerCase())
+      return command.aliases.some(
+        (alias) => alias.toLowerCase() === (tokensArray.value.at(0) ?? '').toLowerCase()
       )
     })
   }
