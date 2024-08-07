@@ -12,6 +12,12 @@ const addToken = () => {
   inputValue.value = ''
 }
 
+const runCommand = () => {
+  console.log('Running command:', tokensArray.value)
+  inputValue.value = ''
+  tokensArray.value = []
+}
+
 // add token to tokensArray when "." key is pressed
 onKeyStroke(
   '.',
@@ -139,7 +145,8 @@ const filteredCommands = computed(() => {
         v-model="inputValue"
         @focus="inputFocused = true"
         @blur="inputFocused = false"
-      />
+        @keydown.enter="runCommand"
+        />
       <ul
         class="list-group commandHints"
         :class="{ visible: inputFocused, invisible: !inputFocused }"
