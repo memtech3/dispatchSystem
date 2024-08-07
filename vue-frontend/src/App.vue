@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import AppNavbar from '@/components/ApplicationFrame/AppNavbar.vue'
-import CommandBar from '@/components/ApplicationFrame/CommandBar.vue'
+import CommandBar from '@/components/ApplicationFrame/CommandBar/CommandBar.vue'
 </script>
 <template>
   <div id="mainGridContainer">
