@@ -121,6 +121,7 @@ const filteredCommands = computed(() => {
         @focus="inputFocused = true"
         @blur="inputFocused = false"
         @keydown.enter="runCommand"
+        @keydown.esc="inputRef?.blur"
       />
       <ul
         class="list-group commandHints"
