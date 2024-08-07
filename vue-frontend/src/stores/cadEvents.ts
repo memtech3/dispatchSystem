@@ -5,12 +5,11 @@ import { UnitEntity } from '@/stores/units'
 export class CadEventEntity extends Model {
   static entity = 'cadEventEntities'
 
-  @Uid() declare id: string
+  @Uid({ size: 3 }) declare id: string
   @Str('') declare eventType: string
   @Str('') declare location: string
   @Str('') declare narrative: string
   @Str('') declare reportingParty: string
   @HasMany(() => UnitEntity, 'assignedEventId') declare assignedUnits: UnitEntity[]
-
-  // assignedUnits
+  // TODO: add comments/event history items
 }

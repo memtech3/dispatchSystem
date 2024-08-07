@@ -18,7 +18,7 @@ const cadEventsRepo = computed(() => {
     <EventCard
       v-for="cadEvent in cadEventsRepo.withAll().get()"
       :key="cadEvent.id"
-      id="CFS00"
+      :id="cadEvent.id"
       :priority="5"
       priority-clr="green"
       type-code="2319"

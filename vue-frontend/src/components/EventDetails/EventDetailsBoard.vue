@@ -29,7 +29,7 @@ const currentCadEvent = computed(() => {
       <div class="col-11 h-100 d-flex flex-column">
         <div>
           <EventCard
-            id="CFS00"
+            :id="currentCadEvent?.id"
             :priority="5"
             priority-clr="green"
             type-code="2319"
