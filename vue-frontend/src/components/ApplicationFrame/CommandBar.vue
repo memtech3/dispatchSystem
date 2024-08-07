@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { onKeyStroke, useMagicKeys, whenever } from '@vueuse/core'
+import { onKeyStroke } from '@vueuse/core'
 
 const tokensArray = ref<string[]>([])
 const inputValue = ref('')
@@ -45,9 +45,8 @@ onKeyStroke(
 //   { target: inputRef }
 // )
 
-const keys = useMagicKeys()
-
-whenever(keys.F1, () => {
+onKeyStroke('F1', (e) => {
+  e.preventDefault()
   inputRef.value?.focus()
 })
 
