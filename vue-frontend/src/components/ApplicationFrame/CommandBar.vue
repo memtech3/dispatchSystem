@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
 
 const tokensArray = ref<string[]>([])
@@ -54,6 +54,7 @@ type Argument = {
   name: string
   description: string
   required: boolean
+  position: number
 }
 
 type Command = {
@@ -71,12 +72,14 @@ const commands: Command[] = [
       {
         name: 'Location',
         description: 'Location of event',
-        required: true
+        required: true,
+        position: 1
       },
       {
         name: 'type',
         description: 'Event type',
-        required: true
+        required: true,
+        position: 2
       }
     ]
   },
@@ -88,11 +91,28 @@ const commands: Command[] = [
       {
         name: 'Event ID',
         description: '',
-        required: true
+        required: true,
+        position: 1
       }
     ]
   }
 ]
+
+const filteredCommands = computed(() => {
+  if (tokensArray.value.length === 0) {
+    return commands.filter((command) => {
+      return command.aliases.some((alias) =>
+        alias.toLowerCase().startsWith((inputValue.value ?? '').toLowerCase())
+      )
+    })
+  } else {
+    return commands.filter((command) => {
+      return command.aliases.some((alias) =>
+        alias.toLowerCase().startsWith((tokensArray.value.at(0) ?? '').toLowerCase())
+      )
+    })
+  }
+})
 </script>
 
 <template>
@@ -114,12 +134,17 @@ const commands: Command[] = [
       >
         <li
           class="list-group-item p-1 bg-body-secondary"
-          v-for="command in commands"
+          v-for="command in filteredCommands"
           :key="command.name"
         >
           <p class="m-0">{{ command.name }}, {{ command.aliases }}</p>
           <small>
-            <span v-for="arg in command.arguments" :key="arg.name">{{ arg.name }}, </span>
+            <span
+              v-for="arg in command.arguments"
+              :key="arg.name"
+              :class="{ 'bg-primary': arg.position == tokensArray.length }"
+              >{{ arg.name }},
+            </span>
           </small>
         </li>
       </ul>
