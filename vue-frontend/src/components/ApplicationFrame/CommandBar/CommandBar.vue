@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
-import { commands } from './commands'
+import { commandList } from './commands'
 
 const inputValue = ref('')
 const inputRef = ref<HTMLElement | null>(null)
@@ -9,6 +9,7 @@ const inputFocused = ref(false)
 
 const runCommand = () => {
   console.log('Running command:', tokensArray.value)
+  commandList.runCommand(tokensArray.value)
   inputValue.value = ''
 }
 
@@ -34,13 +35,13 @@ const tokensArray = computed(() => {
 
 const filteredCommands = computed(() => {
   if (tokensArray.value.length < 2) {
-    return commands.filter((command) => {
+    return commandList.getCommands().filter((command) => {
       return command.aliases.some((alias) =>
         alias.toLowerCase().startsWith((tokensArray.value[0] ?? '').toLowerCase())
       )
     })
   } else {
-    return commands.filter((command) => {
+    return commandList.getCommands().filter((command) => {
       return command.aliases.some(
         (alias) => alias.toLowerCase() === (tokensArray.value[0] ?? '').toLowerCase()
       )
@@ -75,9 +76,9 @@ const filteredCommands = computed(() => {
           <p class="m-0">{{ command.name }}, {{ command.aliases }}</p>
           <small>
             <span
-              v-for="arg in command.arguments"
+              v-for="(arg, index) in command.argTypes"
               :key="arg.name"
-              :class="{ 'bg-primary': arg.position == tokensArray.length - 1 }"
+              :class="{ 'bg-primary': index == tokensArray.length - 2 }"
               >{{ arg.name }},
             </span>
           </small>

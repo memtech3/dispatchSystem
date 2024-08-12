@@ -2,59 +2,105 @@ export type Argument = {
   name: string
   description: string
   required: boolean
-  position: number
 }
 
-export type Command = {
-  name: string
-  description: string
-  aliases: string[]
-  arguments: Argument[]
+function handlerFunction(args: string[]): Error | boolean {
+  console.log('Handler function called with arguments ', args)
+  return true
 }
-export const commands: Command[] = [
-  {
-    name: 'New Event',
-    description: 'Creates a new event',
-    aliases: ['n', 'newevent'],
-    arguments: [
+
+class Command {
+  name: string
+  aliases: string[]
+  argTypes: Argument[]
+  handler: (args: string[]) => Error | boolean
+
+  constructor(
+    name: string,
+    aliases: string[],
+    argTypes: Argument[],
+    handler: (args: string[]) => Error | boolean
+  ) {
+    this.name = name
+    this.aliases = aliases
+    this.argTypes = argTypes
+    this.handler = handler
+  }
+
+  run(): void {
+    this.handler([])
+  }
+}
+
+class CommandList {
+  private _commands: Command[]
+
+  constructor(commands: Command[]) {
+    this._commands = commands
+  }
+
+  runCommand(tokens: string[]): void {
+    const command = this._commands.find(
+      (command) => command.name === tokens[0] || command.aliases.includes(tokens[0])
+    )
+    if (command) {
+      command.handler(tokens.slice(1))
+    } else {
+      console.log('Command not found')
+    }
+  }
+
+  getCommands(): Command[] {
+    return this._commands
+  }
+}
+
+const commands: Command[] = [
+  new Command(
+    'New Event',
+    ['ne', 'newevent'],
+    [
       {
         name: 'Location',
         description: 'Location of event',
-        required: true,
-        position: 1
+        required: true
       },
       {
         name: 'type',
         description: 'Event type',
-        required: true,
-        position: 2
+        required: true
       }
-    ]
-  },
-  {
-    name: 'Select Event',
-    description: '',
-    aliases: ['s', 'selectevent'],
-    arguments: [
+    ],
+    (args: string[]) => handlerFunction(args)
+  ),
+  new Command(
+    'Select Event',
+    ['se', 'selectevent'],
+    [{ name: 'Event ID', description: 'ID of event to select', required: true }],
+    handlerFunction
+  ),
+  new Command(
+    'New Field Initiated Event',
+    ['nfe', 'newfieldevent'],
+    [
       {
-        name: 'Event ID',
-        description: '',
-        required: true,
-        position: 1
-      }
-    ]
-  },
-  {
-    name: 'New Field Initiated Event',
-    description: '',
-    aliases: ['nfe', 'newfieldevent'],
-    arguments: [
+        name: 'Unit',
+        description: 'Unit initiating field initiated event',
+        required: true
+      },
       {
-        name: 'Event ID',
-        description: '',
-        required: true,
-        position: 1
+        name: 'Location',
+        description: 'Location of event',
+        required: true
+      },
+      {
+        name: 'type',
+        description: 'Event type',
+        required: true
       }
-    ]
-  }
+    ],
+    handlerFunction
+  )
 ]
+
+export const commandList = new CommandList(commands)
