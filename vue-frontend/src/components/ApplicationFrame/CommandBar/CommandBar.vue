@@ -3,13 +3,29 @@ import { computed, ref } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
 import { commandList } from './commands'
 
+import { useConsoleStateStore } from '@/stores/consoleState'
+
+import { useRepo } from 'pinia-orm'
+import { UnitEntity } from '@/stores/units'
+import { CadEventEntity } from '@/stores/cadEvents'
+
 const inputValue = ref('')
 const inputRef = ref<HTMLElement | null>(null)
 const inputFocused = ref(false)
 
+const consoleStateStore = useConsoleStateStore()
+
+const unitsRepo = computed(() => {
+  return useRepo(UnitEntity)
+})
+
+const cadEventsRepo = computed(() => {
+  return useRepo(CadEventEntity)
+})
+
 const runCommand = () => {
   console.log('Running command:', tokensArray.value)
-  commandList.runCommand(tokensArray.value)
+  commandList.runCommand(tokensArray.value, consoleStateStore, unitsRepo, cadEventsRepo)
   inputValue.value = ''
 }
 
