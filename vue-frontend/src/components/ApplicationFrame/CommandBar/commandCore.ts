@@ -28,14 +28,14 @@ export class Command {
 }
 
 export class CommandList {
-  private _commands: Command[]
+  private commands: Command[]
 
   constructor(commands: Command[]) {
-    this._commands = commands
+    this.commands = commands
   }
 
   runCommand(tokens: string[]): void {
-    const command = this._commands.find(
+    const command = this.commands.find(
       (command) => command.name === tokens[0] || command.aliases.includes(tokens[0])
     )
     if (command) {
@@ -46,6 +46,6 @@ export class CommandList {
   }
 
   getCommands(): Command[] {
-    return this._commands
+    return this.commands
   }
 }
