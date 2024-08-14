@@ -4,7 +4,6 @@ import type { Repository } from 'pinia-orm'
 import type { UnitEntity } from '@/stores/units'
 import type { CadEventEntity } from '@/stores/cadEvents'
 
-
 const commands: Command[] = [
   new Command(
     'New Event',
@@ -23,8 +22,8 @@ const commands: Command[] = [
     ],
     (
       args: string[],
-      consoleStateStore: any,
-      unitEntityStore: ComputedRef<Repository<UnitEntity>>,
+      _consoleStateStore: any,
+      _unitEntityStore: ComputedRef<Repository<UnitEntity>>,
       cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
     ) => {
       cadEventEntityStore.value.save({ location: args[0], eventType: args[1] })
@@ -64,7 +63,7 @@ const commands: Command[] = [
     ],
     (
       args: string[],
-      consoleStateStore: any,
+      _consoleStateStore: any,
       unitEntityStore: ComputedRef<Repository<UnitEntity>>,
       cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
     ) => {
@@ -76,6 +75,38 @@ const commands: Command[] = [
         return true
       } else {
         return new Error('Unit not found')
+      }
+    }
+  ),
+  new Command(
+    'Attach Unit to Event',
+    ['au', 'attachunit'],
+    [
+      {
+        name: 'Unit',
+        description: 'Unit initiating field initiated event',
+        required: true
+      },
+      {
+        name: 'Event ID',
+        description: 'ID of event to attach unit to',
+        required: true
+      }
+    ],
+    (
+      args: string[],
+      _consoleStateStore: any,
+      unitEntityStore: ComputedRef<Repository<UnitEntity>>,
+      cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
+    ) => {
+      const unit = unitEntityStore.value.where('callsign', args[0]).withAll().first()
+      const event = cadEventEntityStore.value.where('id', args[1]).withAll().first()
+      if (unit && event) {
+        unit.assignedEventId = event.id
+        unitEntityStore.value.save(unit)
+        return true
+      } else {
+        return new Error('Unit not found and or event not found')
       }
     }
   )
