@@ -90,13 +90,24 @@ const filteredCommands = computed(() => {
           v-for="command in filteredCommands"
           :key="command.name"
         >
-          <p class="m-0">{{ command.name }}, {{ command.aliases }}</p>
+          <p class="m-0">{{ command.name }}</p>
           <small>
-            <span
-              v-for="(arg, index) in command.argTypes"
-              :key="arg.name"
-              :class="{ 'bg-primary': index == tokensArray.length - 2 }"
-              >{{ arg.name }},
+            <span class="">
+              {{ command.aliases }}
+            </span>
+
+            <span class="">.</span>
+
+            <span v-for="(arg, index) in command.argTypes" :key="arg.name">
+              <span
+                class=""
+                :class="{
+                  'text-bg-primary': index == tokensArray.length - 2
+                }"
+              >
+                {{ '{' + arg.name + '}' }}
+              </span>
+              <span v-if="index < command.argTypes.length - 1">.</span>
             </span>
           </small>
         </li>
