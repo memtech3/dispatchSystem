@@ -72,6 +72,7 @@ const filteredCommands = computed(() => {
     <div class="d-flex flex-fill">
       <input
         class="flex-fill p-0"
+        autocomplete="off"
         ref="inputRef"
         type="text"
         v-model="inputValue"

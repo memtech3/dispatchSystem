@@ -69,7 +69,11 @@ whenever(keys.Escape, () => {
       @focus="windowIsOpenRef = true"
       @close="windowIsOpenRef = false"
     >
-      <form class="row gy-1 p-2" @submit.prevent="createCadEvent(), wbRef.winbox.close()">
+      <form
+        class="row gy-1 p-2"
+        autocomplete="off"
+        @submit.prevent="createCadEvent(), wbRef.winbox.close()"
+      >
         <InputText
           class="col-md-12"
           id="location"
@@ -80,10 +84,20 @@ whenever(keys.Escape, () => {
         <InputText class="col-md-6" id="type" label="Event Type" v-model="cadEventRef.eventType" />
         <InputText class="col-md-6" id="subtype" label="Event Subtype" />
         <InputText class="col-md-6" label="Source" id="callSource" />
-        <InputText class="col-md-6" label="Reporting Party" id="reportingParty" v-model="cadEventRef.reportingParty"/>
+        <InputText
+          class="col-md-6"
+          label="Reporting Party"
+          id="reportingParty"
+          v-model="cadEventRef.reportingParty"
+        />
         <InputText class="col-md-12" label="Callback Number" id="callBackNumber" />
         <InputText class="col-md-12" label="Additional Persons" id="additionalPersons" />
-        <InputTextArea class="col-md-12" label="Narrative" id="narrative" v-model="cadEventRef.narrative"/>
+        <InputTextArea
+          class="col-md-12"
+          label="Narrative"
+          id="narrative"
+          v-model="cadEventRef.narrative"
+        />
         <div class="col-12">
           <button class="btn btn-primary" type="submit">Create Event</button>
         </div>
