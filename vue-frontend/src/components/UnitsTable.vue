@@ -70,23 +70,11 @@ unitsRepo.value.save([
     status: 'Available'
   }
 ])
-try {
-  let myUnit = unitsRepo.value.where('callsign', 'ALS-5').withAll().get()[0]
-  myUnit.assignedEventId = cadEventsRepo.value.where('eventType', 'Medical').get()[0].id
-  unitsRepo.value.save(myUnit)
 
-  let myEvent = cadEventsRepo.value.where('eventType', 'Fire').withAll().get()[0]
-  myEvent.assignedUnits.push(unitsRepo.value.where('callsign', 'E-12').get()[0])
-  console.log(myEvent)
-  cadEventsRepo.value.save(myEvent)
-  console.log('Modified event')
-  console.log(cadEventsRepo.value.where('eventType', 'Fire').withAll().get()[0])
-  console.log('Modified unit')
-  console.log(unitsRepo.value.where('callsign', 'ALS-5').withAll().get()[0])
-  console.log(cadEventsRepo.value.where('eventType', 'Medical').withAll().get()[0])
-} catch (error) {
-  console.log(error)
-}
+import { attachUnitToEvent } from '@/composables/cadDataAPI'
+
+attachUnitToEvent('ALS-5', cadEventsRepo.value.where('eventType', 'Medical').get()[0].id)
+attachUnitToEvent('E-12', cadEventsRepo.value.where('eventType', 'Fire').withAll().get()[0].id)
 </script>
 <template>
   <Panel>

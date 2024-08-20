@@ -1,11 +1,5 @@
-import type { CadEventEntity } from '@/stores/cadEvents'
-import type { UnitEntity } from '@/stores/units'
-import type { Repository } from 'pinia-orm'
-import type { ComputedRef } from 'vue'
-
 export type Argument = {
   name: string
-  description: string
   required: boolean
 }
 
@@ -19,12 +13,7 @@ export class Command {
     name: string,
     aliases: string[],
     argTypes: Argument[],
-    handler: (
-      args: string[],
-      consoleStateStore: any,
-      unitEntityStore: ComputedRef<Repository<UnitEntity>>,
-      cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
-    ) => Error | boolean
+    handler: (args: string[]) => Error | boolean
   ) {
     this.name = name
     this.aliases = aliases
@@ -40,17 +29,12 @@ export class CommandList {
     this.commands = commands
   }
 
-  runCommand(
-    tokens: string[],
-    consoleStateStore: any,
-    unitEntityStore: ComputedRef<Repository<UnitEntity>>,
-    cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
-  ): void {
+  runCommand(tokens: string[]): void {
     const command = this.commands.find(
       (command) => command.name === tokens[0] || command.aliases.includes(tokens[0])
     )
     if (command) {
-      command.handler(tokens.slice(1), consoleStateStore, unitEntityStore, cadEventEntityStore)
+      command.handler(tokens.slice(1))
     } else {
       console.log('Command not found')
     }

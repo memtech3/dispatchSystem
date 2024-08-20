@@ -1,8 +1,12 @@
-import type { ComputedRef } from 'vue'
+import { computed } from 'vue'
 import { Command, CommandList } from './commandCore'
-import type { Repository } from 'pinia-orm'
-import type { UnitEntity } from '@/stores/units'
-import type { CadEventEntity } from '@/stores/cadEvents'
+
+import { newEvent, attachUnitToEvent } from '@/composables/cadDataAPI'
+import { useConsoleStateStore } from '@/stores/consoleState'
+
+const consoleStateStore = computed(() => {
+  return useConsoleStateStore()
+})
 
 const commands: Command[] = [
   new Command(
@@ -11,35 +15,26 @@ const commands: Command[] = [
     [
       {
         name: 'Location',
-        description: 'Location of event',
         required: true
       },
       {
         name: 'type',
-        description: 'Event type',
         required: true
       }
     ],
-    (
-      args: string[],
-      _consoleStateStore: any,
-      _unitEntityStore: ComputedRef<Repository<UnitEntity>>,
-      cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
-    ) => {
-      cadEventEntityStore.value.save({ location: args[0], eventType: args[1] })
+    (args: string[]) => {
+      newEvent(args[0], args[1])
       return true
     }
   ),
   new Command(
     'Select Event',
     ['se', 'selectevent'],
-    [{ name: 'Event ID', description: 'ID of event to select', required: true }],
-    (
-      args: string[],
-      consoleStateStore: any,
-      _unitEntityStore: ComputedRef<Repository<UnitEntity>>,
-      _cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
-    ) => consoleStateStore.setSelectedEvent(args[0])
+    [{ name: 'Event ID', required: true }],
+    (args: string[]) => {
+      consoleStateStore.value.setSelectedEvent(args[0])
+      return true
+    }
   ),
   new Command(
     'New Field Initiated Event',
@@ -47,35 +42,21 @@ const commands: Command[] = [
     [
       {
         name: 'Unit',
-        description: 'Unit initiating field initiated event',
         required: true
       },
       {
         name: 'Location',
-        description: 'Location of event',
         required: true
       },
       {
         name: 'type',
-        description: 'Event type',
         required: true
       }
     ],
-    (
-      args: string[],
-      _consoleStateStore: any,
-      unitEntityStore: ComputedRef<Repository<UnitEntity>>,
-      cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
-    ) => {
-      const unit = unitEntityStore.value.where('callsign', args[0]).withAll().first()
-      if (unit) {
-        const event = cadEventEntityStore.value.save({ location: args[1], eventType: args[2] })
-        unit.assignedEventId = event.id
-        unitEntityStore.value.save(unit)
-        return true
-      } else {
-        return new Error('Unit not found')
-      }
+    (args: string[]) => {
+      const event = newEvent(args[1], args[2])
+      attachUnitToEvent(args[0], event.id)
+      return true
     }
   ),
   new Command(
@@ -83,31 +64,17 @@ const commands: Command[] = [
     ['au', 'attachunit'],
     [
       {
-        name: 'Unit',
-        description: 'Unit initiating field initiated event',
+        name: 'Unit Callsign',
         required: true
       },
       {
         name: 'Event ID',
-        description: 'ID of event to attach unit to',
         required: true
       }
     ],
-    (
-      args: string[],
-      _consoleStateStore: any,
-      unitEntityStore: ComputedRef<Repository<UnitEntity>>,
-      cadEventEntityStore: ComputedRef<Repository<CadEventEntity>>
-    ) => {
-      const unit = unitEntityStore.value.where('callsign', args[0]).withAll().first()
-      const event = cadEventEntityStore.value.where('id', args[1]).withAll().first()
-      if (unit && event) {
-        unit.assignedEventId = event.id
-        unitEntityStore.value.save(unit)
-        return true
-      } else {
-        return new Error('Unit not found and or event not found')
-      }
+    (args: string[]) => {
+      attachUnitToEvent(args[0], args[1])
+      return true
     }
   )
 ]
