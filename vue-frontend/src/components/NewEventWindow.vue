@@ -9,6 +9,8 @@ import InputText from '@/components/Common/InputText.vue'
 import InputTextArea from '@/components/Common/InputTextArea.vue'
 import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 
+import { newEvent } from '@/composables/cadDataAPI'
+
 const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
 })
@@ -20,7 +22,7 @@ function createCadEvent() {
     console.log('Warning: event is empty')
     return false
   } else {
-    cadEventsRepo.value.save(cadEventRef.value)
+    newEvent(cadEventRef.value)
     cadEventRef.value = <CadEventEntity>{}
     return true
   }

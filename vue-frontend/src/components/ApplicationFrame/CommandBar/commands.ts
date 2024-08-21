@@ -3,6 +3,7 @@ import { Command, CommandList } from './commandCore'
 
 import { newEvent, attachUnitToEvent } from '@/composables/cadDataAPI'
 import { useConsoleStateStore } from '@/stores/consoleState'
+import { CadEventEntity } from '@/stores/cadEvents'
 
 const consoleStateStore = computed(() => {
   return useConsoleStateStore()
@@ -23,7 +24,7 @@ const commands: Command[] = [
       }
     ],
     (args: string[]) => {
-      const result = newEvent(args[0], args[1])
+      const result = newEvent(new CadEventEntity({ location: args[0], eventType: args[1] }))
       if (result instanceof Error) {
         return result
       } else {

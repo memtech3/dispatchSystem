@@ -64,10 +64,10 @@ export function clearUnitFromEvent(unitCallsign: string, eventId: string): void 
   }
 }
 
-export function newEvent(location: string, eventType: string): CadEventEntity {
-  return cadEventsRepo.value.save({ location, eventType })
+export function newEvent(cadEvent: CadEventEntity): CadEventEntity {
+  return cadEventsRepo.value.save(cadEvent)
 }
 
-export function newUnit(callsign: string): UnitEntity {
-  return unitsRepo.value.save({ callsign })
+export function newUnit(unit: UnitEntity): UnitEntity {
+  return unitsRepo.value.save(unit)
 }
