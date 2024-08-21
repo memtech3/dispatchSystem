@@ -48,7 +48,7 @@ export class CommandList {
         consoleStateStore.value.addCommandOutput(tokens.join('.'), 'type', 'success')
       }
     } else {
-      console.log('Command not found')
+      consoleStateStore.value.addCommandOutput(tokens.join('.'), 'error', 'command not found')
     }
   }
 
