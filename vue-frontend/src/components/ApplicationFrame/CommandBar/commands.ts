@@ -23,8 +23,12 @@ const commands: Command[] = [
       }
     ],
     (args: string[]) => {
-      newEvent(args[0], args[1])
-      return true
+      const result = newEvent(args[0], args[1])
+      if (result instanceof Error) {
+        return result
+      } else {
+        return
+      }
     }
   ),
   new Command(
@@ -32,8 +36,7 @@ const commands: Command[] = [
     ['se', 'selectevent'],
     [{ name: 'Event ID', required: true }],
     (args: string[]) => {
-      consoleStateStore.value.setSelectedEvent(args[0])
-      return true
+      return consoleStateStore.value.setSelectedEvent(args[0])
     }
   ),
   new Command(
@@ -55,8 +58,7 @@ const commands: Command[] = [
     ],
     (args: string[]) => {
       const event = newEvent(args[1], args[2])
-      attachUnitToEvent(args[0], event.id)
-      return true
+      return attachUnitToEvent(args[0], event.id)
     }
   ),
   new Command(
@@ -73,8 +75,7 @@ const commands: Command[] = [
       }
     ],
     (args: string[]) => {
-      attachUnitToEvent(args[0], args[1])
-      return true
+      return attachUnitToEvent(args[0], args[1])
     }
   )
 ]

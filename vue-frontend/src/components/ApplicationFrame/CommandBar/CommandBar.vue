@@ -2,30 +2,18 @@
 import { computed, ref } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
 import { commandList } from './commands'
-
 import { useConsoleStateStore } from '@/stores/consoleState'
 
-import { useRepo } from 'pinia-orm'
-import { UnitEntity } from '@/stores/units'
-import { CadEventEntity } from '@/stores/cadEvents'
-
+const consoleStateStore = computed(() => {
+  return useConsoleStateStore()
+})
 const inputValue = ref('')
 const inputRef = ref<HTMLElement | null>(null)
 const inputFocused = ref(false)
 
-const consoleStateStore = useConsoleStateStore()
-
-const unitsRepo = computed(() => {
-  return useRepo(UnitEntity)
-})
-
-const cadEventsRepo = computed(() => {
-  return useRepo(CadEventEntity)
-})
-
 const runCommand = () => {
   console.log('Running command:', tokensArray.value)
-  commandList.runCommand(tokensArray.value, consoleStateStore, unitsRepo, cadEventsRepo)
+  commandList.runCommand(tokensArray.value)
   inputValue.value = ''
 }
 
@@ -112,6 +100,20 @@ const filteredCommands = computed(() => {
           </small>
         </li>
       </ul>
+      <ul
+        class="list-group commandHistory"
+        :class="{ visible: inputFocused, invisible: !inputFocused }"
+      >
+        <li
+          class="list-group-item p-1 bg-body-secondary"
+          v-for="(entry, index) in consoleStateStore.commandOutput"
+          :key="index"
+        >
+          <small>
+            <span class="">{{ entry.input }} -- {{ entry.type }} -- {{ entry.output }} </span>
+          </small>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -128,7 +130,12 @@ const filteredCommands = computed(() => {
   bottom: 2.5em;
   z-index: 9999;
 }
-
+.commandBar .commandHistory {
+  position: absolute;
+  bottom: 2.5em;
+  right: 2.5em;
+  z-index: 9999;
+}
 .commandBar:focus-within {
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
