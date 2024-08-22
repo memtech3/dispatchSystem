@@ -6,7 +6,11 @@ import CommandBar from '@/components/ApplicationFrame/CommandBar/CommandBar.vue'
   <div id="mainGridContainer">
     <AppNavbar id="appNavbar" />
     <main class="container-fluid px-0" id="appMain">
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </RouterView>
     </main>
     <CommandBar id="appCommandBar" />
   </div>
