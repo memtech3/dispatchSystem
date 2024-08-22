@@ -34,8 +34,8 @@ export function attachUnitToEvent(unitCallsign: string, eventId: string): void |
     action: 'attachUnitToEvent',
     actionParameters: [unitCallsign, eventId],
     user: 'mguttman',
-    associatedEvents: [],
-    associatedUnits: [unitCallsign, eventId],
+    associatedEvents: [eventId],
+    associatedUnits: [unitCallsign],
     result: true
   }
 
