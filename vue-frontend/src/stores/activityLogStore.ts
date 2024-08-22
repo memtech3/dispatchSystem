@@ -21,5 +21,5 @@ export const useActivityLog = defineStore('activityLog', () => {
   function addLogEntry(logEntry: LogEntry) {
     activityLog.value.push(logEntry)
   }
-  return { getLog, addLogEntry }
+  return { activityLog, getLog, addLogEntry }
 })
