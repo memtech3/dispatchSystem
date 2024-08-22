@@ -3,7 +3,7 @@ import { Str, Uid, Attr, BelongsTo } from 'pinia-orm/decorators'
 import { CadEventEntity } from '@/stores/cadEvents'
 
 export class UnitEntity extends Model {
-  static entity = 'unitEntities'
+  static readonly entity: string = 'unitEntities'
 
   @Uid() declare id: string
   @Str('') declare callsign: string
