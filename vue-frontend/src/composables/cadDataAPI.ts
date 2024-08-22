@@ -39,27 +39,27 @@ export function attachUnitToEvent(unitCallsign: string, eventId: string): void |
     result: true
   }
 
-  let result: Error | boolean = true
+  let result: Error | boolean
 
   if (!unit && !event) {
     result = Error(
       'Unit with callsign ' + unitCallsign + ' and Event with ID ' + eventId + ' not found'
     )
-    return result
   } else if (!unit) {
     result = Error('Unit with callsign ' + unitCallsign + ' not found')
-    return result
   } else if (!event) {
     result = Error('Event with ID ' + eventId + ' not found')
-    return result
   } else if (unit?.assignedEvent ?? false) {
     result = Error('Unit with callsign ' + unitCallsign + ' is already attached to an event')
-    return result
   } else {
     unit.assignedEventId = event.id
     unitsRepo.value.save(unit)
-    logEntry.result = result
-    activityLog.value.addLogEntry(logEntry)
+    result = true
+  }
+  logEntry.result = result
+  activityLog.value.addLogEntry(logEntry)
+  if (result instanceof Error) {
+    return result
   }
 }
 
