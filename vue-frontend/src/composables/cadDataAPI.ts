@@ -4,6 +4,13 @@ import { useRepo } from 'pinia-orm'
 import { UnitEntity } from '@/stores/units'
 import { CadEventEntity } from '@/stores/cadEvents'
 
+import { useActivityLog } from '@/stores/activityLogStore'
+import type { LogEntry } from '@/stores/activityLogStore'
+
+const activityLog = computed(() => {
+  return useActivityLog()
+})
+
 const unitsRepo = computed(() => {
   return useRepo(UnitEntity)
 })
@@ -21,20 +28,38 @@ const cadEventsRepo = computed(() => {
 export function attachUnitToEvent(unitCallsign: string, eventId: string): void | Error {
   const unit = unitsRepo.value.where('callsign', unitCallsign).first()
   const event = cadEventsRepo.value.where('id', eventId).first()
+  const logEntry: LogEntry = {
+    timestamp: 'test',
+    sector: 5,
+    action: 'attachUnitToEvent',
+    actionParameters: [unitCallsign, eventId],
+    user: 'mguttman',
+    associatedEvents: [],
+    associatedUnits: [unitCallsign, eventId],
+    result: true
+  }
+
+  let result: Error | boolean = true
 
   if (!unit && !event) {
-    return Error(
+    result = Error(
       'Unit with callsign ' + unitCallsign + ' and Event with ID ' + eventId + ' not found'
     )
+    return result
   } else if (!unit) {
-    return Error('Unit with callsign ' + unitCallsign + ' not found')
+    result = Error('Unit with callsign ' + unitCallsign + ' not found')
+    return result
   } else if (!event) {
-    return Error('Event with ID ' + eventId + ' not found')
+    result = Error('Event with ID ' + eventId + ' not found')
+    return result
   } else if (unit?.assignedEvent ?? false) {
-    return Error('Unit with callsign ' + unitCallsign + ' is already attached to an event')
+    result = Error('Unit with callsign ' + unitCallsign + ' is already attached to an event')
+    return result
   } else {
     unit.assignedEventId = event.id
     unitsRepo.value.save(unit)
+    logEntry.result = result
+    activityLog.value.addLogEntry(logEntry)
   }
 }
 
