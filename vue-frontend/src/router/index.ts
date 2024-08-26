@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DispatchView from '@/views/DispatchView.vue'
-import ActivityLogView from '@/views/ActivityLogView.vue'
+import CommandLogView from '@/views/CommandLogView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,9 +11,9 @@ const router = createRouter({
       component: DispatchView
     },
     {
-      path: '/activityLog',
+      path: '/commandLog',
       name: 'activity log',
-      component: ActivityLogView
+      component: CommandLogView
     }
   ]
 })

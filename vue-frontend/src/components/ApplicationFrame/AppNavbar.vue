@@ -10,8 +10,8 @@ import AddSeedDataButton from '@/components/AddSeedDataButton.vue'
           <RouterLink to="/" class="nav-link" active-class="active">Dashboard</RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink to="/activityLog" class="nav-link" active-class="active"
-            >Activity Log</RouterLink
+          <RouterLink to="/commandLog" class="nav-link" active-class="active"
+            >Command Log</RouterLink
           >
         </li>
         <li class="nav-item">

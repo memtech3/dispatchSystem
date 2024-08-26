@@ -4,11 +4,11 @@ import { useRepo } from 'pinia-orm'
 import { UnitEntity } from '@/stores/units'
 import { CadEventEntity } from '@/stores/cadEvents'
 
-import { useActivityLog } from '@/stores/activityLogStore'
-import type { LogEntry } from '@/stores/activityLogStore'
+import { useCommandLog } from '@/stores/commandLogStore'
+import type { LogEntry } from '@/stores/commandLogStore'
 
-const activityLog = computed(() => {
-  return useActivityLog()
+const commandLog = computed(() => {
+  return useCommandLog()
 })
 
 const unitsRepo = computed(() => {
@@ -57,7 +57,7 @@ export function attachUnitToEvent(unitCallsign: string, eventId: string): void |
     result = true
   }
   logEntry.result = result
-  activityLog.value.addLogEntry(logEntry)
+  commandLog.value.addLogEntry(logEntry)
   if (result instanceof Error) {
     return result
   }
@@ -101,7 +101,7 @@ export function clearUnitFromEvent(unitCallsign: string, eventId: string): void 
     result = true
   }
   logEntry.result = result
-  activityLog.value.addLogEntry(logEntry)
+  commandLog.value.addLogEntry(logEntry)
   if (result instanceof Error) {
     return result
   }
@@ -122,7 +122,7 @@ export function newEvent(cadEvent: CadEventEntity): CadEventEntity {
   logEntry.result = true
   const result = cadEventsRepo.value.save(cadEvent)
   logEntry.associatedEvents.push(result.id)
-  activityLog.value.addLogEntry(logEntry)
+  commandLog.value.addLogEntry(logEntry)
   return result
 }
 
@@ -141,6 +141,6 @@ export function newUnit(unit: UnitEntity): UnitEntity {
   logEntry.result = true
   const result = unitsRepo.value.save(unit)
   logEntry.associatedUnits.push(result.id)
-  activityLog.value.addLogEntry(logEntry)
+  commandLog.value.addLogEntry(logEntry)
   return result
 }

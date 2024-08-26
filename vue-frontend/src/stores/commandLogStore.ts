@@ -12,14 +12,14 @@ export type LogEntry = {
   result: boolean | Error
 }
 
-export const useActivityLog = defineStore('activityLog', () => {
-  const activityLog = ref(Array<LogEntry>())
+export const useCommandLog = defineStore('commandLog', () => {
+  const commandLog = ref(Array<LogEntry>())
 
   function getLog() {
-    return activityLog
+    return commandLog
   }
   function addLogEntry(logEntry: LogEntry) {
-    activityLog.value.push(logEntry)
+    commandLog.value.push(logEntry)
   }
-  return { activityLog, getLog, addLogEntry }
+  return { commandLog, getLog, addLogEntry }
 })
