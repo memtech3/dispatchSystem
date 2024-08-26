@@ -9,7 +9,7 @@ import InputText from '@/components/Common/InputText.vue'
 import InputTextArea from '@/components/Common/InputTextArea.vue'
 import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 
-import { newEvent } from '@/composables/cadDataAPI'
+import { newEvent } from '@/composables/commandHandlers'
 
 const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)

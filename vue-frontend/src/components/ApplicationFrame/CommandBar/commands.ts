@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { Command, CommandList } from './commandCore'
 
-import { newEvent, attachUnitToEvent } from '@/composables/cadDataAPI'
+import { newEvent, attachUnitToEvent } from '@/composables/commandHandlers'
 import { useConsoleStateStore } from '@/stores/consoleState'
 import { CadEventEntity } from '@/stores/cadEvents'
 
