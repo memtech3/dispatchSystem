@@ -72,27 +72,75 @@ export function attachUnitToEvent(unitCallsign: string, eventId: string): void |
 export function clearUnitFromEvent(unitCallsign: string, eventId: string): void | Error {
   const unit = unitsRepo.value.where('callsign', unitCallsign).first()
   const event = cadEventsRepo.value.where('id', eventId).first()
+  const logEntry: LogEntry = {
+    timestamp: 'test',
+    sector: 5,
+    action: 'clearUnitFromEvent',
+    actionParameters: [unitCallsign, eventId],
+    user: 'mguttman',
+    associatedEvents: [eventId],
+    associatedUnits: [unitCallsign],
+    result: true
+  }
+
+  let result: Error | boolean
 
   if (!unit && !event) {
     return Error(
       'Unit with callsign ' + unitCallsign + ' and Event with ID ' + eventId + ' not found'
     )
   } else if (!unit) {
-    return Error('Unit with callsign ' + unitCallsign + ' not found')
+    result = Error('Unit with callsign ' + unitCallsign + ' not found')
   } else if (!event) {
-    return Error('Event with ID ' + eventId + ' not found')
+    result = Error('Event with ID ' + eventId + ' not found')
   } else if (unit?.assignedEvent != event) {
-    return Error('Unit with callsign ' + unitCallsign + ' is not attached to that event')
+    result = Error('Unit with callsign ' + unitCallsign + ' is not attached to that event')
   } else {
     unit.assignedEventId = event.id
     unitsRepo.value.save(unit)
+    result = true
+  }
+  logEntry.result = result
+  activityLog.value.addLogEntry(logEntry)
+  if (result instanceof Error) {
+    return result
   }
 }
 
 export function newEvent(cadEvent: CadEventEntity): CadEventEntity {
-  return cadEventsRepo.value.save(cadEvent)
+  const logEntry: LogEntry = {
+    timestamp: 'test',
+    sector: 5,
+    action: 'newEvent',
+    actionParameters: [JSON.stringify(cadEvent)],
+    user: 'mguttman',
+    associatedEvents: [],
+    associatedUnits: [],
+    result: true
+  }
+
+  logEntry.result = true
+  const result = cadEventsRepo.value.save(cadEvent)
+  logEntry.associatedEvents.push(result.id)
+  activityLog.value.addLogEntry(logEntry)
+  return result
 }
 
 export function newUnit(unit: UnitEntity): UnitEntity {
-  return unitsRepo.value.save(unit)
+  const logEntry: LogEntry = {
+    timestamp: 'test',
+    sector: 5,
+    action: 'newUnit',
+    actionParameters: [JSON.stringify(unit)],
+    user: 'mguttman',
+    associatedEvents: [],
+    associatedUnits: [],
+    result: true
+  }
+
+  logEntry.result = true
+  const result = unitsRepo.value.save(unit)
+  logEntry.associatedUnits.push(result.id)
+  activityLog.value.addLogEntry(logEntry)
+  return result
 }
