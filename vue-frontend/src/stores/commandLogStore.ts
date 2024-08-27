@@ -5,7 +5,7 @@ export type LogEntry = {
   timestamp: string
   sector: number
   action: string
-  actionParameters: string[]
+  actionParameters: string
   user: string
   associatedEvents: string[]
   associatedUnits: string[]
