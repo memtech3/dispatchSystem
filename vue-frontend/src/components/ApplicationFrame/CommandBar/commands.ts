@@ -58,8 +58,12 @@ const commands: Command[] = [
       }
     ],
     (args: string[]) => {
-      const event = newEvent(args[1], args[2])
-      return attachUnitToEvent(args[0], event.id)
+      const eventResult = newEvent(new CadEventEntity({ location: args[0], eventType: args[1] }))
+      if (eventResult instanceof Error) {
+        return eventResult
+      } else {
+        attachUnitToEvent(args[0], eventResult.associatedEvents[0])
+      }
     }
   ),
   new Command(
@@ -76,7 +80,10 @@ const commands: Command[] = [
       }
     ],
     (args: string[]) => {
-      return attachUnitToEvent(args[0], args[1])
+      const result = attachUnitToEvent(args[0], args[1])
+      if (result instanceof Error) {
+        return
+      }
     }
   )
 ]
