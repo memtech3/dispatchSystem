@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <a href="#" class="list-group-item list-group-item-action d-flex gap-3" aria-current="true">
+  <a href="#" class="list-group-item list-group-item-action d-flex  p-2 gap-2" aria-current="true">
     <img
       src="https://github.com/twbs.png"
       alt="twbs"

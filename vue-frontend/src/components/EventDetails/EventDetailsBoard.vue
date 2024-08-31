@@ -45,7 +45,7 @@ const currentCadEvent = computed(() => {
           <p>ID: {{ currentCadEvent?.id }}</p>
           <p>Reporting Party: {{ currentCadEvent?.reportingParty }}</p>
           <p>Narrative: {{ currentCadEvent?.narrative }}</p>
-          <CommentsPanel />
+          <CommentsPanel :selected-event-id="consoleStateStore.getSelectedEvent()" />
         </div>
       </div>
     </div>
