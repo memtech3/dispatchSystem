@@ -124,5 +124,5 @@ export const newEvent = withLogging(
 
 export const newUnit = withLogging('newUnit', (unit: UnitEntity): CommandHandlerResult => {
   const result = unitsRepo.value.save(unit)
-  return { associatedEvents: [], associatedUnits: [result.id] }
+  return { associatedEvents: [], associatedUnits: [result.callsign] }
 })
