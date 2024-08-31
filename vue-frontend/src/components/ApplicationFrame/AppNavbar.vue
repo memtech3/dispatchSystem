@@ -14,9 +14,6 @@ import AddSeedDataButton from '@/components/AddSeedDataButton.vue'
             >Command Log</RouterLink
           >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
       </ul>
       <AddSeedDataButton />
     </div>
