@@ -8,18 +8,20 @@ import { CadEventEntity } from '@/stores/cadEvents'
 import { seedUnits } from '@/stores/seedData/units'
 import { seedEvents } from '@/stores/seedData/cadEvents'
 
-import { attachUnitToEvent } from '@/composables/commandHandlers'
+import { newEvent, newUnit, attachUnitToEvent } from '@/composables/commandHandlers'
 
-const unitsRepo = computed(() => {
-  return useRepo(UnitEntity)
-})
 const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
 })
 
 const addData = () => {
-  unitsRepo.value.save(seedUnits)
-  cadEventsRepo.value.save(seedEvents)
+  seedUnits.forEach((unit) => {
+    newUnit(new UnitEntity(unit))
+  })
+
+  seedEvents.forEach((event) => {
+    newEvent(new CadEventEntity(event))
+  })
 
   attachUnitToEvent('ALS-5', cadEventsRepo.value.where('eventType', 'Medical').get()[0].id)
   attachUnitToEvent('E-12', cadEventsRepo.value.where('eventType', 'Fire').withAll().get()[0].id)
