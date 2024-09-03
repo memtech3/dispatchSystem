@@ -9,6 +9,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    // "useDefineForClassFields": true, // Default true if target is "ES2022" or "ESNext"
+    "experimentalDecorators": true
   }
 }
