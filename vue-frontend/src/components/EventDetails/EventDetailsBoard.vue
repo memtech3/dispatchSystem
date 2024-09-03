@@ -42,7 +42,6 @@ const currentCadEvent = computed(() => {
           />
         </div>
         <div class="card-body flex-fill overflow-auto">
-          <p>ID: {{ currentCadEvent?.id }}</p>
           <p>Reporting Party: {{ currentCadEvent?.reportingParty }}</p>
           <p>Narrative: {{ currentCadEvent?.narrative }}</p>
           <CommentsPanel :selected-event-id="consoleStateStore.getSelectedEvent()" />

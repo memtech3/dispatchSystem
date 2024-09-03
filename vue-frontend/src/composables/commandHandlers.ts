@@ -29,7 +29,7 @@ const cadEventsRepo = computed(() => {
 function withLogging<T extends (...args: any[]) => any>(action: string, funcToWrap: T): T {
   const newFunc = function (...args: Parameters<T>): ReturnType<T> {
     const logEntry: LogEntry = {
-      timestamp: new Date().toISOString(),
+      timestamp: new Date(),
       sector: 5,
       action,
       actionParameters: JSON.stringify(args),

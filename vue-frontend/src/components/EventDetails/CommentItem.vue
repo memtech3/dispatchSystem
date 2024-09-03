@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <a href="#" class="list-group-item list-group-item-action d-flex  p-2 gap-2" aria-current="true">
+  <a href="#" class="list-group-item list-group-item-action d-flex p-2 gap-2">
     <img
       src="https://github.com/twbs.png"
       alt="twbs"
@@ -16,12 +16,12 @@ defineProps<{
       height="32"
       class="rounded-circle flex-shrink-0"
     />
-    <div class="d-flex gap-2 w-100 justify-content-between">
-      <div>
+    <div class="w-100">
+      <div class="d-flex flex-row w-100 justify-content-between">
         <h6 class="mb-0">{{ source }}</h6>
-        <p class="mb-0 opacity-75">{{ comment }}</p>
+        <small class="opacity-50 text-nowrap">{{ when }}</small>
       </div>
-      <small class="opacity-50 text-nowrap">{{ when }}</small>
+      <p class="mb-0 opacity-75">{{ comment }}</p>
     </div>
   </a>
 </template>

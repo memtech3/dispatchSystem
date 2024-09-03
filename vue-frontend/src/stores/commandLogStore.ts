@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export type LogEntry = {
-  timestamp: string
+  timestamp: Date
   sector: number
   action: string
   actionParameters: string

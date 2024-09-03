@@ -18,7 +18,6 @@ const associatedEntries = computed(() => {
 </script>
 <template>
   <div class="row g-3">
-    <h1>Comments</h1>
     <InputTextArea id="commentsTextArea" label="Add Comment" ariaDescription="Add comment" />
     <div class="list-group">
       <CommentItem
@@ -27,7 +26,7 @@ const associatedEntries = computed(() => {
         commentId="000"
         :comment="entry.action + ' ' + entry.actionParameters"
         :source="entry.user"
-        :when="entry.timestamp"
+        :when="entry.timestamp.toLocaleString()"
       />
     </div>
   </div>
