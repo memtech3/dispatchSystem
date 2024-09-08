@@ -10,29 +10,29 @@ export type Argument = {
   required: boolean
 }
 
-export class Command {
+export class CommandBarCmd {
   name: string
   aliases: string[]
   argTypes: Argument[]
-  handler: (args: string[]) => void | Error
+  execute: (args: string[]) => void
 
   constructor(
     name: string,
     aliases: string[],
     argTypes: Argument[],
-    handler: (args: string[]) => void | Error
+    execute: (args: string[]) => void
   ) {
     this.name = name
     this.aliases = aliases
     this.argTypes = argTypes
-    this.handler = handler
+    this.execute = execute
   }
 }
 
 export class CommandList {
-  private commands: Command[]
+  private commands: CommandBarCmd[]
 
-  constructor(commands: Command[]) {
+  constructor(commands: CommandBarCmd[]) {
     this.commands = commands
   }
 
@@ -41,18 +41,13 @@ export class CommandList {
       (command) => command.name === tokens[0] || command.aliases.includes(tokens[0])
     )
     if (command) {
-      const output: void | Error = command.handler(tokens.slice(1))
-      if (output instanceof Error) {
-        consoleStateStore.value.addCommandOutput(tokens.join('.'), 'error', output.message)
-      } else {
-        consoleStateStore.value.addCommandOutput(tokens.join('.'), 'type', 'success')
-      }
+      command.execute(tokens.slice(1))
     } else {
-      consoleStateStore.value.addCommandOutput(tokens.join('.'), 'error', 'command not found')
+      console.log(tokens.join('.'), 'error', 'command not found')
     }
   }
 
-  getCommands(): Command[] {
+  getCommands(): CommandBarCmd[] {
     return this.commands
   }
 }
