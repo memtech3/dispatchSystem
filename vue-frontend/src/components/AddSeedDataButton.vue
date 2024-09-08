@@ -8,7 +8,7 @@ import { CadEventEntity } from '@/stores/cadEvents'
 import { seedUnits } from '@/stores/seedData/units'
 import { seedEvents } from '@/stores/seedData/cadEvents'
 
-import { newEvent, newUnit, attachUnitToEvent } from '@/composables/commandHandlers'
+import { newEvent, newUnit, attachUnitToEvent } from '@/composables/oldCommandHandlers'
 
 const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)

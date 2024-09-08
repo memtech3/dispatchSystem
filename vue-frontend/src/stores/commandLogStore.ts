@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { UnitCommandResult } from '@/composables/newCommands'
+import type { UnitCommandResult } from '@/composables/commands'
 
 export type LogEntry = {
   timestamp: Date

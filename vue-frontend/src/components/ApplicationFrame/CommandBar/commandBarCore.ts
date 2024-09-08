@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { useConsoleStateStore } from '@/stores/consoleState'
-import type { Command } from '@/composables/newCommands'
-import { invokeCommand } from '@/composables/newCommands'
+import type { Command } from '@/composables/commands'
+import { invokeCommand } from '@/composables/commands'
 
 const consoleStateStore = computed(() => {
   return useConsoleStateStore()

@@ -17,8 +17,8 @@ import {
   LogCmd,
   OutOfServiceCmd,
   MiscCmd
-} from '@/composables/newCommands'
-import type { UnitCommand, UnitEventCommand } from '@/composables/newCommands'
+} from '@/composables/commands'
+import type { UnitCommand, UnitEventCommand } from '@/composables/commands'
 
 const consoleStateStore = computed(() => {
   return useConsoleStateStore()
