@@ -4,8 +4,6 @@ import { useRepo } from 'pinia-orm'
 import { CadEventEntity } from '@/stores/cadEvents'
 import { useConsoleStateStore } from '@/stores/consoleState'
 
-import InputText from '@/components/Common/InputText.vue'
-import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 import CommentsPanel from './CommentsPanel.vue'
 import EventCard from '@/components/EventsBoard/EventCard.vue'
 
