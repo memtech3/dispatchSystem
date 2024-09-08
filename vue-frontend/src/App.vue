@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import AppNavbar from '@/components/ApplicationFrame/AppNavbar.vue'
 import CommandBar from '@/components/ApplicationFrame/CommandBar/CommandBar.vue'
+import StatusBar from './components/ApplicationFrame/StatusBar.vue';
 </script>
 <template>
   <div id="mainGridContainer">
@@ -13,6 +14,7 @@ import CommandBar from '@/components/ApplicationFrame/CommandBar/CommandBar.vue'
       </RouterView>
     </main>
     <CommandBar id="appCommandBar" />
+    <StatusBar />
   </div>
 </template>
 
