@@ -4,19 +4,12 @@ import { useRepo } from 'pinia-orm'
 import { UnitEntity } from '@/stores/units'
 import { CadEventEntity } from '@/stores/cadEvents'
 
-import { useCommandLog } from '@/stores/commandLogStore'
-import type { LogEntry } from '@/stores/commandLogStore'
-
 type CommandHandlerResult =
   | {
       associatedUnits: Array<string>
       associatedEvents: Array<string>
     }
   | Error
-
-const commandLog = computed(() => {
-  return useCommandLog()
-})
 
 const unitsRepo = computed(() => {
   return useRepo(UnitEntity)
@@ -28,25 +21,7 @@ const cadEventsRepo = computed(() => {
 
 function withLogging<T extends (...args: any[]) => any>(action: string, funcToWrap: T): T {
   const newFunc = function (...args: Parameters<T>): ReturnType<T> {
-    const logEntry: LogEntry = {
-      timestamp: new Date(),
-      sector: 5,
-      action,
-      actionParameters: JSON.stringify(args),
-      user: 'mguttman',
-      associatedEvents: [],
-      associatedUnits: [],
-      result: true
-    }
-
     const result = funcToWrap(...args)
-    logEntry.associatedEvents = result.associatedEvents
-    logEntry.associatedUnits = result.associatedUnits
-    if (result instanceof Error) {
-      logEntry.result = false
-    }
-
-    commandLog.value.addLogEntry(logEntry)
 
     return result
   } as T

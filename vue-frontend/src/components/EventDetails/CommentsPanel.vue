@@ -13,7 +13,7 @@ const commandLog = useCommandLog()
 const associatedEntries = computed(() => {
   return commandLog
     .getLog()
-    .value.filter((entry) => entry.associatedEvents.includes(props.selectedEventId))
+    .value.filter((entry) => entry.command.associatedEvent == props.selectedEventId)
 })
 </script>
 <template>
@@ -22,9 +22,15 @@ const associatedEntries = computed(() => {
     <div class="list-group">
       <CommentItem
         v-for="entry in associatedEntries.slice().reverse()"
-        v-bind:key="entry.timestamp"
+        v-bind:key="entry.timestamp.toString()"
         commentId="000"
-        :comment="entry.action + ' ' + entry.actionParameters"
+        :comment="
+          entry.command.unitNewStatus +
+          ' ' +
+          entry.command.associatedUnits +
+          ' ' +
+          entry.command.comment
+        "
         :source="entry.user"
         :when="entry.timestamp.toLocaleString()"
       />

@@ -5,7 +5,6 @@ import { UnitEntity } from '@/stores/units'
 import { CadEventEntity } from '@/stores/cadEvents'
 
 import { useCommandLog } from '@/stores/commandLogStore'
-import type { LogEntry } from '@/stores/commandLogStore'
 
 const commandLog = computed(() => {
   return useCommandLog()
@@ -19,7 +18,7 @@ const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
 })
 
-type UnitCommandResult = {
+export type UnitCommandResult = {
   associatedUnits?: string[]
   associatedEvent?: string
   unitNewStatus?: string
@@ -30,17 +29,30 @@ export interface Command {
   run(): UnitCommandResult
 }
 
-function invokeCommand(cmd: Command) {
-  const result = cmd.run()
-  console.log(result)
+export abstract class UnitCommand implements Command {
+  constructor(
+    protected unitId: string,
+    protected comment?: string
+  ) {}
+  abstract run(): UnitCommandResult
 }
 
-class InServiceCmd implements Command {
+export abstract class UnitEventCommand implements Command {
   constructor(
-    private unitId: string,
-    private comment?: string
+    protected unitId: string,
+    protected eventId: string,
+    protected comment?: string
   ) {}
+  abstract run(): UnitCommandResult
+}
 
+export function invokeCommand(cmd: Command) {
+  const result = cmd.run()
+  console.log(result)
+  commandLog.value.addLogEntry(result)
+}
+
+export class InServiceCmd extends UnitCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -51,13 +63,7 @@ class InServiceCmd implements Command {
   }
 }
 
-class DispatchCmd implements Command {
-  constructor(
-    private unitId: string,
-    private eventId: string,
-    private comment?: string
-  ) {}
-
+export class DispatchCmd extends UnitEventCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -74,13 +80,7 @@ class DispatchCmd implements Command {
   }
 }
 
-class AknowledgeCmd implements Command {
-  constructor(
-    private unitId: string,
-    private eventId?: string,
-    private comment?: string
-  ) {}
-
+export class AknowledgeCmd extends UnitEventCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -96,13 +96,7 @@ class AknowledgeCmd implements Command {
   }
 }
 
-class EnRouteCmd implements Command {
-  constructor(
-    private unitId: string,
-    private eventId?: string,
-    private comment?: string
-  ) {}
-
+export class EnRouteCmd extends UnitEventCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -117,13 +111,7 @@ class EnRouteCmd implements Command {
     }
   }
 }
-class ArriveCmd implements Command {
-  constructor(
-    private unitId: string,
-    private eventId?: string,
-    private comment?: string
-  ) {}
-
+export class ArriveCmd extends UnitEventCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -139,12 +127,7 @@ class ArriveCmd implements Command {
   }
 }
 
-class FreeCmd implements Command {
-  constructor(
-    private unitId: string,
-    private comment?: string
-  ) {}
-
+export class FreeCmd extends UnitCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -160,13 +143,7 @@ class FreeCmd implements Command {
   }
 }
 
-class ClearCmd implements Command {
-  constructor(
-    private unitId: string,
-    private eventId?: string,
-    private comment?: string
-  ) {}
-
+export class ClearCmd extends UnitEventCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -183,7 +160,7 @@ class ClearCmd implements Command {
   }
 }
 
-class LogCmd implements Command {
+export class LogCmd implements Command {
   constructor(
     private comment: string,
     private unitId: string,
@@ -198,13 +175,7 @@ class LogCmd implements Command {
     }
   }
 }
-class MiscCmd implements Command {
-  constructor(
-    private unitId: string,
-    private eventId?: string,
-    private comment?: string
-  ) {}
-
+export class MiscCmd extends UnitEventCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -220,12 +191,7 @@ class MiscCmd implements Command {
   }
 }
 
-class OutOfServiceCmd implements Command {
-  constructor(
-    private unitId: string,
-    private comment?: string
-  ) {}
-
+export class OutOfServiceCmd extends UnitCommand {
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {

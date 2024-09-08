@@ -1,5 +1,7 @@
 import { computed } from 'vue'
 import { useConsoleStateStore } from '@/stores/consoleState'
+import type { Command } from '@/composables/newCommands'
+import { invokeCommand } from '@/composables/newCommands'
 
 const consoleStateStore = computed(() => {
   return useConsoleStateStore()
@@ -14,40 +16,41 @@ export class CommandBarCmd {
   name: string
   aliases: string[]
   argTypes: Argument[]
-  execute: (args: string[]) => void
+  mapArgsToCommand: (args: string[]) => Command
 
   constructor(
     name: string,
     aliases: string[],
     argTypes: Argument[],
-    execute: (args: string[]) => void
+    mapArgsToCommand: (args: string[]) => Command
   ) {
     this.name = name
     this.aliases = aliases
     this.argTypes = argTypes
-    this.execute = execute
+    this.mapArgsToCommand = mapArgsToCommand
   }
 }
 
 export class CommandList {
-  private commands: CommandBarCmd[]
+  private commandBarCmds: CommandBarCmd[]
 
-  constructor(commands: CommandBarCmd[]) {
-    this.commands = commands
+  constructor(commandBarCmds: CommandBarCmd[]) {
+    this.commandBarCmds = commandBarCmds
   }
 
   runCommand(tokens: string[]): void {
-    const command = this.commands.find(
-      (command) => command.name === tokens[0] || command.aliases.includes(tokens[0])
+    const commandBarCmd = this.commandBarCmds.find(
+      (commandBarCmd) =>
+        commandBarCmd.name === tokens[0] || commandBarCmd.aliases.includes(tokens[0])
     )
-    if (command) {
-      command.execute(tokens.slice(1))
+    if (commandBarCmd) {
+      invokeCommand(commandBarCmd.mapArgsToCommand(tokens.slice(1)))
     } else {
       console.log(tokens.join('.'), 'error', 'command not found')
     }
   }
 
   getCommands(): CommandBarCmd[] {
-    return this.commands
+    return this.commandBarCmds
   }
 }
