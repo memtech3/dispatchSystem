@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { CommandBarCmd, CommandList } from './commandCore'
+import { CommandBarCmd, CommandList } from './commandBarCore'
 
 import { newEvent, attachUnitToEvent } from '@/composables/commandHandlers'
 import { useConsoleStateStore } from '@/stores/consoleState'

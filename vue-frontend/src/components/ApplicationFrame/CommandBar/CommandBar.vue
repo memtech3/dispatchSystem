@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
-import { commandList } from './commands'
+import { commandList } from './commandBarCmds'
 import { useConsoleStateStore } from '@/stores/consoleState'
 
 const consoleStateStore = computed(() => {
