@@ -8,23 +8,32 @@ import { CadEventEntity } from '@/stores/cadEvents'
 import { seedUnits } from '@/stores/seedData/units'
 import { seedEvents } from '@/stores/seedData/cadEvents'
 
-import { newEvent, newUnit, attachUnitToEvent } from '@/composables/oldCommandHandlers'
+import { DispatchCmd, invokeCommand } from '@/composables/commands'
 
 const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
 })
 
+const unitsRepo = computed(() => {
+  return useRepo(UnitEntity)
+})
+
 const addData = () => {
-  seedUnits.forEach((unit) => {
-    newUnit(new UnitEntity(unit))
-  })
+  unitsRepo.value.insert(seedUnits)
+  cadEventsRepo.value.insert(seedEvents)
 
-  seedEvents.forEach((event) => {
-    newEvent(new CadEventEntity(event))
-  })
-
-  attachUnitToEvent('ALS-5', cadEventsRepo.value.where('eventType', 'Medical').get()[0].id)
-  attachUnitToEvent('E-12', cadEventsRepo.value.where('eventType', 'Fire').withAll().get()[0].id)
+  invokeCommand(
+    new DispatchCmd(
+      unitsRepo.value.where('callsign', 'ALS-5').get()[0].id,
+      cadEventsRepo.value.where('eventType', 'Medical').get()[0].id
+    )
+  )
+  invokeCommand(
+    new DispatchCmd(
+      unitsRepo.value.where('callsign', 'E-12').get()[0].id,
+      cadEventsRepo.value.where('eventType', 'Fire').get()[0].id
+    )
+  )
 }
 </script>
 <template>
