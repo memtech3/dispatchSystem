@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <a href="#" class="list-group-item list-group-item-action d-flex p-2 gap-2">
+  <li class="list-group-item list-group-item-action d-flex p-2 gap-2">
     <img
       src="https://github.com/twbs.png"
       alt="twbs"
@@ -23,5 +23,5 @@ defineProps<{
       </div>
       <p class="mb-0 opacity-75">{{ comment }}</p>
     </div>
-  </a>
+  </li>
 </template>

@@ -19,7 +19,7 @@ const associatedEntries = computed(() => {
 <template>
   <div class="row g-3">
     <InputTextArea id="commentsTextArea" label="Add Comment" ariaDescription="Add comment" />
-    <div class="list-group">
+    <ul class="list-group p-2">
       <CommentItem
         v-for="entry in associatedEntries.slice().reverse()"
         v-bind:key="entry.timestamp.toString()"
@@ -34,6 +34,6 @@ const associatedEntries = computed(() => {
         :source="entry.user"
         :when="entry.timestamp.toLocaleString()"
       />
-    </div>
+    </ul>
   </div>
 </template>
