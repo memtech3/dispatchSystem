@@ -28,19 +28,19 @@ const currentCadEvent = computed(() => {
         <div>
           <EventCard
             :id="currentCadEvent?.id"
-            :priority="5"
+            :priority="currentCadEvent?.priority"
             priority-clr="green"
             type-code="2319"
             :type-description="currentCadEvent?.eventType"
             type-icon="bi bi-virus"
             :location="currentCadEvent?.location"
             :assigned-units="currentCadEvent?.assignedUnits"
-            created-time="11:11 PM"
+            :created-time="currentCadEvent?.createdAt.toLocaleString()"
             class="border-bottom"
           />
         </div>
         <div class="card-body flex-fill overflow-auto">
-          <p>Reporting Party: {{ currentCadEvent?.reportingParty }}</p>
+          <p>Reporting Party: {{ currentCadEvent?.reportingParties }}</p>
           <p>Narrative: {{ currentCadEvent?.narrative }}</p>
           <CommentsPanel :selected-event-id="consoleStateStore.getSelectedEvent()" />
         </div>

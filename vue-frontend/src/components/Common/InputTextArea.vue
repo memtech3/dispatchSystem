@@ -5,7 +5,6 @@ const model = defineModel()
 defineProps<{
   id: string
   label: string
-  ariaDescription: string
 }>()
 
 const inputRef = ref()

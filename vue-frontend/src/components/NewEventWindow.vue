@@ -3,7 +3,7 @@ import { ref, nextTick, computed } from 'vue'
 import { VueWinBox } from 'vue-winbox'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { useRepo } from 'pinia-orm'
-import { CadEventEntity } from '@/stores/cadEvents'
+import { CadEventEntity, ReportingParty } from '@/stores/cadEvents'
 
 import InputText from '@/components/Common/InputText.vue'
 import InputTextArea from '@/components/Common/InputTextArea.vue'
@@ -13,6 +13,7 @@ const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
 })
 const cadEventRef = ref(<CadEventEntity>{})
+const reportingPartyRef = ref(<ReportingParty>{})
 const formFirstInputRef = ref()
 
 function createCadEvent() {
@@ -20,8 +21,10 @@ function createCadEvent() {
     console.log('Warning: event is empty')
     return false
   } else {
+    cadEventRef.value.reportingParties = [reportingPartyRef.value]
     cadEventsRepo.value.insert(cadEventRef.value)
     cadEventRef.value = <CadEventEntity>{}
+    reportingPartyRef.value = <ReportingParty>{}
     return true
   }
 }
@@ -35,7 +38,9 @@ const options = {
   overflow: true,
   index: 2000,
   x: 'center',
-  y: 'bottom'
+  y: 'center',
+  height: 600,
+  width: 400
 }
 
 const keys = useMagicKeys()
@@ -70,7 +75,7 @@ whenever(keys.Escape, () => {
       @close="windowIsOpenRef = false"
     >
       <form
-        class="row gy-1 p-2"
+        class="row g-3 mx-1 py-1"
         autocomplete="off"
         @submit.prevent="createCadEvent(), wbRef.winbox.close()"
       >
@@ -81,17 +86,55 @@ whenever(keys.Escape, () => {
           v-model="cadEventRef.location"
           ref="formFirstInputRef"
         />
-        <InputText class="col-md-6" id="type" label="Event Type" v-model="cadEventRef.eventType" />
-        <InputText class="col-md-6" id="subtype" label="Event Subtype" />
-        <InputText class="col-md-6" label="Source" id="callSource" />
+        <InputText class="col-8" id="type" label="Event Type" v-model="cadEventRef.eventType" />
+        <InputText class="col-4" id="priority" label="Priority" v-model="cadEventRef.priority" />
+
         <InputText
-          class="col-md-6"
-          label="Reporting Party"
-          id="reportingParty"
-          v-model="cadEventRef.reportingParty"
+          class="col-4"
+          id="firstName"
+          label="First Name"
+          v-model="reportingPartyRef.firstName"
         />
-        <InputText class="col-md-12" label="Callback Number" id="callBackNumber" />
-        <InputText class="col-md-12" label="Additional Persons" id="additionalPersons" />
+        <InputText
+          class="col-4"
+          id="middleName"
+          label="Middle Name"
+          v-model="reportingPartyRef.middleName"
+        />
+        <InputText
+          class="col-4"
+          id="lastName"
+          label="Last Name"
+          v-model="reportingPartyRef.lastName"
+        />
+
+        <InputText
+          class="col-8"
+          id="fromPhone"
+          label="From Phone"
+          v-model="reportingPartyRef.fromPhone"
+        />
+        <InputText
+          class="col-4"
+          id="howReported"
+          label="How Reported"
+          v-model="reportingPartyRef.howReported"
+        />
+
+        <InputText
+          class="col-12"
+          id="callbackPhone"
+          label="Callback Phone"
+          v-model="reportingPartyRef.callbackPhone"
+        />
+
+        <InputText
+          class="col-12"
+          id="reportingPartyLocation"
+          label="Reporting Party Location"
+          v-model="reportingPartyRef.reportingPartyLocation"
+        />
+
         <InputTextArea
           class="col-md-12"
           label="Narrative"
