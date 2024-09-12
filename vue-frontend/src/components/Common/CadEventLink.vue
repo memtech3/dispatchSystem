@@ -4,5 +4,5 @@ defineProps<{
 }>()
 </script>
 <template>
-  <a href="">{{ cadEventId }}</a>
+  <a class="link-body-emphasis" href="">{{ cadEventId }}</a>
 </template>

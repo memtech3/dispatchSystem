@@ -13,5 +13,5 @@ const unitsRepo = computed(() => {
 })
 </script>
 <template>
-  <a href="">{{ unitsRepo.find(unitId)?.callsign }}</a>
+  <a class="link-body-emphasis" href="">{{ unitsRepo.find(unitId)?.callsign }}</a>
 </template>
