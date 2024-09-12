@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CommentItem from './CommentItem.vue'
 import InputTextArea from '@/components/Common/InputTextArea.vue'
+import UnitLink from '@/components/Common/UnitLink.vue'
 import { useCommandLog } from '@/stores/commandLogStore'
 import { computed } from 'vue'
 
@@ -11,9 +12,7 @@ const props = defineProps<{
 const commandLog = useCommandLog()
 
 const associatedEntries = computed(() => {
-  return commandLog
-    .getLog()
-    .value.filter((entry) => entry.command.eventId == props.selectedEventId)
+  return commandLog.getLog().value.filter((entry) => entry.command.eventId == props.selectedEventId)
 })
 </script>
 <template>
@@ -24,18 +23,12 @@ const associatedEntries = computed(() => {
         v-for="entry in associatedEntries.slice().reverse()"
         v-bind:key="entry.timestamp.toString()"
       >
-        <CommentItem
-          commentId="000"
-          :comment="
-            entry.command.commandName +
-            ' ' +
-            entry.command.unitId +
-            ' ' +
-            entry.command.comment
-          "
-          :source="entry.user"
-          :when="entry.timestamp.toLocaleString()"
-        />
+        <CommentItem commentId="000" :source="entry.user" :when="entry.timestamp.toLocaleString()">
+          <slot>
+            {{ entry.command.commandName }} <UnitLink :unitId="entry.command.unitId" />
+            {{ entry.command.comment }}
+          </slot>
+        </CommentItem>
       </li>
     </ul>
   </div>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 defineProps<{
   commentId: string
-  comment: string
   when: string
   source: string
 }>()
@@ -21,7 +20,9 @@ defineProps<{
         <small class="opacity-50 px-2 flex-grow-1">{{ source }}</small>
         <small class="opacity-50">{{ when }}</small>
       </div>
-      <p class="mb-0 opacity-75">{{ comment }}</p>
+      <p class="mb-0 opacity-75">
+        <slot></slot>
+      </p>
     </div>
   </div>
 </template>
