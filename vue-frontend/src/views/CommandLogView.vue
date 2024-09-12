@@ -7,14 +7,16 @@ const commandLog = useCommandLog()
   <table class="table table-sm">
     <thead>
       <tr>
-        <th v-for="(value, key) in commandLog.getLog().value[0]" v-bind:key="key" scope="col">
-          {{ key }}
-        </th>
+        <th scope="col">Timestamp</th>
+        <th scope="col">Command</th>
+        <th scope="col">User</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="activity in commandLog.getLog().value" v-bind:key="activity.timestamp">
-        <td v-for="(value, key) in activity" v-bind:key="key">{{ value }}</td>
+      <tr v-for="activity in commandLog.getLog().value" v-bind:key="activity.timestamp.toLocaleString()">
+        <td>{{ activity.timestamp.toLocaleString() }}</td>
+        <td>{{ activity.command }}</td>
+        <td>{{ activity.user }}</td>
       </tr>
     </tbody>
   </table>

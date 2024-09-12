@@ -13,21 +13,30 @@ const commandLog = useCommandLog()
 const associatedEntries = computed(() => {
   return commandLog
     .getLog()
-    .value.filter((entry) => entry.associatedEvents.includes(props.selectedEventId))
+    .value.filter((entry) => entry.command.associatedEvent == props.selectedEventId)
 })
 </script>
 <template>
   <div class="row g-3">
     <InputTextArea id="commentsTextArea" label="Add Comment" ariaDescription="Add comment" />
-    <div class="list-group">
-      <CommentItem
+    <ul class="list-group p-2">
+      <li
         v-for="entry in associatedEntries.slice().reverse()"
-        v-bind:key="entry.timestamp"
-        commentId="000"
-        :comment="entry.action + ' ' + entry.actionParameters"
-        :source="entry.user"
-        :when="entry.timestamp.toLocaleString()"
-      />
-    </div>
+        v-bind:key="entry.timestamp.toString()"
+      >
+        <CommentItem
+          commentId="000"
+          :comment="
+            entry.command.unitNewStatus +
+            ' ' +
+            entry.command.associatedUnits +
+            ' ' +
+            entry.command.comment
+          "
+          :source="entry.user"
+          :when="entry.timestamp.toLocaleString()"
+        />
+      </li>
+    </ul>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
-import { commandList } from './commands'
+import { commandList } from './commandBarCmds'
 import { useConsoleStateStore } from '@/stores/consoleState'
 
 const consoleStateStore = computed(() => {
@@ -74,11 +74,13 @@ const filteredCommands = computed(() => {
         :class="{ visible: inputFocused, invisible: !inputFocused }"
       >
         <li
-          class="list-group-item p-1 bg-body-secondary"
+          class="list-group-item px-1 py-0 bg-body-secondary"
           v-for="command in filteredCommands"
           :key="command.name"
         >
-          <p class="m-0">{{ command.name }}</p>
+          <small
+            ><p class="fw-bold m-0">{{ command.name }}</p>
+          </small>
           <small>
             <span class="">
               {{ command.aliases }}

@@ -11,7 +11,7 @@ const inputRef = ref()
 defineExpose({ inputRef })
 </script>
 <template>
-  <div class="col-md-6">
+  <div class="col">
     <label for="{{id}}-input" class="form-label">{{ label }}</label>
     <input
       ref="inputRef"
