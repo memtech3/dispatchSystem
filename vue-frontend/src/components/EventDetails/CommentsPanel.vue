@@ -13,7 +13,7 @@ const commandLog = useCommandLog()
 const associatedEntries = computed(() => {
   return commandLog
     .getLog()
-    .value.filter((entry) => entry.command.associatedEvent == props.selectedEventId)
+    .value.filter((entry) => entry.command.eventId == props.selectedEventId)
 })
 </script>
 <template>
@@ -27,9 +27,9 @@ const associatedEntries = computed(() => {
         <CommentItem
           commentId="000"
           :comment="
-            entry.command.unitNewStatus +
+            entry.command.commandName +
             ' ' +
-            entry.command.associatedUnits +
+            entry.command.unitId +
             ' ' +
             entry.command.comment
           "

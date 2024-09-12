@@ -25,34 +25,40 @@ export type UnitCommandResult = {
   comment?: string
 }
 
-export interface Command {
-  run(): UnitCommandResult
+export abstract class Command {
+  abstract commandName: string
+  abstract run(): UnitCommandResult
 }
 
 export abstract class UnitCommand implements Command {
+  abstract commandName: string
   constructor(
-    protected unitId: string,
-    protected comment?: string
+    public unitId: string,
+    public comment?: string
   ) {}
   abstract run(): UnitCommandResult
 }
 
-export abstract class UnitEventCommand implements Command {
+export abstract class UnitEventCommand extends UnitCommand {
+  abstract commandName: string
   constructor(
-    protected unitId: string,
-    protected eventId: string,
-    protected comment?: string
-  ) {}
+    public unitId: string,
+    public eventId: string,
+    public comment?: string
+  ) {
+    super(unitId, comment)
+  }
   abstract run(): UnitCommandResult
 }
 
 export function invokeCommand(cmd: Command) {
   const result = cmd.run()
   console.log(result)
-  commandLog.value.addLogEntry(result)
+  commandLog.value.addLogEntry(cmd)
 }
 
 export class InServiceCmd extends UnitCommand {
+  commandName = 'InService'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -64,6 +70,7 @@ export class InServiceCmd extends UnitCommand {
 }
 
 export class DispatchCmd extends UnitEventCommand {
+  commandName = 'Dispatch'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -81,6 +88,7 @@ export class DispatchCmd extends UnitEventCommand {
 }
 
 export class AknowledgeCmd extends UnitEventCommand {
+  commandName = 'Aknowledge'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -97,6 +105,7 @@ export class AknowledgeCmd extends UnitEventCommand {
 }
 
 export class EnRouteCmd extends UnitEventCommand {
+  commandName = 'EnRoute'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -112,6 +121,7 @@ export class EnRouteCmd extends UnitEventCommand {
   }
 }
 export class ArriveCmd extends UnitEventCommand {
+  commandName = 'Arrive'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -128,6 +138,7 @@ export class ArriveCmd extends UnitEventCommand {
 }
 
 export class FreeCmd extends UnitCommand {
+  commandName = 'Free'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -144,6 +155,7 @@ export class FreeCmd extends UnitCommand {
 }
 
 export class ClearCmd extends UnitEventCommand {
+  commandName = 'Clear'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -160,22 +172,8 @@ export class ClearCmd extends UnitEventCommand {
   }
 }
 
-export class LogCmd implements Command {
-  constructor(
-    private comment: string,
-    private unitId: string,
-    private eventId?: string
-  ) {}
-
-  run() {
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      comment: this.comment
-    }
-  }
-}
 export class MiscCmd extends UnitEventCommand {
+  commandName = 'Misc'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -192,6 +190,7 @@ export class MiscCmd extends UnitEventCommand {
 }
 
 export class OutOfServiceCmd extends UnitCommand {
+  commandName = 'OutOfService'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -201,6 +200,25 @@ export class OutOfServiceCmd extends UnitCommand {
     return {
       associatedUnits: [this.unitId],
       unitNewStatus: 'Out of Service',
+      comment: this.comment
+    }
+  }
+}
+
+export class LogCmd extends Command {
+  commandName = 'Log'
+  constructor(
+    private comment: string,
+    private unitId: string,
+    private eventId?: string
+  ) {
+    super()
+  }
+
+  run() {
+    return {
+      associatedUnits: [this.unitId],
+      associatedEvent: this.eventId,
       comment: this.comment
     }
   }
