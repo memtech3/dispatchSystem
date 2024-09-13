@@ -20,8 +20,7 @@ const currentCadEvent = computed(() => {
 </script>
 
 <template>
-  <div class="card h-100" style="max-width: 540px">
-    <div class="row g-0 h-100">
+    <div class="row g-0 h-100 border">
       <div class="col-1 h-100 bg-body-tertiary">
         <!-- TODO: Navigation tabs go here -->
       </div>
@@ -40,7 +39,7 @@ const currentCadEvent = computed(() => {
             class="border-bottom"
           />
         </div>
-        <div class="card-body flex-fill overflow-auto p-0">
+        <div class="flex-fill overflow-auto">
           <div id="narrativeSection" class="border-bottom p-2">
             <p>Narrative: {{ currentCadEvent?.narrative }}</p>
           </div>
@@ -54,5 +53,4 @@ const currentCadEvent = computed(() => {
         </div>
       </div>
     </div>
-  </div>
 </template>
