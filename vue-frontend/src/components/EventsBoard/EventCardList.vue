@@ -20,7 +20,6 @@ const cadEventsRepo = computed(() => {
       :key="cadEvent.id"
       :id="cadEvent.id"
       :priority="cadEvent.priority"
-      priority-clr="green"
       type-code="2319"
       :type-description="cadEvent.eventType"
       type-icon="bi bi-virus"

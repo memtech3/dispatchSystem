@@ -87,7 +87,7 @@ whenever(keys.Escape, () => {
           ref="formFirstInputRef"
         />
         <InputText class="col-8" id="type" label="Event Type" v-model="cadEventRef.eventType" />
-        <InputText class="col-4" id="priority" label="Priority" v-model="cadEventRef.priority" />
+        <InputText class="col-4" id="priority" label="Priority" v-model.number="cadEventRef.priority" />
 
         <InputText
           class="col-4"

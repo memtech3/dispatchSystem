@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { UnitEntity } from '@/stores/units'
+import { computed } from 'vue'
 
-defineProps<{
+const props = defineProps<{
   id: string
   priority: number
-  priorityClr: string
   typeCode: string
   typeDescription: string
   typeIcon: string
@@ -13,8 +13,28 @@ defineProps<{
   assignedUnits: UnitEntity[]
   ceatedTime: string
 }>()
-</script>
 
+const priorityClr = computed(() => {
+  switch (props.priority) {
+    case 1:
+      return 'red'
+    case 2:
+      return 'orange'
+    case 3:
+      return 'yellow'
+    case 4:
+      return 'green'
+    case 5:
+      return 'blue'
+    case 6:
+      return 'teal'
+    case 7:
+      return 'purple'
+    default:
+      return 'NO MATCH'
+  }
+})
+</script>
 <template>
   <div class="list-group-item list-group-item-action eventItemGrid p-0" aria-current="true">
     <div class="triagePane d-flex flex-column" :class="'priorityColor-' + priorityClr">
@@ -49,13 +69,13 @@ defineProps<{
   }
 }
 
-@include priorityColor('blue');
-@include priorityColor('purple');
 @include priorityColor('red');
 @include priorityColor('orange');
 @include priorityColor('yellow');
 @include priorityColor('green');
+@include priorityColor('blue');
 @include priorityColor('teal');
+@include priorityColor('purple');
 
 .eventItemGrid {
   display: grid;

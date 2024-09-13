@@ -20,7 +20,7 @@ export class CadEventEntity extends Model {
   @Uid({ size: 3 }) declare id: string
   @Attr(Date) declare createdAt: Date
   @Str('') declare eventType: string
-  @Num(0) declare priority: number
+  @Num(7) declare priority: number
   @Str('') declare location: string
   @Str('') declare narrative: string
   @Attr([ReportingParty]) declare reportingParties: ReportingParty[]
