@@ -41,7 +41,8 @@ export class CommandList {
   runCommand(tokens: string[]): void {
     const commandBarCmd = this.commandBarCmds.find(
       (commandBarCmd) =>
-        commandBarCmd.name === tokens[0] || commandBarCmd.aliases.includes(tokens[0])
+        commandBarCmd.name === tokens[0].toLocaleLowerCase() ||
+        commandBarCmd.aliases.includes(tokens[0].toLocaleLowerCase())
     )
     if (commandBarCmd) {
       invokeCommand(commandBarCmd.mapArgsToCommand(tokens.slice(1)))

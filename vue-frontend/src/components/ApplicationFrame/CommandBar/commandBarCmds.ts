@@ -29,7 +29,10 @@ const unitsRepo = computed(() => {
 })
 
 function getUnitIdByCallsign(callsign: string): string {
-  const unit = unitsRepo.value.all().find((unit) => unit.callsign === callsign)
+  const formattedCallsign = callsign.replace(/-/g, '').toLowerCase()
+  const unit = unitsRepo.value
+    .all()
+    .find((unit) => unit.callsign.replace(/-/g, '').toLowerCase() === formattedCallsign)
   return unit ? unit.id : ''
 }
 
