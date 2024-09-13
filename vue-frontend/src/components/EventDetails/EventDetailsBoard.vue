@@ -6,6 +6,7 @@ import { useConsoleStateStore } from '@/stores/consoleState'
 
 import CommentsPanel from './CommentsPanel.vue'
 import EventCard from '@/components/EventsBoard/EventCard.vue'
+import ReportingPartiesPanel from './ReportingPartiesPanel.vue'
 
 const consoleStateStore = useConsoleStateStore()
 
@@ -40,8 +41,8 @@ const currentCadEvent = computed(() => {
           />
         </div>
         <div class="card-body flex-fill overflow-auto">
-          <p>Reporting Party: {{ currentCadEvent?.reportingParties }}</p>
           <p>Narrative: {{ currentCadEvent?.narrative }}</p>
+          <ReportingPartiesPanel :reproting-parties="currentCadEvent?.reportingParties" />
           <CommentsPanel :selected-event-id="consoleStateStore.getSelectedEvent()" />
         </div>
       </div>
