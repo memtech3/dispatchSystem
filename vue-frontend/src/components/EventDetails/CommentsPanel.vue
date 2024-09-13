@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CommentItem from './CommentItem.vue'
 import InputTextArea from '@/components/Common/InputTextArea.vue'
-import UnitLink from '@/components/Common/UnitLink.vue'
+import UnitLinkList from '@/components/Common/SpecialLinks/UnitLinkList.vue'
 import { useCommandLog } from '@/stores/commandLogStore'
 import { computed } from 'vue'
 
@@ -26,8 +26,10 @@ const associatedEntries = computed(() => {
         <CommentItem commentId="000" :source="entry.user" :when="entry.timestamp.toLocaleString()">
           <slot>
             {{ entry.command.getLogInfo().logString }}
-            <UnitLink :unitId="entry.command.getLogInfo().associatedUnits[0]" />
-            {{ entry.command.getLogInfo().comment }}
+            <UnitLinkList :unitIds="entry.command.getLogInfo().associatedUnits" />
+            <span v-if="entry.command.getLogInfo().comment">
+              - {{ entry.command.getLogInfo().comment }}</span
+            >
           </slot>
         </CommentItem>
       </li>
