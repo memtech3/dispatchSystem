@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { UnitCommandResult } from '@/composables/commands'
+import type { Command } from '@/composables/commands'
 
 export type LogEntry = {
   timestamp: Date
-  command: UnitCommandResult
+  command: Command
   user: string
 }
 
@@ -14,10 +14,10 @@ export const useCommandLog = defineStore('commandLog', () => {
   function getLog() {
     return commandLog
   }
-  function addLogEntry(commandResult: UnitCommandResult) {
+  function addLogEntry(cmd: Command) {
     commandLog.value.push({
       timestamp: new Date(),
-      command: commandResult,
+      command: cmd,
       user: 'mguttman'
     })
   }

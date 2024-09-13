@@ -18,52 +18,73 @@ const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
 })
 
-export type UnitCommandResult = {
+export type CommandLogInfo = {
   associatedUnits?: string[]
-  associatedEvent?: string
-  unitNewStatus?: string
+  associatedEvents?: string[]
+  logString: string
   comment?: string
 }
 
-export interface Command {
-  run(): UnitCommandResult
+export abstract class Command {
+  abstract commandName: string
+  abstract run(): void
+  abstract getLogInfo(): CommandLogInfo
 }
 
 export abstract class UnitCommand implements Command {
+  abstract commandName: string
   constructor(
-    protected unitId: string,
-    protected comment?: string
+    public unitId: string,
+    public comment?: string
   ) {}
-  abstract run(): UnitCommandResult
+  abstract run(): void
+  getLogInfo(): CommandLogInfo {
+    return {
+      associatedUnits: [this.unitId],
+      logString: this.commandName,
+      comment: this.comment
+    }
+  }
 }
 
-export abstract class UnitEventCommand implements Command {
+export abstract class UnitEventCommand extends UnitCommand {
+  abstract commandName: string
   constructor(
-    protected unitId: string,
-    protected eventId: string,
-    protected comment?: string
-  ) {}
-  abstract run(): UnitCommandResult
+    public unitId: string,
+    public eventId: string,
+    public comment?: string
+  ) {
+    super(unitId, comment)
+  }
+  abstract run(): void
+  getLogInfo(): CommandLogInfo {
+    return {
+      associatedUnits: [this.unitId],
+      associatedEvents: [this.eventId],
+      logString: this.commandName,
+      comment: this.comment
+    }
+  }
 }
 
 export function invokeCommand(cmd: Command) {
-  const result = cmd.run()
-  console.log(result)
-  commandLog.value.addLogEntry(result)
+  cmd.run()
+  commandLog.value.addLogEntry(cmd)
 }
 
 export class InServiceCmd extends UnitCommand {
+  commandName = 'InService'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
       unit.status = 'Available'
       unitsRepo.value.update(unit)
     }
-    return { associatedUnits: [this.unitId], unitNewStatus: 'Available', comment: this.comment }
   }
 }
 
 export class DispatchCmd extends UnitEventCommand {
+  commandName = 'Dispatch'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -71,79 +92,55 @@ export class DispatchCmd extends UnitEventCommand {
       unit.assignedEventId = this.eventId
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Dispatched',
-      comment: this.comment
-    }
   }
 }
 
 export class AknowledgeCmd extends UnitEventCommand {
+  commandName = 'Aknowledge'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
       unit.status = 'Aknowledged'
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Aknowledged',
-      comment: this.comment
-    }
   }
 }
 
 export class EnRouteCmd extends UnitEventCommand {
+  commandName = 'EnRoute'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
       unit.status = 'EnRoute'
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'EnRoute',
-      comment: this.comment
-    }
   }
 }
 export class ArriveCmd extends UnitEventCommand {
+  commandName = 'Arrive'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
       unit.status = 'Arrived'
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Arrived',
-      comment: this.comment
-    }
   }
 }
 
 export class FreeCmd extends UnitCommand {
+  commandName = 'Free'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
       unit.status = 'Available'
       unit.assignedEvent = null
       unitsRepo.value.update(unit)
-    }
-    return {
-      associatedUnits: [this.unitId],
-      unitNewStatus: 'Freed',
-      comment: this.comment
     }
   }
 }
 
 export class ClearCmd extends UnitEventCommand {
+  commandName = 'Clear'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
@@ -151,56 +148,50 @@ export class ClearCmd extends UnitEventCommand {
       unit.assignedEvent = null
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Cleared',
-      comment: this.comment
-    }
   }
 }
 
-export class LogCmd implements Command {
-  constructor(
-    private comment: string,
-    private unitId: string,
-    private eventId?: string
-  ) {}
-
-  run() {
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      comment: this.comment
-    }
-  }
-}
 export class MiscCmd extends UnitEventCommand {
+  commandName = 'Misc'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
       unit.status = 'Misc'
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Misc',
-      comment: this.comment
-    }
   }
 }
 
 export class OutOfServiceCmd extends UnitCommand {
+  commandName = 'OutOfService'
   run() {
     const unit = unitsRepo.value.find(this.unitId)
     if (unit) {
       unit.status = 'Out of Service'
       unitsRepo.value.update(unit)
     }
+  }
+}
+
+export class LogCmd extends Command {
+  commandName = 'Log'
+  constructor(
+    private comment: string,
+    private unitId?: string,
+    private eventId?: string
+  ) {
+    super()
+  }
+
+  run() {
+    // Do nothing
+  }
+
+  getLogInfo(): CommandLogInfo {
     return {
-      associatedUnits: [this.unitId],
-      unitNewStatus: 'Out of Service',
+      associatedUnits: this.unitId ? [this.unitId] : undefined,
+      associatedEvents: this.eventId ? [this.eventId] : undefined,
+      logString: this.commandName,
       comment: this.comment
     }
   }
