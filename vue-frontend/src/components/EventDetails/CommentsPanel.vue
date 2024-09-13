@@ -25,8 +25,9 @@ const associatedEntries = computed(() => {
       >
         <CommentItem commentId="000" :source="entry.user" :when="entry.timestamp.toLocaleString()">
           <slot>
-            {{ entry.command.commandName }} <UnitLink :unitId="entry.command.unitId" />
-            {{ entry.command.comment }}
+            {{ entry.command.getLogInfo().logString }}
+            <UnitLink :unitId="entry.command.getLogInfo().associatedUnits[0]" />
+            {{ entry.command.getLogInfo().comment }}
           </slot>
         </CommentItem>
       </li>

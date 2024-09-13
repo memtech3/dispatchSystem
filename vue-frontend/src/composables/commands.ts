@@ -18,16 +18,17 @@ const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
 })
 
-export type UnitCommandResult = {
+export type CommandLogInfo = {
   associatedUnits?: string[]
-  associatedEvent?: string
-  unitNewStatus?: string
+  associatedEvents?: string[]
+  logString: string
   comment?: string
 }
 
 export abstract class Command {
   abstract commandName: string
-  abstract run(): UnitCommandResult
+  abstract run(): void
+  abstract getLogInfo(): CommandLogInfo
 }
 
 export abstract class UnitCommand implements Command {
@@ -36,7 +37,14 @@ export abstract class UnitCommand implements Command {
     public unitId: string,
     public comment?: string
   ) {}
-  abstract run(): UnitCommandResult
+  abstract run(): void
+  getLogInfo(): CommandLogInfo {
+    return {
+      associatedUnits: [this.unitId],
+      logString: this.commandName,
+      comment: this.comment
+    }
+  }
 }
 
 export abstract class UnitEventCommand extends UnitCommand {
@@ -48,12 +56,19 @@ export abstract class UnitEventCommand extends UnitCommand {
   ) {
     super(unitId, comment)
   }
-  abstract run(): UnitCommandResult
+  abstract run(): void
+  getLogInfo(): CommandLogInfo {
+    return {
+      associatedUnits: [this.unitId],
+      associatedEvents: [this.eventId],
+      logString: this.commandName,
+      comment: this.comment
+    }
+  }
 }
 
 export function invokeCommand(cmd: Command) {
-  const result = cmd.run()
-  console.log(result)
+  cmd.run()
   commandLog.value.addLogEntry(cmd)
 }
 
@@ -65,7 +80,6 @@ export class InServiceCmd extends UnitCommand {
       unit.status = 'Available'
       unitsRepo.value.update(unit)
     }
-    return { associatedUnits: [this.unitId], unitNewStatus: 'Available', comment: this.comment }
   }
 }
 
@@ -78,12 +92,6 @@ export class DispatchCmd extends UnitEventCommand {
       unit.assignedEventId = this.eventId
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Dispatched',
-      comment: this.comment
-    }
   }
 }
 
@@ -94,12 +102,6 @@ export class AknowledgeCmd extends UnitEventCommand {
     if (unit) {
       unit.status = 'Aknowledged'
       unitsRepo.value.update(unit)
-    }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Aknowledged',
-      comment: this.comment
     }
   }
 }
@@ -112,12 +114,6 @@ export class EnRouteCmd extends UnitEventCommand {
       unit.status = 'EnRoute'
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'EnRoute',
-      comment: this.comment
-    }
   }
 }
 export class ArriveCmd extends UnitEventCommand {
@@ -127,12 +123,6 @@ export class ArriveCmd extends UnitEventCommand {
     if (unit) {
       unit.status = 'Arrived'
       unitsRepo.value.update(unit)
-    }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Arrived',
-      comment: this.comment
     }
   }
 }
@@ -146,11 +136,6 @@ export class FreeCmd extends UnitCommand {
       unit.assignedEvent = null
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      unitNewStatus: 'Freed',
-      comment: this.comment
-    }
   }
 }
 
@@ -163,12 +148,6 @@ export class ClearCmd extends UnitEventCommand {
       unit.assignedEvent = null
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Cleared',
-      comment: this.comment
-    }
   }
 }
 
@@ -179,12 +158,6 @@ export class MiscCmd extends UnitEventCommand {
     if (unit) {
       unit.status = 'Misc'
       unitsRepo.value.update(unit)
-    }
-    return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
-      unitNewStatus: 'Misc',
-      comment: this.comment
     }
   }
 }
@@ -197,11 +170,6 @@ export class OutOfServiceCmd extends UnitCommand {
       unit.status = 'Out of Service'
       unitsRepo.value.update(unit)
     }
-    return {
-      associatedUnits: [this.unitId],
-      unitNewStatus: 'Out of Service',
-      comment: this.comment
-    }
   }
 }
 
@@ -209,16 +177,21 @@ export class LogCmd extends Command {
   commandName = 'Log'
   constructor(
     private comment: string,
-    private unitId: string,
+    private unitId?: string,
     private eventId?: string
   ) {
     super()
   }
 
   run() {
+    // Do nothing
+  }
+
+  getLogInfo(): CommandLogInfo {
     return {
-      associatedUnits: [this.unitId],
-      associatedEvent: this.eventId,
+      associatedUnits: this.unitId ? [this.unitId] : undefined,
+      associatedEvents: this.eventId ? [this.eventId] : undefined,
+      logString: this.commandName,
       comment: this.comment
     }
   }
