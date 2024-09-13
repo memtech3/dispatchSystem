@@ -40,10 +40,17 @@ const currentCadEvent = computed(() => {
             class="border-bottom"
           />
         </div>
-        <div class="card-body flex-fill overflow-auto">
-          <p>Narrative: {{ currentCadEvent?.narrative }}</p>
-          <ReportingPartiesPanel :reproting-parties="currentCadEvent?.reportingParties" />
-          <CommentsPanel :selected-event-id="consoleStateStore.getSelectedEvent()" />
+        <div class="card-body flex-fill overflow-auto p-0">
+          <div id="narrativeSection" class="border-bottom p-2">
+            <p>Narrative: {{ currentCadEvent?.narrative }}</p>
+          </div>
+          <div id="reportingPartiesSection" class="border-bottom p-2">
+            <span class="fw-bold"> Reporting Parties </span>
+            <ReportingPartiesPanel :reproting-parties="currentCadEvent?.reportingParties" />
+          </div>
+          <div id="commentsSection" class="border-bottom p-2">
+            <CommentsPanel :selected-event-id="consoleStateStore.getSelectedEvent()" />
+          </div>
         </div>
       </div>
     </div>

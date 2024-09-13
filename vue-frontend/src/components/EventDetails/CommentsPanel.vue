@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CommentItem from './CommentItem.vue'
-import InputTextArea from '@/components/Common/InputTextArea.vue'
+import InputText from '../Common/InputText.vue'
 import UnitLinkList from '@/components/Common/SpecialLinks/UnitLinkList.vue'
 import { useCommandLog } from '@/stores/commandLogStore'
 import { computed } from 'vue'
@@ -17,7 +17,7 @@ const associatedEntries = computed(() => {
 </script>
 <template>
   <div class="row g-3">
-    <InputTextArea id="commentsTextArea" label="Add Comment" ariaDescription="Add comment" />
+    <InputText id="commentsTextArea" label="Add Comment" ariaDescription="Add comment" />
     <ul class="list-group p-2">
       <li
         v-for="entry in associatedEntries.slice().reverse()"
