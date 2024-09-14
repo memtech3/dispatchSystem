@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import AppNavbar from '@/components/ApplicationFrame/AppNavbar.vue'
 import CommandBar from '@/components/ApplicationFrame/CommandBar/CommandBar.vue'
-import StatusBar from './components/ApplicationFrame/StatusBar.vue';
+import StatusBar from './components/ApplicationFrame/StatusBar.vue'
 </script>
 <template>
   <div id="mainGridContainer">
     <AppNavbar id="appNavbar" />
-    <main class="container-fluid px-0" id="appMain">
+    <main id="appMain">
       <RouterView v-slot="{ Component }">
         <keep-alive>
           <component :is="Component" />
@@ -38,6 +38,11 @@ import StatusBar from './components/ApplicationFrame/StatusBar.vue';
 #appMain {
   grid-area: main;
   overflow: auto;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
 }
 #appCommandBar {
   grid-area: commandBar;
