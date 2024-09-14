@@ -10,4 +10,6 @@ const meta: Meta<typeof AutoCompleteDropdown> = {
 export default meta
 type Story = StoryObj<typeof AutoCompleteDropdown>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: { id: 'sampleField', label: 'Sample Field', options: ['Option 1', 'Option 2'] }
+}
