@@ -56,6 +56,7 @@ const filteredOptions = computed(() => {
   .options {
     position: absolute;
     z-index: 9999;
+    width: inherit;
   }
   .dropdownIcon {
     display: inline-block;
