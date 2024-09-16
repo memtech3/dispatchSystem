@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { onKeyStroke } from '@vueuse/core'
+
 const model = defineModel()
 
 const props = defineProps<{
@@ -10,6 +12,7 @@ const props = defineProps<{
 
 const inputRef = ref()
 const inputFocused = ref(false)
+const currentIndex = ref(-1)
 
 defineExpose({ inputRef })
 
@@ -20,6 +23,19 @@ const filteredOptions = computed(() => {
     )
   } else {
     return props.options
+  }
+})
+
+onKeyStroke('ArrowDown', (e) => {
+  e.preventDefault()
+  if (currentIndex.value < filteredOptions.value.length - 1) {
+    currentIndex.value++
+  }
+})
+onKeyStroke('ArrowUp', (e) => {
+  e.preventDefault()
+  if (currentIndex.value > -1) {
+    currentIndex.value--
   }
 })
 </script>
@@ -34,20 +50,25 @@ const filteredOptions = computed(() => {
         class="flex-fill"
         id="{{id}}-input"
         @focus="inputFocused = true"
-        @blur="inputFocused = false"
+        @blur="(inputFocused = false), (currentIndex = -1)"
       />
       <span class="">
         <i class="dropdownIcon"></i>
       </span>
     </div>
     <ul class="list-group options" :class="{ visible: inputFocused, invisible: !inputFocused }">
-      <li
-        class="list-group-item px-1 py-0 bg-body-secondary"
-        v-for="option in filteredOptions"
-        :key="option"
-      >
-        <p class="m-0">{{ option }}</p>
-      </li>
+      <template v-for="(option, index) in filteredOptions">
+        <li
+          class="list-group-item px-1 py-0"
+          :class="{
+            'bg-primary': index === currentIndex,
+            'bg-body-secondary': index !== currentIndex
+          }"
+          @mouseover="currentIndex = index"
+        >
+          <p class="m-0">{{ option }}</p>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
