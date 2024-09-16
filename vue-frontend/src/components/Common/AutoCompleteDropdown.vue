@@ -71,6 +71,7 @@ const filteredOptions = computed(() => {
     outline: none;
     background-color: transparent;
     padding: 0;
+    min-width: 0;
   }
 }
 .myDropdown:focus-within {
