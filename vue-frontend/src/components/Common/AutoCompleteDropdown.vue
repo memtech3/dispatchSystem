@@ -38,6 +38,13 @@ onKeyStroke('ArrowUp', (e) => {
     currentIndex.value--
   }
 })
+onKeyStroke('Tab', () => {
+  if (currentIndex.value < filteredOptions.value.length && currentIndex.value > -1) {
+    model.value = filteredOptions.value[currentIndex.value]
+  } else if (model.value.length != 0) {
+    model.value = filteredOptions.value[0]
+  }
+})
 </script>
 <template>
   <div class="col myDropdown" @click="inputRef.focus()">
@@ -57,7 +64,7 @@ onKeyStroke('ArrowUp', (e) => {
       </span>
     </div>
     <ul class="list-group options" :class="{ visible: inputFocused, invisible: !inputFocused }">
-      <template v-for="(option, index) in filteredOptions">
+      <template v-for="(option, index) in filteredOptions" v-bind:key="index">
         <li
           class="list-group-item px-1 py-0"
           :class="{
