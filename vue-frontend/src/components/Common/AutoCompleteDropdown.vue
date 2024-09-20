@@ -45,6 +45,10 @@ onKeyStroke('Tab', () => {
     model.value = filteredOptions.value[0]
   }
 })
+function onClickOption(event: Event, option: string): void {
+  event.preventDefault() // prevent click from taking away input focus
+  model.value = option
+}
 </script>
 <template>
   <div class="col myDropdown" @click="inputRef.focus()">
@@ -65,6 +69,7 @@ onKeyStroke('Tab', () => {
     </div>
     <ul class="list-group options" :class="{ visible: inputFocused, invisible: !inputFocused }">
       <template v-for="(option, index) in filteredOptions" v-bind:key="index">
+        <!-- @mousedown used instead of @click because it fires before @blur on the input element -->
         <li
           class="list-group-item px-1 py-0"
           :class="{
@@ -72,6 +77,7 @@ onKeyStroke('Tab', () => {
             'bg-body-secondary': index !== currentIndex
           }"
           @mouseover="currentIndex = index"
+          @mousedown="onClickOption($event, option)"
         >
           <p class="m-0">{{ option }}</p>
         </li>
