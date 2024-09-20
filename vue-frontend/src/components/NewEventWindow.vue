@@ -79,7 +79,8 @@ whenever(keys.Escape, () => {
       <form
         class="row g-3 mx-1 py-1"
         autocomplete="off"
-        @submit.prevent="createCadEvent(), wbRef.winbox.close()"
+        @submit.prevent=""
+        @keyup.ctrl.enter="createCadEvent(), wbRef.winbox.close()"
       >
         <InputText
           class="col-md-12"
@@ -157,7 +158,13 @@ whenever(keys.Escape, () => {
           v-model="cadEventRef.narrative"
         />
         <div class="col-12">
-          <button class="btn btn-primary" type="submit">Create Event</button>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            @click="createCadEvent(), wbRef.winbox.close()"
+          >
+            Create Event
+          </button>
         </div>
       </form>
     </VueWinBox>
