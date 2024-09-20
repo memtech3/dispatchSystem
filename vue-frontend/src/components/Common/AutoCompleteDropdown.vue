@@ -78,6 +78,7 @@ onKeyStroke('ArrowUp', (e) => {
     position: absolute;
     z-index: 9999;
     width: inherit;
+    padding-right: 20px;
   }
   .dropdownIcon {
     display: inline-block;
