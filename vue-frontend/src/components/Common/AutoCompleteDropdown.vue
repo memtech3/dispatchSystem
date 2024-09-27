@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { onKeyStroke } from '@vueuse/core'
 
 const model = defineModel()
 
@@ -26,25 +25,25 @@ const filteredOptions = computed(() => {
   }
 })
 
-onKeyStroke('ArrowDown', (e) => {
+function onDownArrow(e: Event): void {
   e.preventDefault()
   if (currentIndex.value < filteredOptions.value.length - 1) {
     currentIndex.value++
   }
-})
-onKeyStroke('ArrowUp', (e) => {
+}
+function onUpArrow(e: Event): void {
   e.preventDefault()
   if (currentIndex.value > -1) {
     currentIndex.value--
   }
-})
-onKeyStroke('Tab', () => {
+}
+function onTabKey(): void {
   if (currentIndex.value < filteredOptions.value.length && currentIndex.value > -1) {
     model.value = filteredOptions.value[currentIndex.value]
   } else if (model.value.length != 0) {
     model.value = filteredOptions.value[0]
   }
-})
+}
 function onClickOption(event: Event, option: string): void {
   event.preventDefault() // prevent click from taking away input focus
   model.value = option
@@ -62,6 +61,9 @@ function onClickOption(event: Event, option: string): void {
         id="{{id}}-input"
         @focus="inputFocused = true"
         @blur="(inputFocused = false), (currentIndex = -1)"
+        @keydown.down="onDownArrow"
+        @keydown.up="onUpArrow"
+        @keydown.tab="onTabKey"
       />
       <span class="">
         <i class="dropdownIcon"></i>
