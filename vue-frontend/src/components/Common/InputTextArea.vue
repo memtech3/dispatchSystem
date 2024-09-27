@@ -11,7 +11,8 @@ const inputRef = ref()
 defineExpose({ inputRef })
 </script>
 <template>
-  <div class="col-md-12">
+  <!-- @click.prevent prevents the wrong element from getting focused, not sure why -->
+  <div class="col-md-12" @click.prevent="inputRef.focus">
     <label for="{{id}}-input" class="form-label">{{ label }}</label>
     <textarea
       ref="inputRef"

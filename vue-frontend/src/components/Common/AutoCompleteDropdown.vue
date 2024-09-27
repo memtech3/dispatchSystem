@@ -50,7 +50,8 @@ function onClickOption(event: Event, option: string): void {
 }
 </script>
 <template>
-  <div class="col myDropdown" @click="inputRef.focus()">
+  <!-- @click.prevent prevents the wrong element from getting focused, not sure why -->
+  <div class="col myDropdown" @click.prevent="inputRef.focus()">
     <label for="{{id}}-input" class="form-label">{{ label }}</label>
     <div class="myFormElement d-flex form-control form-control-sm">
       <input
