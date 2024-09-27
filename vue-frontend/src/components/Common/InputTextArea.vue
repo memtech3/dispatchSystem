@@ -4,7 +4,7 @@ const model = defineModel()
 
 defineProps<{
   id: string
-  label: string
+  label?: string
 }>()
 
 const inputRef = ref()
@@ -13,7 +13,7 @@ defineExpose({ inputRef })
 <template>
   <!-- @click.prevent prevents the wrong element from getting focused, not sure why -->
   <div class="col-md-12" @click.prevent="inputRef.focus">
-    <label for="{{id}}-input" class="form-label">{{ label }}</label>
+    <label v-if="label" for="{{id}}-input" class="form-label">{{ label }}</label>
     <textarea
       ref="inputRef"
       v-model="model"

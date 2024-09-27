@@ -5,7 +5,7 @@ const model = defineModel()
 
 const props = defineProps<{
   id: string
-  label: string
+  label?: string
   options: string[]
 }>()
 
@@ -52,7 +52,7 @@ function onClickOption(event: Event, option: string): void {
 <template>
   <!-- @click.prevent prevents the wrong element from getting focused, not sure why -->
   <div class="col myDropdown" @click.prevent="inputRef.focus()">
-    <label for="{{id}}-input" class="form-label">{{ label }}</label>
+    <label v-if="label" for="{{id}}-input" class="form-label">{{ label }}</label>
     <div class="myFormElement d-flex form-control form-control-sm">
       <input
         ref="inputRef"
