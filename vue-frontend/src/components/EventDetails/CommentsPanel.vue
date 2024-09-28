@@ -17,8 +17,8 @@ const associatedEntries = computed(() => {
 </script>
 <template>
   <div class="row g-3">
-    <InputText id="commentsTextArea" label="Add Comment" ariaDescription="Add comment" />
-    <ul class="list-group p-2">
+    <InputText id="commentsTextArea" placeholder="Add Comment" ariaDescription="Add comment" />
+    <ul class="list-group px-2">
       <li
         v-for="entry in associatedEntries.slice().reverse()"
         v-bind:key="entry.timestamp.toString()"

@@ -5,6 +5,7 @@ const model = defineModel()
 defineProps<{
   id: string
   label?: string
+  placeholder?: string
 }>()
 
 const inputRef = ref()
@@ -20,6 +21,7 @@ defineExpose({ inputRef })
       type="text"
       class="form-control form-control-sm"
       id="{{id}}-input"
+      :placeholder="placeholder"
     />
   </div>
 </template>
