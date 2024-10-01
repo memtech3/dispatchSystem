@@ -20,7 +20,7 @@ defineProps<{
 </script>
 <template>
   <div class="col-3">
-    toolbar here
+    <button @click="rows.push({})" class="btn btn-primary btn-sm">Add</button>
     <table class="table table-sm">
       <thead>
         <tr>
