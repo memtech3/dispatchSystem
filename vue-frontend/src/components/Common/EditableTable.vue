@@ -42,7 +42,10 @@ defineProps<{
               <button class="btn btn-sm btn-outline-primary">
                 <i class="bi bi-pencil-square"></i>
               </button>
-              <button class="btn btn-sm btn-outline-danger">
+              <button
+                @click="rows.splice(rows.indexOf(row), 1)"
+                class="btn btn-sm btn-outline-danger"
+              >
                 <i class="bi bi-trash"></i>
               </button>
             </div>
