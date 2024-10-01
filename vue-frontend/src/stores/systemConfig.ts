@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export type EventType = {
+  id: number
   name: string
   defaultPriority: number
 }
