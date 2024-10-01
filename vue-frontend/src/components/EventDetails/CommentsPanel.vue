@@ -3,7 +3,8 @@ import CommentItem from './CommentItem.vue'
 import InputText from '../Common/InputText.vue'
 import UnitLinkList from '@/components/Common/SpecialLinks/UnitLinkList.vue'
 import { useCommandLog } from '@/stores/commandLogStore'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { invokeCommand, LogCmd } from '@/composables/commands'
 
 const props = defineProps<{
   selectedEventId: string
@@ -14,10 +15,27 @@ const commandLog = useCommandLog()
 const associatedEntries = computed(() => {
   return commandLog.getLog().value.filter((entry) => entry.command.eventId == props.selectedEventId)
 })
+
+const inputValue = ref()
+
+function addLogEntry() {
+  // do nothing if input is empty
+  if (inputValue.value) {
+    let cmd = new LogCmd(inputValue.value, undefined, props.selectedEventId)
+    invokeCommand(cmd)
+    inputValue.value = ''
+  }
+}
 </script>
 <template>
   <div class="row g-3">
-    <InputText id="commentsTextArea" placeholder="Add Comment" ariaDescription="Add comment" />
+    <InputText
+      v-model="inputValue"
+      id="commentsTextArea"
+      placeholder="Add Comment"
+      ariaDescription="Add comment"
+      @keydown.enter="addLogEntry"
+    />
     <ul class="list-group px-2">
       <li
         v-for="entry in associatedEntries.slice().reverse()"
