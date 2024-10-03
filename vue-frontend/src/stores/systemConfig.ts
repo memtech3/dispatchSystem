@@ -8,6 +8,7 @@ export type EventType = {
 }
 
 export type HowReportedType = {
+  id: number
   name: string
   position: number
 }
