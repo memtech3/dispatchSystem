@@ -55,7 +55,7 @@ const filteredCommands = computed(() => {
 </script>
 
 <template>
-  <div class="commandBar form-control position-relative d-flex align-items-center">
+  <div class="commandBar form-control position-relative d-flex align-items-center" @click="inputRef?.focus()">
     <i class="bi bi-terminal pe-2"></i>
     <div class="d-flex flex-fill">
       <input

@@ -37,10 +37,11 @@ const priorityClr = computed(() => {
 </script>
 <template>
   <div class="list-group-item list-group-item-action eventItemGrid p-0" aria-current="true">
-    <div class="triagePane d-flex flex-column" :class="'priorityColor-' + priorityClr">
-      <div class="box d-flex align-items-center justify-content-center">
-        <span class="bi bi-exclamation-triangle fs-5"></span>
-      </div>
+    <div
+      class="triagePane d-flex flex-column align-items-center justify-content-center"
+      :class="'priorityColor-' + priorityClr"
+    >
+      <span class="bi bi-exclamation-triangle fs-5"></span>
       <span class="fs-2 text-center">P{{ priority }}</span>
     </div>
     <div class="detailsPane d-flex flex-column">
@@ -97,8 +98,5 @@ const priorityClr = computed(() => {
 }
 .timePane {
   grid-area: timePane;
-}
-.box {
-  aspect-ratio: 1 / 1;
 }
 </style>

@@ -5,8 +5,12 @@ import { useRepo } from 'pinia-orm'
 import { UnitEntity } from '@/stores/units'
 import { CadEventEntity } from '@/stores/cadEvents'
 
+import { useSystemConfigStore } from '@/stores/systemConfig'
+
 import { seedUnits } from '@/stores/seedData/units'
 import { seedEvents } from '@/stores/seedData/cadEvents'
+import { seedCadEventTypes } from '@/stores/seedData/cadEventTypes'
+import { seedHowReportedOptions } from '@/stores/seedData/howReportedOptions'
 
 import { DispatchCmd, invokeCommand } from '@/composables/commands'
 
@@ -18,9 +22,14 @@ const unitsRepo = computed(() => {
   return useRepo(UnitEntity)
 })
 
+const systemConfigStore = useSystemConfigStore()
+
 const addData = () => {
   unitsRepo.value.insert(seedUnits)
   cadEventsRepo.value.insert(seedEvents)
+
+  systemConfigStore.eventTypes = seedCadEventTypes
+  systemConfigStore.howReportedOptions = seedHowReportedOptions
 
   invokeCommand(
     new DispatchCmd(

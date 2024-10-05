@@ -4,15 +4,16 @@ const model = defineModel()
 
 defineProps<{
   id: string
-  label: string
+  label?: string
 }>()
 
 const inputRef = ref()
 defineExpose({ inputRef })
 </script>
 <template>
-  <div class="col-md-12">
-    <label for="{{id}}-input" class="form-label">{{ label }}</label>
+  <!-- @click.prevent prevents the wrong element from getting focused, not sure why -->
+  <div class="col-md-12" @click.prevent="inputRef.focus">
+    <label v-if="label" for="{{id}}-input" class="form-label">{{ label }}</label>
     <textarea
       ref="inputRef"
       v-model="model"

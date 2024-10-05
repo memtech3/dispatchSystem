@@ -4,6 +4,7 @@ import { VueWinBox } from 'vue-winbox'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { useRepo } from 'pinia-orm'
 import { CadEventEntity, ReportingParty } from '@/stores/cadEvents'
+import { useSystemConfigStore } from '@/stores/systemConfig'
 
 import InputText from '@/components/Common/InputText.vue'
 import InputTextArea from '@/components/Common/InputTextArea.vue'
@@ -15,6 +16,7 @@ const cadEventsRepo = computed(() => {
 const cadEventRef = ref(<CadEventEntity>{})
 const reportingPartyRef = ref(<ReportingParty>{})
 const formFirstInputRef = ref()
+const systemConfigStore = useSystemConfigStore()
 
 function createCadEvent() {
   if (Object.keys(cadEventRef.value).length === 0) {
@@ -77,7 +79,8 @@ whenever(keys.Escape, () => {
       <form
         class="row g-3 mx-1 py-1"
         autocomplete="off"
-        @submit.prevent="createCadEvent(), wbRef.winbox.close()"
+        @submit.prevent=""
+        @keyup.ctrl.enter="createCadEvent(), wbRef.winbox.close()"
       >
         <InputText
           class="col-md-12"
@@ -86,8 +89,20 @@ whenever(keys.Escape, () => {
           v-model="cadEventRef.location"
           ref="formFirstInputRef"
         />
-        <InputText class="col-8" id="type" label="Event Type" v-model="cadEventRef.eventType" />
-        <InputText class="col-4" id="priority" label="Priority" v-model.number="cadEventRef.priority" />
+
+        <AutoCompleteDropdown
+          class="col-8"
+          id="type"
+          label="Event Type"
+          v-model="cadEventRef.eventType"
+          :options="systemConfigStore.eventTypes.map((option) => option.name)"
+        />
+        <InputText
+          class="col-4"
+          id="priority"
+          label="Priority"
+          v-model.number="cadEventRef.priority"
+        />
 
         <InputText
           class="col-4"
@@ -109,16 +124,17 @@ whenever(keys.Escape, () => {
         />
 
         <InputText
-          class="col-8"
+          class="col-6"
           id="fromPhone"
           label="From Phone"
           v-model="reportingPartyRef.fromPhone"
         />
-        <InputText
-          class="col-4"
+        <AutoCompleteDropdown
+          class="col-6"
           id="howReported"
           label="How Reported"
           v-model="reportingPartyRef.howReported"
+          :options="systemConfigStore.howReportedOptions.map((option) => option.name)"
         />
 
         <InputText
@@ -142,7 +158,13 @@ whenever(keys.Escape, () => {
           v-model="cadEventRef.narrative"
         />
         <div class="col-12">
-          <button class="btn btn-primary" type="submit">Create Event</button>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            @click="createCadEvent(), wbRef.winbox.close()"
+          >
+            Create Event
+          </button>
         </div>
       </form>
     </VueWinBox>
