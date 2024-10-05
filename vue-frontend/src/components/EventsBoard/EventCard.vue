@@ -45,7 +45,7 @@ const priorityClr = computed(() => {
       <span class="fs-2 text-center">P{{ priority }}</span>
     </div>
     <div class="detailsPane d-flex flex-column">
-      <span class="fs-5 text-uppercase">{{ typeDescription }}</span>
+      <span class="text-uppercase">{{ typeDescription }}</span>
       <span class="text-capitalize">{{ location }}</span>
       <small>{{ id }}</small>
       <div class="d-inline-flex gap-1 px-1 pb-1">
