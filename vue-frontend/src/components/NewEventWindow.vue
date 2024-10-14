@@ -10,6 +10,8 @@ import InputText from '@/components/Common/InputText.vue'
 import InputTextArea from '@/components/Common/InputTextArea.vue'
 import AutoCompleteDropdown from '@/components/Common/AutoCompleteDropdown.vue'
 
+import 'fundamental-styles/dist/form-layout-grid.css'
+
 const cadEventsRepo = computed(() => {
   return useRepo(CadEventEntity)
 })
@@ -77,13 +79,13 @@ whenever(keys.Escape, () => {
       @close="windowIsOpenRef = false"
     >
       <form
-        class="row g-3 mx-1 py-1"
+        class="fd-container fd-form-layout-grid-container fd-form-group is-compact"
         autocomplete="off"
         @submit.prevent=""
         @keyup.ctrl.enter="createCadEvent(), wbRef.winbox.close()"
       >
         <InputText
-          class="col-md-12"
+          class="fd-col--12"
           id="location"
           label="Location"
           v-model="cadEventRef.location"
@@ -91,46 +93,46 @@ whenever(keys.Escape, () => {
         />
 
         <AutoCompleteDropdown
-          class="col-8"
+          class="fd-col--8"
           id="type"
           label="Event Type"
           v-model="cadEventRef.eventType"
           :options="systemConfigStore.eventTypes.map((option) => option.name)"
         />
         <InputText
-          class="col-4"
+          class="fd-col--4"
           id="priority"
           label="Priority"
           v-model.number="cadEventRef.priority"
         />
 
         <InputText
-          class="col-4"
+          class="fd-col--4"
           id="firstName"
           label="First Name"
           v-model="reportingPartyRef.firstName"
         />
         <InputText
-          class="col-4"
+          class="fd-col--4"
           id="middleName"
           label="Middle Name"
           v-model="reportingPartyRef.middleName"
         />
         <InputText
-          class="col-4"
+          class="fd-col--4"
           id="lastName"
           label="Last Name"
           v-model="reportingPartyRef.lastName"
         />
 
         <InputText
-          class="col-6"
+          class="fd-col--6"
           id="fromPhone"
           label="From Phone"
           v-model="reportingPartyRef.fromPhone"
         />
         <AutoCompleteDropdown
-          class="col-6"
+          class="fd-col--6"
           id="howReported"
           label="How Reported"
           v-model="reportingPartyRef.howReported"
@@ -138,32 +140,28 @@ whenever(keys.Escape, () => {
         />
 
         <InputText
-          class="col-12"
+          class="fd-col--12"
           id="callbackPhone"
           label="Callback Phone"
           v-model="reportingPartyRef.callbackPhone"
         />
 
         <InputText
-          class="col-12"
+          class="fd-col--12"
           id="reportingPartyLocation"
           label="Reporting Party Location"
           v-model="reportingPartyRef.reportingPartyLocation"
         />
 
         <InputTextArea
-          class="col-md-12"
+          class="fd-col--12"
           label="Narrative"
           id="narrative"
           v-model="cadEventRef.narrative"
         />
-        <div class="col-12">
-          <button
-            class="btn btn-primary"
-            type="submit"
-            @click="createCadEvent(), wbRef.winbox.close()"
-          >
-            Create Event
+        <div class="fd-col--12">
+          <button class="fd-button" type="submit" @click="createCadEvent(), wbRef.winbox.close()">
+            <span class="fd-button__text">Create Event</span>
           </button>
         </div>
       </form>

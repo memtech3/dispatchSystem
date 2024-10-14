@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
+import 'fundamental-styles/dist/form-item.css'
+import 'fundamental-styles/dist/form-label.css'
+import 'fundamental-styles/dist/input.css'
+import 'fundamental-styles/dist/list.css'
+import 'fundamental-styles/dist/popover.css'
+import 'fundamental-styles/dist/button.css'
+import 'fundamental-styles/dist/icon.css'
+import 'fundamental-styles/dist/input-group.css'
+
 const model = defineModel()
 
 const props = defineProps<{
@@ -51,75 +60,57 @@ function onClickOption(event: Event, option: string): void {
 </script>
 <template>
   <!-- @click.prevent prevents the wrong element from getting focused, not sure why -->
-  <div class="col myDropdown" @click.prevent="inputRef.focus()">
-    <label v-if="label" for="{{id}}-input" class="form-label">{{ label }}</label>
-    <div class="myFormElement d-flex form-control form-control-sm">
-      <input
-        ref="inputRef"
-        v-model="model"
-        type="text"
-        class="flex-fill"
-        id="{{id}}-input"
-        @focus="inputFocused = true"
-        @blur="(inputFocused = false), (currentIndex = -1)"
-        @keydown.down="onDownArrow"
-        @keydown.up="onUpArrow"
-        @keydown.tab="onTabKey"
-      />
-      <span class="">
-        <i class="dropdownIcon"></i>
-      </span>
+  <div class="fd-form-item" @click.prevent="inputRef.focus()">
+    <label v-if="label" for="{{id}}-input" class="fd-form-label">{{ label }}</label>
+    <div class="fd-popover">
+      <div
+        class="fd-popover__control"
+        aria-controls="amsfiaufuaskhjd"
+        :aria-expanded="inputFocused"
+        aria-haspopup="true"
+      >
+        <div class="fd-input-group fd-input-group--control">
+          <input
+            ref="inputRef"
+            v-model="model"
+            type="text"
+            id="{{id}}-input"
+            class="fd-input fd-input-group__input"
+            placeholder=""
+            @focus="inputFocused = true"
+            @blur="(inputFocused = false), (currentIndex = -1)"
+            @keydown.down="onDownArrow"
+            @keydown.up="onUpArrow"
+            @keydown.tab="onTabKey"
+          />
+          <span class="fd-input-group__addon fd-input-group__addon--button">
+            <button class="fd-input-group__button fd-button fd-button--transparent">
+              <i class="sap-icon--navigation-down-arrow"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+      <div
+        class="fd-popover__body fd-popover__body--no-arrow fd-popover__body--dropdown fd-popover__body--dropdown-fill"
+        :aria-hidden="!inputFocused"
+      >
+        <div class="fd-popover__wrapper docs-max-height">
+          <ul class="fd-list fd-list--dropdown" role="listbox">
+            <template v-for="(option, index) in filteredOptions" v-bind:key="index">
+              <!-- @mousedown used instead of @click because it fires before @blur on the input element -->
+              <li
+                role="option"
+                class="fd-list__item"
+                :class="{ 'is-selected': index === currentIndex }"
+                @mouseover="currentIndex = index"
+                @mousedown="onClickOption($event, option)"
+              >
+                <span class="fd-list__title">{{ option }}</span>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
     </div>
-    <ul class="list-group options" :class="{ visible: inputFocused, invisible: !inputFocused }">
-      <template v-for="(option, index) in filteredOptions" v-bind:key="index">
-        <!-- @mousedown used instead of @click because it fires before @blur on the input element -->
-        <li
-          class="list-group-item px-1 py-0"
-          :class="{
-            'bg-primary': index === currentIndex,
-            'bg-body-secondary': index !== currentIndex
-          }"
-          @mouseover="currentIndex = index"
-          @mousedown="onClickOption($event, option)"
-        >
-          <p class="m-0">{{ option }}</p>
-        </li>
-      </template>
-    </ul>
   </div>
 </template>
-<style scoped lang="scss">
-.myDropdown {
-  .options {
-    position: absolute;
-    z-index: 9999;
-    width: inherit;
-    padding-right: 20px;
-  }
-  .dropdownIcon {
-    display: inline-block;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
-  }
-  input {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    padding: 0;
-    min-width: 0;
-  }
-}
-.myDropdown:focus-within {
-  .myFormElement {
-    color: var(--bs-body-color);
-    background-color: var(--bs-body-bg);
-    border-color: #86b7fe;
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-  }
-}
-</style>
