@@ -60,7 +60,7 @@ function onClickOption(event: Event, option: string): void {
 </script>
 <template>
   <!-- @click.prevent prevents the wrong element from getting focused, not sure why -->
-  <div class="fd-form-item" @click.prevent="inputRef.focus()">
+  <div class="fd-col fd-form-item" @click.prevent="inputRef.focus()">
     <label v-if="label" for="{{id}}-input" class="fd-form-label">{{ label }}</label>
     <div class="fd-popover">
       <div
@@ -114,3 +114,8 @@ function onClickOption(event: Event, option: string): void {
     </div>
   </div>
 </template>
+<style>
+.fd-popover__body {
+  z-index: 1000;
+}
+</style>

@@ -18,7 +18,7 @@ defineExpose({ inputRef })
 </script>
 <template>
   <!-- @click.prevent prevents the wrong element from getting focused, not sure why -->
-  <div @click.prevent="inputRef.focus" class="fd-form-item">
+  <div @click.prevent="inputRef.focus" class="fd-col fd-form-item">
     <label v-if="label" for="{{id}}-input" class="fd-form-label">{{ label }}</label>
     <input
       ref="inputRef"

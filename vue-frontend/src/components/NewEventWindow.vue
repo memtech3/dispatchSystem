@@ -84,85 +84,88 @@ whenever(keys.Escape, () => {
         @submit.prevent=""
         @keyup.ctrl.enter="createCadEvent(), wbRef.winbox.close()"
       >
-        <InputText
-          class="fd-col--12"
-          id="location"
-          label="Location"
-          v-model="cadEventRef.location"
-          ref="formFirstInputRef"
-        />
+        <div class="fd-row">
+          <InputText
+            class="fd-col--12"
+            id="location"
+            label="Location"
+            v-model="cadEventRef.location"
+            ref="formFirstInputRef"
+          />
 
-        <AutoCompleteDropdown
-          class="fd-col--8"
-          id="type"
-          label="Event Type"
-          v-model="cadEventRef.eventType"
-          :options="systemConfigStore.eventTypes.map((option) => option.name)"
-        />
-        <InputText
-          class="fd-col--4"
-          id="priority"
-          label="Priority"
-          v-model.number="cadEventRef.priority"
-        />
+          <AutoCompleteDropdown
+            class="fd-col--8"
+            id="type"
+            label="Event Type"
+            v-model="cadEventRef.eventType"
+            :options="systemConfigStore.eventTypes.map((option) => option.name)"
+          />
+          <InputText
+            class="fd-col--4"
+            id="priority"
+            label="Priority"
+            v-model.number="cadEventRef.priority"
+          />
 
-        <InputText
-          class="fd-col--4"
-          id="firstName"
-          label="First Name"
-          v-model="reportingPartyRef.firstName"
-        />
-        <InputText
-          class="fd-col--4"
-          id="middleName"
-          label="Middle Name"
-          v-model="reportingPartyRef.middleName"
-        />
-        <InputText
-          class="fd-col--4"
-          id="lastName"
-          label="Last Name"
-          v-model="reportingPartyRef.lastName"
-        />
+          <InputText
+            class="fd-col--4"
+            id="firstName"
+            label="First Name"
+            v-model="reportingPartyRef.firstName"
+          />
+          <InputText
+            class="fd-col--4"
+            id="middleName"
+            label="Middle Name"
+            v-model="reportingPartyRef.middleName"
+          />
+          <InputText
+            class="fd-col--4"
+            id="lastName"
+            label="Last Name"
+            v-model="reportingPartyRef.lastName"
+          />
 
-        <InputText
-          class="fd-col--6"
-          id="fromPhone"
-          label="From Phone"
-          v-model="reportingPartyRef.fromPhone"
-        />
-        <AutoCompleteDropdown
-          class="fd-col--6"
-          id="howReported"
-          label="How Reported"
-          v-model="reportingPartyRef.howReported"
-          :options="systemConfigStore.howReportedOptions.map((option) => option.name)"
-        />
+          <InputText
+            class="fd-col--6"
+            id="fromPhone"
+            label="From Phone"
+            v-model="reportingPartyRef.fromPhone"
+          />
+          <AutoCompleteDropdown
+            class="fd-col--6"
+            id="howReported"
+            label="How Reported"
+            v-model="reportingPartyRef.howReported"
+            :options="systemConfigStore.howReportedOptions.map((option) => option.name)"
+          />
 
-        <InputText
-          class="fd-col--12"
-          id="callbackPhone"
-          label="Callback Phone"
-          v-model="reportingPartyRef.callbackPhone"
-        />
+          <InputText
+            class="fd-col--12"
+            id="callbackPhone"
+            label="Callback Phone"
+            v-model="reportingPartyRef.callbackPhone"
+          />
 
-        <InputText
-          class="fd-col--12"
-          id="reportingPartyLocation"
-          label="Reporting Party Location"
-          v-model="reportingPartyRef.reportingPartyLocation"
-        />
+          <InputText
+            class="fd-col--12"
+            id="reportingPartyLocation"
+            label="Reporting Party Location"
+            v-model="reportingPartyRef.reportingPartyLocation"
+          />
 
-        <InputTextArea
-          class="fd-col--12"
-          label="Narrative"
-          id="narrative"
-          v-model="cadEventRef.narrative"
-        />
-        <div class="fd-col--12">
-          <button class="fd-button" type="submit" @click="createCadEvent(), wbRef.winbox.close()">
-            <span class="fd-button__text">Create Event</span>
-          </button>
+          <InputTextArea
+            class="fd-col--12"
+            label="Narrative"
+            id="narrative"
+            v-model="cadEventRef.narrative"
+          />
+
+          <div class="fd-col--12">
+            <button class="fd-button" type="submit" @click="createCadEvent(), wbRef.winbox.close()">
+              <span class="fd-button__text">Create Event</span>
+            </button>
+          </div>
         </div>
       </form>
     </VueWinBox>
