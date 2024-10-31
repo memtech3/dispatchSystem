@@ -114,8 +114,13 @@ function onClickOption(event: Event, option: string): void {
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 .fd-popover__body {
   z-index: 1000;
+}
+
+/* TODO: fix me temporary hack to make autocomplete dropdown sort of work */
+.fd-col {
+  overflow: visible !important;
 }
 </style>
