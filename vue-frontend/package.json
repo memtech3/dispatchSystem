@@ -21,6 +21,7 @@
     "@vueuse/core": "^10.11.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "dockview-vue": "^2.0.0",
     "fundamental-styles": "^0.38.0",
     "graphql": "^16.9.0",
     "maplibre-gl": "^4.5.0",
