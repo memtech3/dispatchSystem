@@ -14,13 +14,13 @@ import 'dockview-vue/dist/styles/dockview.css'
 
 import urql, { cacheExchange, fetchExchange } from '@urql/vue'
 
-import DockView from './DockView.vue'
-import UnitsTable from './components/UnitsTable.vue'
-import EventsBoard from './components/EventsBoard/EventsBoard.vue'
-import MapComponent from './components/MapComponent.vue'
-import AddSeedDataButton from './components/AddSeedDataButton.vue'
+import UnitsTable from '@/components/UnitsTable.vue'
+import EventsBoard from '@/components/EventsBoard/EventsBoard.vue'
+import MapComponent from '@/components/MapComponent.vue'
+import CommandLogView from '@/views/CommandLogView.vue'
+import EventDetailsBoard from '@/components/EventDetails/EventDetailsBoard.vue'
 
-const app = createApp(DockView)
+const app = createApp(App)
 
 app.use(
   createPinia()
@@ -38,6 +38,7 @@ app.use(urql, {
 app.component('UnitsTable', UnitsTable)
 app.component('EventsBoard', EventsBoard)
 app.component('MapComponent', MapComponent)
-app.component('AddSeedDataButton', AddSeedDataButton)
+app.component('CommandLogView', CommandLogView)
+app.component('EventDetailsBoard', EventDetailsBoard)
 
 app.mount('#app')
