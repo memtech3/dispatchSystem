@@ -4,8 +4,8 @@ import { createORM } from 'pinia-orm'
 
 import { PiniaSharedState } from 'pinia-shared-state'
 
-import App from './App.vue'
-import router from './router'
+import App from '@/App.vue'
+import router from '@/router'
 
 import '@/main.scss'
 import 'fundamental-styles/dist/theming/sap_horizon_dark.css'
@@ -15,10 +15,10 @@ import 'dockview-vue/dist/styles/dockview.css'
 import urql, { cacheExchange, fetchExchange } from '@urql/vue'
 
 import UnitsTable from '@/components/UnitsTable.vue'
-import EventsBoard from '@/components/EventsBoard/EventsBoard.vue'
 import MapComponent from '@/components/MapComponent.vue'
 import CommandLogView from '@/views/CommandLogView.vue'
 import EventDetailsBoard from '@/components/EventDetails/EventDetailsBoard.vue'
+import EventCardList from '@/components/EventsBoard/EventCardList.vue'
 
 const app = createApp(App)
 
@@ -36,9 +36,9 @@ app.use(urql, {
 
 // Register components here so dockview can access them by name
 app.component('UnitsTable', UnitsTable)
-app.component('EventsBoard', EventsBoard)
 app.component('MapComponent', MapComponent)
 app.component('CommandLogView', CommandLogView)
 app.component('EventDetailsBoard', EventDetailsBoard)
+app.component('EventCardList', EventCardList)
 
 app.mount('#app')

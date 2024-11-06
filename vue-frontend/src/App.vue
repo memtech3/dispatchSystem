@@ -4,7 +4,7 @@ import CommandBar from '@/components/ApplicationFrame/CommandBar/CommandBar.vue'
 import StatusBar from './components/ApplicationFrame/StatusBar.vue'
 </script>
 <template>
-  <div id="mainGridContainer">
+  <div id="mainGridContainer" class="is-compact">
     <AppNavbar id="appNavbar" />
     <main id="appMain">
       <RouterView v-slot="{ Component }">

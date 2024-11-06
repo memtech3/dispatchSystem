@@ -1,40 +1,34 @@
 <script setup lang="ts">
-import Panel from '@/components/Common/Panel.vue'
 import { computed } from 'vue'
 
 import { useRepo } from 'pinia-orm'
 import { UnitEntity } from '@/stores/units'
+
+import 'fundamental-styles/dist/table.css'
 
 const unitsRepo = computed(() => {
   return useRepo(UnitEntity)
 })
 </script>
 <template>
-  <Panel>
-    <template v-slot:body>
-      <div class="row g-0">
-        <table class="table table-sm table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Unit</th>
-              <th scope="col">Type</th>
-              <th scope="col">Status</th>
-              <th scope="col">Location</th>
-              <th scope="col">Assigned Event</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="unit in unitsRepo.withAll().get()" :key="unit.id">
-              <th scope="row">{{ unit.callsign }}</th>
-              <td>{{ unit.unitType }}</td>
-              <td>{{ unit.status }}</td>
-              <td>{{ unit.location }}</td>
-              <td>{{ unit.assignedEvent?.id }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </template>
-  </Panel>
+  <table class="fd-table">
+    <thead class="fd-table__header">
+      <tr class="fd-table__row">
+        <th class="fd-table__cell" scope="col">Unit</th>
+        <th class="fd-table__cell" scope="col">Type</th>
+        <th class="fd-table__cell" scope="col">Status</th>
+        <th class="fd-table__cell" scope="col">Location</th>
+        <th class="fd-table__cell" scope="col">Assigned Event</th>
+      </tr>
+    </thead>
+    <tbody class="fd-table__body">
+      <tr class="fd-table__row" v-for="unit in unitsRepo.withAll().get()" :key="unit.id">
+        <td class="fd-table__cell">{{ unit.callsign }}</td>
+        <td class="fd-table__cell">{{ unit.unitType }}</td>
+        <td class="fd-table__cell">{{ unit.status }}</td>
+        <td class="fd-table__cell">{{ unit.location }}</td>
+        <td class="fd-table__cell">{{ unit.assignedEvent?.id }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
-@/stores/units

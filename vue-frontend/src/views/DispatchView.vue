@@ -16,8 +16,15 @@ const onReady = (event: DockviewReadyEvent) => {
 
   event.api.addPanel({
     id: 'panel_2',
-    component: 'EventsBoard',
-    title: 'Events Board',
+    component: 'EventCardList',
+    title: 'Events Card List',
+    position: { referencePanel: panel }
+  })
+
+  event.api.addPanel({
+    id: 'panel_2_2',
+    component: 'EventCardList',
+    title: 'Events Card List',
     position: { referencePanel: panel }
   })
 
