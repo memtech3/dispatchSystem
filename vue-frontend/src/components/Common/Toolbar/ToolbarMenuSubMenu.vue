@@ -6,13 +6,19 @@ import 'fundamental-styles/dist/menu.css'
 const isPopoverVisible = ref(false)
 
 function togglePopover() {
-  console.log('togglePopover')
   isPopoverVisible.value = !isPopoverVisible.value
+}
+
+function openPopover() {
+  isPopoverVisible.value = true
+}
+function closePopover() {
+  isPopoverVisible.value = false
 }
 </script>
 
 <template>
-  <div class="fd-popover">
+  <div class="fd-popover" @mouseover="openPopover" @mouseleave="closePopover">
     <div class="fd-popover__control">
       <li class="fd-menu__item" role="presentation" @click="togglePopover">
         <a class="fd-menu__link" href="#" role="menuitem">
