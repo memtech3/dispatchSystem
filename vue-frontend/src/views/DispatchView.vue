@@ -2,51 +2,18 @@
 import NewEventWindow from '@/components/NewEventWindow.vue'
 import { DockviewVue } from 'dockview-vue'
 
+import Toolbar from '@/components/Common/Toolbar/Toolbar.vue'
+
 import type { DockviewReadyEvent } from 'dockview-vue'
+import ToolbarMenu from '@/components/Common/Toolbar/ToolbarMenu.vue'
+import ToolbarMenuItem from '@/components/Common/Toolbar/ToolbarMenuItem.vue'
+import ToolbarMenuSubMenu from '@/components/Common/Toolbar/ToolbarMenuSubMenu.vue'
+import ToolbarButton from '@/components/Common/Toolbar/ToolbarButton.vue'
 
 let dockviewAPI: DockviewReadyEvent['api']
 
 const onReady = (event: DockviewReadyEvent) => {
   dockviewAPI = event.api
-  const panel = event.api.addPanel({
-    id: 'panel_1',
-    component: 'UnitsTable',
-    title: 'Units Table'
-  })
-
-  event.api.addPanel({
-    id: 'panel_2',
-    component: 'EventCardList',
-    title: 'Events Card List',
-    position: { referencePanel: panel }
-  })
-
-  event.api.addPanel({
-    id: 'panel_2_2',
-    component: 'EventCardList',
-    title: 'Events Card List',
-    position: { referencePanel: panel }
-  })
-
-  const panel3 = event.api.addPanel({
-    id: 'panel_3',
-    component: 'CommandLogView',
-    title: 'Map',
-    renderer: 'always',
-    position: { referencePanel: panel, direction: 'right' }
-  })
-  event.api.addPanel({
-    id: 'panel_4',
-    component: 'EventDetailsBoard',
-    title: 'Event Details',
-    position: { referencePanel: panel3 }
-  })
-  event.api.addPanel({
-    id: 'panel_5',
-    component: 'CommandLogView',
-    title: 'Command Log',
-    position: { referencePanel: panel3 }
-  })
 }
 
 const saveLayout = () => {
@@ -63,22 +30,80 @@ const loadLayout = () => {
     dockviewAPI.fromJSON(layout)
   }
 }
+
+function addPanel(component: string, title: string): string {
+  let id: string = 'panel' + (dockviewAPI.totalPanels + 1).toString()
+  dockviewAPI.addPanel({
+    id: id,
+    component: component,
+    title: title
+  })
+
+  return id
+}
 </script>
 <template>
-  <div>
-    <button @click="saveLayout">Save Layout</button>
-    <button @click="loadLayout">Load Layout</button>
+  <div id="viewContainer">
+    <Toolbar id="viewToolbar" class="fd-toolbar" role="toolbar" aria-label="Toolbar">
+      <ToolbarMenu>
+        <template #button-text> Layout </template>
+        <template #menu-items>
+          <ToolbarMenuItem @click="loadLayout">Load Layout</ToolbarMenuItem>
+          <ToolbarMenuItem @click="saveLayout">Save Layout</ToolbarMenuItem>
+          <ToolbarMenuSubMenu>
+            <template #button-text>Add Panel</template>
+            <template #menu-items>
+              <ToolbarMenuItem @click="addPanel('UnitsTable', 'Unit Monitor')"
+                >Unit Monitor</ToolbarMenuItem
+              >
+              <ToolbarMenuItem @click="addPanel('EventCardList', 'Event Monitor')"
+                >Event Monitor</ToolbarMenuItem
+              >
+              <ToolbarMenuItem @click="addPanel('EventDetailsBoard', 'Event Details')"
+                >Event Details</ToolbarMenuItem
+              >
+              <ToolbarMenuItem @click="addPanel('CommandLogView', 'Command Monitor')"
+                >Command Monitor</ToolbarMenuItem
+              >
+            </template>
+          </ToolbarMenuSubMenu>
+        </template>
+      </ToolbarMenu>
+      <ToolbarButton>Another Button</ToolbarButton>
+    </Toolbar>
+
+    <DockviewVue
+      id="viewMain"
+      class="dockview-theme-abyss"
+      leftHeaderActionsComponent="NewTabButton"
+      className="dockview-theme-dispatchSystem"
+      @ready="onReady"
+    />
   </div>
-  <DockviewVue
-    style="width: 100%; height: 100%"
-    class="dockview-theme-abyss"
-    leftHeaderActionsComponent="NewTabButton"
-    className="dockview-theme-dispatchSystem"
-    @ready="onReady"
-  />
   <NewEventWindow />
 </template>
 <style lang="scss">
+#viewContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    'toolbar'
+    'main';
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100%;
+  height: 100%;
+}
+#viewToolbar {
+  grid-area: toolbar;
+}
+#viewMain {
+  grid-area: main;
+  width: 100%;
+  height: 100%;
+}
+
 // dockview theming
 @mixin dockview-theme-dispatchSystem-mixin {
   --dv-paneview-active-outline-color: var(--sapList_SelectionBorderColor);
