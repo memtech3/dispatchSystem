@@ -75,7 +75,6 @@ function addPanel(component: string, title: string): string {
     <DockviewVue
       id="viewMain"
       class="dockview-theme-abyss"
-      leftHeaderActionsComponent="NewTabButton"
       className="dockview-theme-dispatchSystem"
       @ready="onReady"
     />

@@ -19,7 +19,6 @@ import MapComponent from '@/components/MapComponent.vue'
 import CommandLogView from '@/views/CommandLogView.vue'
 import EventDetailsBoard from '@/components/EventDetails/EventDetailsBoard.vue'
 import EventCardList from '@/components/EventsBoard/EventCardList.vue'
-import NewTabButton from './components/Dockview/NewTabButton.vue'
 
 const app = createApp(App)
 
@@ -41,6 +40,5 @@ app.component('MapComponent', MapComponent)
 app.component('CommandLogView', CommandLogView)
 app.component('EventDetailsBoard', EventDetailsBoard)
 app.component('EventCardList', EventCardList)
-app.component('NewTabButton', NewTabButton)
 
 app.mount('#app')
