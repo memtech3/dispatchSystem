@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import NewEventWindow from '@/components/NewEventWindow.vue'
 import { DockviewVue } from 'dockview-vue'
 
@@ -41,6 +42,23 @@ function addPanel(component: string, title: string): string {
 
   return id
 }
+
+onMounted(() => {
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'F2' && dockviewAPI) {
+      let id: string = 'panel' + (dockviewAPI.totalPanels + 1).toString()
+      dockviewAPI.addPanel({
+        id: id,
+        component: 'EventDetailsBoard',
+        title: 'Floating Panel',
+        floating: {
+          width: 800,
+          height: 400 
+        }
+      })
+    }
+  })
+})
 </script>
 <template>
   <div id="viewContainer">
@@ -76,6 +94,7 @@ function addPanel(component: string, title: string): string {
       id="viewMain"
       class="dockview-theme-abyss"
       className="dockview-theme-dispatchSystem"
+      floating-group-bounds="boundedWithinViewport"
       @ready="onReady"
     />
   </div>
