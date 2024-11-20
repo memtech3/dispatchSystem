@@ -49,11 +49,11 @@ onMounted(() => {
       let id: string = 'panel' + (dockviewAPI.totalPanels + 1).toString()
       dockviewAPI.addPanel({
         id: id,
-        component: 'EventDetailsBoard',
+        component: 'EventDetails2',
         title: 'Floating Panel',
         floating: {
           width: 800,
-          height: 400 
+          height: 400
         }
       })
     }
