@@ -8,6 +8,8 @@ import CommentsPanel from './CommentsPanel.vue'
 import EventCard from '@/components/EventsBoard/EventCard.vue'
 import ReportingPartiesPanel from './ReportingPartiesPanel.vue'
 
+import 'fundamental-styles/dist/list.css'
+
 const consoleStateStore = useConsoleStateStore()
 
 const cadEventsRepo = computed(() => {
@@ -25,7 +27,7 @@ const currentCadEvent = computed(() => {
         <!-- TODO: Navigation tabs go here -->
       </div>
       <div class="col-11 h-100 d-flex flex-column">
-        <div>
+        <div class="fd-list fd-list--byline">
           <EventCard
             :id="currentCadEvent?.id"
             :priority="currentCadEvent?.priority"
