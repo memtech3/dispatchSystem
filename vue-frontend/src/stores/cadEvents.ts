@@ -17,7 +17,7 @@ export class ReportingParty {
 export class CadEventEntity extends Model {
   static readonly entity: string = 'cadEventEntities'
 
-  @Uid({ size: 3 }) declare id: string
+  @Uid({ size: 3, alphabet: '0123456789' }) declare id: string
   @Attr(Date) declare createdAt: Date
   @Str('') declare eventType: string
   @Num(7) declare priority: number
