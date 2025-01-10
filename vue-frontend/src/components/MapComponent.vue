@@ -51,3 +51,9 @@ watch(mapDiv, (newMapDivValue) => {
 <template>
   <div ref="mapDiv" id="map"></div>
 </template>
+<style scoped>
+#map {
+  height: 100%;
+  width: 100%;
+}
+</style>
