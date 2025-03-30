@@ -49,9 +49,9 @@ export const seedLayouts = [
         },
         panel_3: {
           id: 'panel_3',
-          contentComponent: 'CommandLogView',
+          contentComponent: 'MapComponent',
           title: 'Map',
-          renderer: 'always'
+          renderer: 'onlyWhenVisible'
         },
         panel_5: { id: 'panel_5', contentComponent: 'CommandLogView', title: 'Command Log' },
         panel_1: { id: 'panel_1', contentComponent: 'UnitsTable', title: 'Units Table' }
