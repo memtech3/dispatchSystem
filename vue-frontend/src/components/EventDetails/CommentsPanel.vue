@@ -6,6 +6,8 @@ import { useCommandLog } from '@/stores/commandLogStore'
 import { computed, ref } from 'vue'
 import { invokeCommand, LogCmd } from '@/composables/commands'
 
+import 'fundamental-styles/dist/feed-list.css'
+
 const props = defineProps<{
   selectedEventId: string
 }>()
@@ -36,7 +38,7 @@ function addLogEntry() {
       ariaDescription="Add comment"
       @keydown.enter="addLogEntry"
     />
-    <ul class="list-group px-2">
+    <ul class="fd-feed-list fd-feed-list--group">
       <li
         v-for="entry in associatedEntries.slice().reverse()"
         v-bind:key="entry.timestamp.toString()"
