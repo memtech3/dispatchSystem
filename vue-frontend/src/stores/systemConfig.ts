@@ -13,8 +13,15 @@ export type HowReportedType = {
   position: number
 }
 
+export type SavedLayout = {
+  id: number
+  name: string
+  layoutJSON: JSON
+}
+
 export const useSystemConfigStore = defineStore('systemConfig', () => {
   const eventTypes = ref(Array<EventType>())
   const howReportedOptions = ref(Array<HowReportedType>())
-  return { eventTypes, howReportedOptions }
+  const savedLayouts = ref()
+  return { eventTypes, howReportedOptions, savedLayouts }
 })
