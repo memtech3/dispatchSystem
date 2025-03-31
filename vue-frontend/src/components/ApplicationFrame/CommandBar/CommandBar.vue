@@ -6,6 +6,7 @@ import { useConsoleStateStore } from '@/stores/consoleState'
 
 import 'fundamental-styles/dist/input.css'
 import 'fundamental-styles/dist/input-group.css'
+import 'fundamental-styles/dist/list.css'
 
 const consoleStateStore = computed(() => {
   return useConsoleStateStore()
@@ -60,36 +61,36 @@ const filteredCommands = computed(() => {
 <template>
   <div class="commandBarPopovers">
     <ul
-      class="list-group commandHints"
+      class="fd-list fd-list--subline commandHints"
       :class="{ visible: inputFocused, invisible: !inputFocused }"
     >
       <li
-        class="list-group-item px-1 py-0 bg-body-secondary"
+        class="fd-list__item fd-list__item--interractive"
         v-for="command in filteredCommands"
         :key="command.name"
       >
-        <small
-          ><p class="fw-bold m-0">{{ command.name }}</p>
-        </small>
-        <small>
-          <span class="">
-            {{ command.aliases }}
-          </span>
-
-          <span class="">.</span>
-
-          <span v-for="(arg, index) in command.argTypes" :key="arg.name">
-            <span
-              class=""
-              :class="{
-                'text-bg-primary': index == tokensArray.length - 2
-              }"
-            >
-              {{ '{' + arg.name + '}' }}
+        <div class="fd-list__content">
+          <div class="fd-list__title">{{ command.name }}</div>
+          <div class="fd-list__title">
+            <span>
+              {{ command.aliases }}
             </span>
-            <span v-if="index < command.argTypes.length - 1">.</span>
-          </span>
-        </small>
+
+            <span>.</span>
+
+            <span v-for="(arg, index) in command.argTypes" :key="arg.name">
+              <span
+                class=""
+                :class="{
+                  bgBrandColor: index == tokensArray.length - 2
+                }"
+              >
+                {{ '{' + arg.name + '}' }}
+              </span>
+              <span v-if="index < command.argTypes.length - 1">.</span>
+            </span>
+          </div>
+        </div>
       </li>
     </ul>
     <ul
@@ -136,11 +137,21 @@ const filteredCommands = computed(() => {
   position: absolute;
   bottom: 0;
   z-index: 9999;
+  width: unset;
+
+  .fd-list__item{
+    min-height: unset;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
 }
 .commandHistory {
   position: absolute;
   bottom: 0;
   right: 2.5em;
   z-index: 9999;
+}
+.bgBrandColor {
+  background-color: var(--sapBrandColor);
 }
 </style>
