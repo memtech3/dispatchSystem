@@ -4,7 +4,7 @@ An attempt at developing an open source computer aided dispatch system, currentl
 
 # Tech Used
 - Vue3
-- Bootstrap 5 CSS (with customized theme)
+- SAP Fundamentals CSS Library
 - Storybook
-- ASP.NET core w/HotChocolate for Graphql and EntityFramework Core 
+- ASP.NET Core w/HotChocolate for Graphql and EntityFramework Core 
 - SonarCloud (automagic code analysis and feedback)
