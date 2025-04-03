@@ -8,7 +8,9 @@ builder.Services.AddDbContextPool<DispatchSystemBackendContext>(options =>
         options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
         .EnableSensitiveDataLogging());
 
-builder.Services.AddGraphQLServer()
+builder.Services
+.AddCors()
+.AddGraphQLServer()
 .InitializeOnStartup()
 .RegisterDbContext<DispatchSystemBackendContext>()
 .AddQueryType<DispatchSystemBackend.GraphQLSchema.Query>()
@@ -22,6 +24,12 @@ builder.Services.AddGraphQLServer()
 
 
 WebApplication app = builder.Build();
+
+// TODO: make sure this is done securely for production
+app.UseCors(x => x
+.AllowAnyOrigin()
+.AllowAnyMethod()
+.AllowAnyHeader());
 
 app.MapGet("/", () => "Hello World!");
 app.MapGraphQL();

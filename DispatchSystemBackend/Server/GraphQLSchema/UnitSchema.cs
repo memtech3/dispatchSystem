@@ -1,15 +1,20 @@
 using DispatchSystemBackend.Data;
+using DispatchSystemBackend.GraphQLSchema.Types;
 using DispatchSystemBackend.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace DispatchSystemBackend.GraphQLSchema
 {
     [ExtendObjectType(typeof(Query))]
     public class UnitQueries
     {
-        public IQueryable<UnitEntity> GetUnits(DispatchSystemBackendContext context)
+        public IQueryable<UnitResult> GetUnits(DispatchSystemBackendContext context)
         {
-            return context.Units.Include(u => u.CadEventEntities).Include(u => u.CadLogEntries);
+            return context.Units.Select(u => new UnitResult
+            {
+                Id = u.Id,
+                Name = u.Name,
+                Status = u.Status,
+            });
         }
         public UnitEntity GetUnitById(DispatchSystemBackendContext context, int Id)
         {
@@ -24,28 +29,45 @@ namespace DispatchSystemBackend.GraphQLSchema
     [ExtendObjectType(typeof(Mutation))]
     public class UnitMutations
     {
-        public UnitEntity CreateUnit(DispatchSystemBackendContext context, string name, string initialStatus)
+        public UnitResult CreateUnit(DispatchSystemBackendContext context, UnitInput unitInput)
         {
-            UnitEntity unit = new UnitEntity()
+            UnitEntity unitEntity = new UnitEntity
             {
-                Name = name,
-                Status = initialStatus
+                Name = unitInput.Name,
             };
 
-            _ = context.Units.Add(unit);
+            _ = context.Units.Add(unitEntity);
             _ = context.SaveChanges();
 
-            return unit;
+            UnitResult unitResult = new UnitResult
+            {
+                Id = unitEntity.Id,
+                Name = unitEntity.Name,
+                Status = unitEntity.Status
+            };
+
+            return unitResult;
         }
 
-        public UnitEntity UpdateUnit(DispatchSystemBackendContext context, int Id, string name)
+        public UnitResult UpdateUnit(DispatchSystemBackendContext context, int Id, UnitInput unitInput)
         {
-            // FIXME: graphql client doesn't get this exception, check that it's getting thrown properly
-            UnitEntity unit = context.Units.Find(Id) ?? throw new Exception("Unit not found");
-            unit.Name = name;
+            UnitEntity unitEntity = new UnitEntity
+            {
+                Id = Id,
+                Name = unitInput.Name,
+            };
+
+            _ = context.Units.Update(unitEntity);
             _ = context.SaveChanges();
 
-            return unit;
+            UnitResult unitResult = new UnitResult
+            {
+                Id = unitEntity.Id,
+                Name = unitEntity.Name,
+                Status = unitEntity.Status
+            };
+
+            return unitResult;
         }
 
         public UnitEntity UpdateUnitStatus(DispatchSystemBackendContext context, int Id, string status)

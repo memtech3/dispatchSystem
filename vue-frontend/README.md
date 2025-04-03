@@ -50,3 +50,23 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+### Notes
+Command Ideas:
+- create unit
+- update unit status
+
+- create event (done)
+- select event (done)
+- close event
+
+- create log entry/note/comment
+- select log entry
+
+- assign log entry to event
+- assign log entry to unit
+
+- assign unit to event (done)
+- clear unit from event
+
+- merge events (keep first event, mark all other events as merged/hidden, append event IDs of merged to kept event, pretend all info in activity log stream belongs to kept event, ensure state matches the projection of the activity stream)

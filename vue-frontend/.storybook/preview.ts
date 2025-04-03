@@ -1,20 +1,8 @@
-import type { Preview, VueRenderer } from '@storybook/vue3'
-import { setup } from '@storybook/vue3'
+import type { Preview } from '@storybook/vue3'
 
-import PrimeVue from 'primevue/config'
-import VuePatternFly from '@vue-patternfly/core'
-
-import '@/tailwind.css'
-import '@patternfly/patternfly/patternfly.scss'
-import '@patternfly/patternfly/patternfly-addons.scss'
 import '@/main.scss'
 
-import { withThemeByClassName } from '@storybook/addon-themes'
-
-setup((app) => {
-  app.use(PrimeVue, { unstyled: true })
-  app.use(VuePatternFly)
-})
+import { withThemeByDataAttribute } from '@storybook/addon-themes'
 
 const preview: Preview = {
   parameters: {
@@ -26,16 +14,13 @@ const preview: Preview = {
     }
   },
   decorators: [
-    (story) => ({
-      components: { story },
-      template: '<div class="pf-v5-c-page"><story /></div>'
-    }),
-    withThemeByClassName<VueRenderer>({
+    withThemeByDataAttribute({
       themes: {
-        light: '',
-        dark: 'dark bg-slate-950 pf-v5-theme-dark'
+        light: 'light',
+        dark: 'dark'
       },
-      defaultTheme: 'dark'
+      defaultTheme: 'dark',
+      attributeName: 'data-bs-theme'
     })
   ]
 }
