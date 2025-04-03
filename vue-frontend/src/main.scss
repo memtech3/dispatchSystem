@@ -12,3 +12,27 @@ $card-spacer-y: 0.25rem;
   width: 100vw;
   height: 100vh;
 }
+
+@font-face {
+  font-family: 'SAP-icons';
+  src: url('../node_modules/@sap-theming/theming-base-content/content/Base/baseLib/sap_horizon/fonts/SAP-icons.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BusinessSuiteInAppSymbols';
+  src: url('../node_modules/@sap-theming/theming-base-content/content/Base/baseLib/sap_horizon/fonts/BusinessSuiteInAppSymbols.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SAP-icons-TNT';
+  src: url('../node_modules/@sap-theming/theming-base-content/content/Base/baseLib/sap_horizon/fonts/SAP-icons-TNT.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

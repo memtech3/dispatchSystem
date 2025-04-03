@@ -6,6 +6,8 @@ import { useConsoleStateStore } from '@/stores/consoleState'
 
 import EventCard from './EventCard.vue'
 
+import 'fundamental-styles/dist/list.css'
+
 const consoleStateStore = useConsoleStateStore()
 
 const cadEventsRepo = computed(() => {
@@ -14,7 +16,7 @@ const cadEventsRepo = computed(() => {
 </script>
 
 <template>
-  <div class="list-group">
+  <div class="fd-list fd-list--byline scrollableDockviewPanel">
     <EventCard
       v-for="cadEvent in cadEventsRepo.withAll().get()"
       :key="cadEvent.id"
@@ -35,5 +37,9 @@ const cadEventsRepo = computed(() => {
 <style scoped lang="scss">
 .pointerCursor {
   cursor: pointer;
+}
+.scrollableDockviewPanel {
+  overflow: auto;
+  height: 100%;
 }
 </style>

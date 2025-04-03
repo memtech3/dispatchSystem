@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import 'bootstrap-icons/font/bootstrap-icons.css'
 import { UnitEntity } from '@/stores/units'
-import { computed } from 'vue'
 
-const props = defineProps<{
+import 'fundamental-styles/dist/avatar.css'
+import 'fundamental-styles/dist/info-label.css'
+import 'fundamental-styles/dist/list.css'
+
+defineProps<{
   id: string
   priority: number
   typeCode: string
@@ -13,46 +15,45 @@ const props = defineProps<{
   assignedUnits: UnitEntity[]
   ceatedTime: string
 }>()
-
-const priorityClr = computed(() => {
-  switch (props.priority) {
-    case 1:
-      return 'red'
-    case 2:
-      return 'orange'
-    case 3:
-      return 'yellow'
-    case 4:
-      return 'green'
-    case 5:
-      return 'blue'
-    case 6:
-      return 'teal'
-    case 7:
-      return 'purple'
-    default:
-      return 'NO MATCH'
-  }
-})
 </script>
 <template>
-  <div class="list-group-item list-group-item-action eventItemGrid p-0" aria-current="true">
-    <div
-      class="triagePane d-flex flex-column align-items-center justify-content-center"
-      :class="'priorityColor-' + priorityClr"
-    >
-      <span class="bi bi-exclamation-triangle fs-5"></span>
-      <span class="fs-2 text-center">P{{ priority }}</span>
+  <div class="fd-list__item fd-list__item--interractive eventItemGrid">
+    <div class="typeIcon">
+      <span
+        class="fd-avatar fd-avatar--xs"
+        :class="'fd-avatar--accent-color-' + priority"
+        role="img"
+        aria-label="Avatar"
+      >
+        <i
+          role="presentation"
+          aria-hidden="true"
+          aria-label="Product placeholder"
+          class="fd-avatar__icon sap-icon--product"
+        ></i>
+      </span>
     </div>
-    <div class="detailsPane d-flex flex-column">
-      <span class="text-uppercase">{{ typeDescription }}</span>
-      <span class="text-capitalize">{{ location }}</span>
-      <small>{{ id }}</small>
-      <div class="d-inline-flex gap-1 px-1 pb-1">
-        <small v-for="unit in assignedUnits" :key="unit.id">
-          <span class="badge rounded-pill text-bg-primary">{{ unit.callsign }}</span>
-        </small>
-      </div>
+
+    <div class="priority">
+      <span
+        class="fd-info-label fd-info-label--display"
+        :class="'fd-info-label--accent-color-' + priority"
+      >
+        <span class="fd-info-label__text">P{{ priority }}</span>
+      </span>
+    </div>
+
+    <span class="text-uppercase type">{{ typeDescription }}</span>
+    <span class="text-capitalize location">{{ location }}</span>
+    <small class="id">{{ id }}</small>
+    <div class="d-inline-flex gap-1 units">
+      <span
+        v-for="unit in assignedUnits"
+        :key="unit.id"
+        class="fd-info-label fd-info-label--accent-color-6 fd-info-label--display"
+      >
+        <span class="fd-info-label__text">{{ unit.callsign }}</span>
+      </span>
     </div>
     <div class="timePane d-flex flex-column">
       <small>C 5:32</small>
@@ -64,20 +65,6 @@ const priorityClr = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@mixin priorityColor($color) {
-  .priorityColor-#{$color} {
-    background-color: var(--bs-#{$color});
-  }
-}
-
-@include priorityColor('red');
-@include priorityColor('orange');
-@include priorityColor('yellow');
-@include priorityColor('green');
-@include priorityColor('blue');
-@include priorityColor('teal');
-@include priorityColor('purple');
-
 .eventItemGrid {
   display: grid;
   grid-template-columns: 0.25fr 1fr 0.3fr;
@@ -85,18 +72,38 @@ const priorityClr = computed(() => {
   grid-column-gap: 5px;
   grid-row-gap: 0px;
   grid-template-areas:
-    'triagePane detailsPane timePane'
-    'triagePane detailsPane timePane'
-    'triagePane detailsPane timePane'
-    'triagePane detailsPane timePane';
-}
-.triagePane {
-  grid-area: triagePane;
-}
-.detailsPane {
-  grid-area: detailsPane;
+    'typeIcon type timePane'
+    'typeIcon location timePane'
+    'none id timePane'
+    'priority units timePane';
+
+  padding: 8px;
 }
 .timePane {
   grid-area: timePane;
+}
+
+.typeIcon {
+  grid-area: typeIcon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.priority {
+  grid-area: priority;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.location {
+  grid-area: location;
+}
+.id {
+  grid-area: id;
+}
+.units {
+  grid-area: units;
+  display: flex;
+  align-items: center;
 }
 </style>
