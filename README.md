@@ -8,3 +8,9 @@ An attempt at developing an open source computer aided dispatch system, currentl
 - Storybook
 - ASP.NET Core w/HotChocolate for Graphql and EntityFramework Core 
 - SonarCloud (automagic code analysis and feedback)
+
+# License Intent
+TODO: Write a paragraph about my understanding and intentions behind the license
+
+# CLA Intent
+TODO: Write a paragraph about my understanding and intentions behind the contributor license agreement
